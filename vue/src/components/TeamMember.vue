@@ -1,6 +1,37 @@
 <template>
-  <div>
-      <img src="@/assets/andrew-hill.jpg">
+  <div class="container">
+
+      <div id="andrew" class="member">
+        <div class="img">
+          <img src="@/assets/andrew-hill.jpg">
+        </div>
+        <div class="info">
+          <p class="name">Andrew Hill</p>
+          <p><a href="https://www.linkedin.com/in/andrew-michael-hill/">LinkedIn</a></p>
+        </div>
+      </div>
+
+      <div id="alex" class="member">
+        <div class="img">
+          <img src="@/assets/alex-bartosik.jpg">
+        </div>
+        <div class="info">
+          <p class="name">Alexander Bartosik</p>
+          <p><a href="https://www.linkedin.com/in/alexbartosik/">LinkedIn</a></p>
+        </div>
+      </div>
+
+
+      <div id="angelia" class="member">
+        <div class="img">
+          <img src="@/assets/angelia-thompson.jpg">
+        </div>
+        <div class="info">
+          <p class="name">Angelia Thompson</p>
+          <p><a href="https://www.linkedin.com/in/andrealeah/">LinkedIn</a></p>
+        </div>
+      </div>
+
   </div>
 </template>
 
@@ -11,7 +42,35 @@ export default {
 </script>
 
 <style>
-img {
-    
-}
+
+  img {
+      border-radius: 50%;
+      height: 150px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .member {
+    display: flex;
+    gap: 50px;
+  }
+
+  .info {
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .name {
+    font-weight: bold;
+    font-size: 26px;
+  }
+
 </style>
