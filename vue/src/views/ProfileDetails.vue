@@ -8,9 +8,6 @@
           <p>Correction Ratio: 1:{{profile.correctionRatio}}</p>
           <p>Insulin Type: {{ profile.insulinType }}</p>
           <p>Insulin Strength: {{ profile.insulinStrength }}</p>
-
-
-
       </div>
   </div>
 </template>
@@ -24,21 +21,13 @@ export default {
         }
     },
     created() {
-        
         ProfileInfoService.getProfile(+this.$route.params.profileId)
-
-        
         .then((response) => {
-
             this.profile = response.data;
         })
-
         .catch((error) => {
-        
-        console.error("Couldn't update profileeeee", error);
-        
+            console.error("Couldn't update profileeeee", error);
         });
-    
     }
 }
 </script>
