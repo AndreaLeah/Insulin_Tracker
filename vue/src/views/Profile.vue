@@ -35,6 +35,7 @@
       </div>
       <button type="submit">Save</button>
     </form>
+      <button type="submit" v-on:click="getProfile">Test</button>
   </div>
 </template>
 
@@ -48,12 +49,27 @@ export default {
       profile: undefined
     }
   },
-  created(){
-    ProfileInfoService.updateProfileInfo()
-      .then(response => {
-        this.profile = response.data;
+  methods: {
+    getProfile() {
+
+      ProfileInfoService.getProfile(1) 
+
+      .then((response) => {
+
+        if (response.status === 200) {
+          console.log(response.data);
+        }
       })
-      .catch(error => console.error('Could not update profile', error))
+      .catch((error) => {
+        
+        console.error("Couldn't update profileeeee", error);
+        
+        });
+
+    }
+  },
+  created(){
+
   }
 }
 </script>
