@@ -131,9 +131,6 @@ namespace Capstone.DAO
 
         public bool DeleteProfile(int profileId)
         {
-<<<<<<< HEAD
-            return false;
-=======
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -151,7 +148,6 @@ namespace Capstone.DAO
                 }
                 return true;
             }
->>>>>>> 3c0b0faeaa7461cab0e71e6ba33eadefd7c5c77e
         }
 
         private Profile GetProfileFromReader(SqlDataReader reader)
