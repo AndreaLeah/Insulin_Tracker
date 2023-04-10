@@ -6,6 +6,7 @@
       <p>
         Tracks blood sugar and insulin intake.
       </p>
+      <router-link v-bind:to="{name: 'Profile'}">View Profile</router-link>
   </div>
 </template>
 
