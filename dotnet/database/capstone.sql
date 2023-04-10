@@ -36,7 +36,19 @@ CREATE TABLE profiles (
 	insulin_strength int
 
 	CONSTRAINT PK_profile PRIMARY KEY (profile_id)
-	CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+	CONSTRAINT FK_profiles_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
+
+CREATE TABLE readings (
+	reading_id int IDENTITY(1,1) NOT NULL,
+	user_id int NOT NULL,
+	profile_id int NOT NULL,
+	blood_sugar int NOT NULL,
+	time datetime NOT NULL
+
+	CONSTRAINT PK_reading PRIMARY KEY (reading_id),
+	CONSTRAINT FK_readings_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+	CONSTRAINT FK_readings_profile_id FOREIGN KEY (profile_id) REFERENCES profiles(profile_id)
 )
 
 -- Populate default data for testing: user and admin with password of 'password'
@@ -45,8 +57,11 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg4
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.975, 70, 130, 10, 35, 'Humalog', 100)
 INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.975, 70, 130, 10, 35, 'Humalog', 100)
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 1, 120, '2023-04-10 11:23:55.444');
+
 
 GO
 
 Select * from users
 SELECT * from profiles
+select * from readings
