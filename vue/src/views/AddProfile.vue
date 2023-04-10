@@ -29,9 +29,7 @@
         <label for="insulinStrength"></label>
         <input type="text" id="insulinStrength" placeholder="Insulin strength" v-model="profile.insulinStrength" required>
       </div>
-      <router-link :to="{name: 'Profile'}" class="router-link">
-        <button @click="addProfile">Save</button>
-      </router-link>
+        <button @click.prevent="addProfile">Save</button>
     </form>
   </div>
 </template>
@@ -65,11 +63,12 @@ export default {
         this.profile.maxBloodSugar = +this.profile.maxBloodSugar;
         this.profile.carbRatio = +this.profile.carbRatio;
         this.profile.correctionRatio = +this.profile.correctionRatio;
-        this.profile.strength = +this.profile.strength;
+        this.profile.insulinStrength = +this.profile.insulinStrength;
         ProfileInfoService.addProfileInfo(this.profile)
           .then(response => {
             this.profile = response.data;
-            console.log(response)
+            console.log(response);
+            this.$router.push({name: 'Profile'});
           })
           .catch(error => console.error('Could not add profile', error));
     }
