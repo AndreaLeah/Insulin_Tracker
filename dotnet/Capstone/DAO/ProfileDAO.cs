@@ -69,6 +69,36 @@ namespace Capstone.DAO
             return profiles;
         }
 
+        public bool AddProfile(Profile profile)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "INSERT INTO profiles " +
+                    "(user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) " +
+                    "VALUES (@userId, @basalRate, @min, @max, @carb, @corr, @type, @strength)";
+
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@userId", profile.UserId);
+                command.Parameters.AddWithValue("@basalRate", profile.BasalRate);
+                command.Parameters.AddWithValue("@min", profile.MinBloodSugar);
+                command.Parameters.AddWithValue("@max", profile.MaxBloodSugar);
+                command.Parameters.AddWithValue("@carb", profile.CarbRatio);
+                command.Parameters.AddWithValue("@corr", profile.CorrectionRatio);
+                command.Parameters.AddWithValue("@type", profile.InsulinType);
+                command.Parameters.AddWithValue("@strength", profile.InsulinStrength);
+                int numRows = command.ExecuteNonQuery();
+
+                if (numRows == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
         public bool UpdateProfile(Profile profile)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -101,7 +131,27 @@ namespace Capstone.DAO
 
         public bool DeleteProfile(int profileId)
         {
+<<<<<<< HEAD
             return false;
+=======
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "DELETE FROM profiles WHERE profile_id = @profileId";
+
+                SqlCommand command = new SqlCommand(sql, conn);
+                command.Parameters.AddWithValue("@profileId", profileId);
+
+                int numRows = command.ExecuteNonQuery();
+
+                if (numRows == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+>>>>>>> 3c0b0faeaa7461cab0e71e6ba33eadefd7c5c77e
         }
 
         private Profile GetProfileFromReader(SqlDataReader reader)
