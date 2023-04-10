@@ -25,13 +25,15 @@
       </div>
       <div>
         <label for="insulinType">Insulin type: </label>
-        <input type="text" id="insulinType" placeholder="Humolog" v-model="profile.type" required>
+        <input type="text" id="insulinType" placeholder="Humolog" v-model="profile.insulinType" required>
       </div>
       <div>
         <label for="insulinStrength">Insulin strength: </label>
-        <input type="text" id="insulinStrength" placeholder="u100" v-model="profile.strength" required>
+        <input type="text" id="insulinStrength" placeholder="u100" v-model="profile.insulinStrength" required>
       </div>
-      <button @click.prevent="addProfile">Save</button>
+      <router-link :to="{name: 'Profile'}">
+        <button @click="addProfile">Save</button>
+      </router-link>
     </form>
   </div>
 </template>
@@ -51,8 +53,8 @@ export default {
         maxBloodSugar: 0,
         carbRatio: 0,
         correctionRatio: 0,
-        type: '',
-        strength: 0
+        insulinType: '',
+        insulinStrength: 0
       }
     }
   },

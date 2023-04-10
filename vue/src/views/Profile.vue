@@ -3,6 +3,7 @@
     <div v-for="(profile, index) in profiles" v-bind:key="profile.profileId">
       <button v-on:click="viewProfile(profile.profileId)"> {{index + 1}} </button>
     </div>
+    <router-link :to="{name: 'AddProfile'}">Add Profile</router-link>
   </div>
 </template>
 
