@@ -8,13 +8,12 @@
         <i class="fas fa-home"></i> <!-- This is a font awesome icon -->
         Home 
       </router-link>
-      <router-link class="nav-item" v-bind:to="{ name: 'about' }">
-        About this team 
-      </router-link>
       <router-link
         class="nav-item"
         v-bind:to="{ name: 'register' }"
-        v-if="!$store.state.token">&nbsp;|&nbsp;Register</router-link>
+        v-if="!$store.state.token">
+        &nbsp;|&nbsp;Register
+        </router-link>
       <router-link
         class="nav-item"
         v-bind:to="{ name: 'login' }"
@@ -26,6 +25,11 @@
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token">
         &nbsp;|&nbsp;Logout
+      </router-link>
+      <router-link 
+        class="nav-item" 
+        v-bind:to="{ name: 'about' }">
+        &nbsp;|&nbsp;About this team 
       </router-link>
     </div>
     
@@ -49,5 +53,9 @@ export default {
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 // Your custom styles go below this point
+
+a{
+    text-decoration: none;
+}
 
 </style>
