@@ -1,9 +1,13 @@
 ﻿using Capstone.Models;
+using System.Collections.Generic;
 
 namespace Capstone.DAO
 {
     public interface IReadingDAO
     {
-        Reading GetReading(int readingId);
+        public Reading GetReading(int readingId);
+        public bool AddReading(Reading reading);
+        public List<Reading> GetUserReadings(int userId);
+        public List<Reading> GetReadingsByProfile(int profileId);
     }
 }

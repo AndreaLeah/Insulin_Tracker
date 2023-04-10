@@ -1,5 +1,6 @@
 ﻿using Capstone.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace Capstone.DAO
@@ -24,7 +25,7 @@ namespace Capstone.DAO
                 string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, time FROM readings WHERE reading_id = @readingId";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@readingId", reading);
+                cmd.Parameters.AddWithValue("@readingId", readingId);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows && reader.Read())
@@ -34,6 +35,87 @@ namespace Capstone.DAO
             }
 
             return reading;
+        }
+
+        public List<Reading> GetUserReadings(int userId)
+        {
+            List<Reading> readings = new List<Reading>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, time FROM readings WHERE user_id = @userId";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        Reading reading = GetReadingFromReader(reader);
+                        readings.Add(reading);
+                    }
+                }
+            }
+
+            return readings;
+        }
+
+        public List<Reading> GetReadingsByProfile(int profileId)
+        {
+            List<Reading> readings = new List<Reading>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, time FROM readings WHERE profile_id = @profileId";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@profileId", profileId);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Reading reading = GetReadingFromReader(reader);
+                        readings.Add(reading);
+                    }
+                }
+            }
+
+            return readings;
+        }
+
+        public bool AddReading(Reading reading)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "INSERT INTO readings " +
+                    "(user_id, profile_id, blood_sugar, time) " +
+                    "VALUES (@userId, @profileId, @bloodSugar, @Time)";
+
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@userId", reading.UserId);
+                command.Parameters.AddWithValue("@profileId", reading.ProfileId);
+                command.Parameters.AddWithValue("@bloodSugar", reading.BloodSugar);
+                command.Parameters.AddWithValue("@time", reading.Time);
+                
+                int numRows = command.ExecuteNonQuery();
+
+                if (numRows == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
         private Reading GetReadingFromReader(SqlDataReader reader)
