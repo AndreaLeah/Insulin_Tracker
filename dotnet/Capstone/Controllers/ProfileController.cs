@@ -23,7 +23,15 @@ namespace Capstone.Controllers
         public IActionResult GetProfile(int profileId)
         {
             Profile profile = profileDAO.GetProfile(profileId);
-            return Ok(profile);
+            int userId = int.Parse(this.User.FindFirst("sub").Value);
+            if (userId == profile.UserId)
+            {
+                return Ok(profile);
+            }
+            else
+            {
+                return Forbid();
+            }    
         }
 
         [Authorize]
@@ -36,18 +44,67 @@ namespace Capstone.Controllers
         }
 
         [Authorize]
+        [HttpPost()]
+        public IActionResult AddProfile([FromBody] Profile profile)
+        {
+            int userId = int.Parse(this.User.FindFirst("sub").Value);
+            if (userId != profile.UserId)
+            {
+                return BadRequest(new { message = "User id in profile does not match logged in user id"});
+            }
+
+            bool result = profileDAO.AddProfile(profile);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occurred and profile was not created." });
+            }
+        }
+
+        [Authorize]
         [HttpPut()]
         public IActionResult UpdateProfile([FromBody] Profile profile)
         {
-            profileDAO.UpdateProfile(profile);
-            return Ok();
+            int userId = int.Parse(this.User.FindFirst("sub").Value);
+            if (userId != profile.UserId)
+            {
+                return BadRequest(new { message = "User id in profile does not match logged in user id" });
+            }
+
+            bool result = profileDAO.UpdateProfile(profile);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occurred and profile was not updated." });
+            }
         }
 
         [Authorize]
         [HttpDelete("{profileId}")]
         public IActionResult DeleteProfile(int profileId)
         {
-            return Ok();
+            int userId = int.Parse(this.User.FindFirst("sub").Value);
+            Profile profile = profileDAO.GetProfile(profileId);
+            if (userId != profile.UserId)
+            {
+                return BadRequest(new { message = "Profile id does not belong to logged in user" });
+            }
+
+            bool result = profileDAO.DeleteProfile(profileId);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occurred and profile was not deleted." });
+            }
         }
     }
 }
