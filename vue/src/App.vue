@@ -58,4 +58,9 @@ a{
     text-decoration: none;
 }
 
+body{
+  background: rgba(0, 0, 0, 0.884);
+  color: rgb(233, 64, 64);
+}
+
 </style>

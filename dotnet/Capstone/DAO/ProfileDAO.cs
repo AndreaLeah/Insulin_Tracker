@@ -101,7 +101,7 @@ namespace Capstone.DAO
 
         public bool DeleteProfile(int profileId)
         {
-
+            return false;
         }
 
         private Profile GetProfileFromReader(SqlDataReader reader)
