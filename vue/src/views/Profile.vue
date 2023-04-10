@@ -39,8 +39,22 @@
 </template>
 
 <script>
-export default {
+import ProfileInfoService from '../services/ProfileInfoService.js'
 
+export default {
+  name: "profile",
+  data(){
+    return {
+      profile: undefined
+    }
+  },
+  created(){
+    ProfileInfoService.updateProfileInfo()
+      .then(response => {
+        this.profile = response.data;
+      })
+      .catch(error => console.error('Could not update profile', error))
+  }
 }
 </script>
 
