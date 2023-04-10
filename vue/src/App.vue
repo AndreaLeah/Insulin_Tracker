@@ -59,8 +59,27 @@ a{
 }
 
 body{
-  background: rgba(0, 0, 0, 0.884);
+  height: 100vh;
+  width: 100vw;
+  background: #F5EDED;
   color: rgb(233, 64, 64);
+  display: flex;
+  justify-content: center;
 }
+
+div {
+  color: #746f6f;
+}
+
+h1, h2, h3 {
+  color: rgb(255, 87, 87);
+}
+
+input {
+  border-color: #F5EDED;
+  border-radius: 5px;
+}
+
+
 
 </style>

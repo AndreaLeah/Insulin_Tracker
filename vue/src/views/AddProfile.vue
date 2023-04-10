@@ -1,37 +1,35 @@
 <template>
-    <div>
-    <h1>Add Profile</h1>
-    <h3>Your profile information:</h3>
+    <div id="container">
+    <h2>Add New Profile</h2>
     <form>
       <div>
-        <label for="baselRate">Basel rate: </label>
-        <input type="text" id="basalRate" placeholder="0.000" v-model="profile.basalRate" required>
+        <label for="baselRate"></label>
+        <input type="text" id="basalRate" placeholder="Basal rate" v-model="profile.basalRate" required>
+      </div>
+      <div class="blood-sugar-range">
+        <label for="targetBloodRange"></label>
+        <input type="text" id="targetBloodRange" placeholder="Min blood sugar range" v-model="profile.minBloodSugar">
       </div>
       <div>
-        <label for="targetBloodRange">Target blood range: </label>
-        <input type="text" id="targetBloodRange" placeholder="70" v-model="profile.minBloodSugar" required style="width: 40px;">
-        <p> - </p>
-        <input type="text" id="targetBloodRange" placeholder="130" v-model="profile.maxBloodSugar" required style="width: 40px;">
+        <input type="text" id="targetBloodRange" placeholder="Max blood sugar range" v-model="profile.maxBloodSugar">
       </div>
       <div>
-        <label for="carbRatio">Carb ratio: </label>
-        <p id="ratio"> 1 : </p>
-        <input type="text" id="carbRatio" placeholder="10" v-model="profile.carbRatio" required style="width: 40px;">
+        <label for="carbRatio"></label>
+        <input type="text" id="carbRatio" placeholder="Carb ratio" v-model="profile.carbRatio">
       </div>
       <div>
-        <label for="correctionRatio">Correction ratio: </label>
-        <p id="ratio"> 1 : </p>
-        <input type="text" id="correctionRatio" placeholder="35" v-model="profile.correctionRatio" required style="width: 40px;">
+        <label for="correctionRatio"></label>
+        <input type="text" id="correctionRatio" placeholder="Correction ratio" v-model="profile.correctionRatio">
       </div>
       <div>
-        <label for="insulinType">Insulin type: </label>
-        <input type="text" id="insulinType" placeholder="Humolog" v-model="profile.insulinType" required>
+        <label for="insulinType"></label>
+        <input type="text" id="insulinType" placeholder="Insulin type" v-model="profile.insulinType" required>
       </div>
       <div>
-        <label for="insulinStrength">Insulin strength: </label>
-        <input type="text" id="insulinStrength" placeholder="u100" v-model="profile.insulinStrength" required>
+        <label for="insulinStrength"></label>
+        <input type="text" id="insulinStrength" placeholder="Insulin strength" v-model="profile.insulinStrength" required>
       </div>
-      <router-link :to="{name: 'Profile'}">
+      <router-link :to="{name: 'Profile'}" class="router-link">
         <button @click="addProfile">Save</button>
       </router-link>
     </form>
@@ -46,15 +44,15 @@ export default {
   data(){
     return {
       profile: {
-        profileId: 0,
-        userId: 0,
-        basalRate: 0.00,
-        minBloodSugar: 0,
-        maxBloodSugar: 0,
-        carbRatio: 0,
-        correctionRatio: 0,
+        profileId: '',
+        userId: '',
+        basalRate: '',
+        minBloodSugar: '',
+        maxBloodSugar: '',
+        carbRatio: '',
+        correctionRatio: '',
         insulinType: '',
-        insulinStrength: 0
+        insulinStrength: ''
       }
     }
   },
@@ -79,14 +77,36 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
-form > div{
-  display: block;
+body {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
+  margin-top: 50px;
 }
 
-#ratio{
-  padding-left: .5rem;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container {
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: white;
+  width: 300px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+form > div, .router-link{
+  display: flex;
+  justify-content: center;
 }
 
 div > p{
@@ -100,6 +120,24 @@ input{
 
 label{
   align-content: left;
+  font-weight: bold;
+}
+
+button {
+  background-image: linear-gradient(to left, rgb(255, 142, 142), rgb(233, 64, 64));
+  width: 200px;
+  border-style: none;
+  border-radius: 15px;
+}
+
+input {
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 15px;
+  width: 200px;
+}
+
+.router-link {
+  margin-top: 30px;
 }
 
 </style>
