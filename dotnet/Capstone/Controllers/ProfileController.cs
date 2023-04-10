@@ -48,10 +48,7 @@ namespace Capstone.Controllers
         public IActionResult AddProfile([FromBody] Profile profile)
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
-            if (userId != profile.UserId)
-            {
-                return BadRequest(new { message = "User id in profile does not match logged in user id"});
-            }
+            profile.UserId = userId;
 
             bool result = profileDAO.AddProfile(profile);
             if (result)

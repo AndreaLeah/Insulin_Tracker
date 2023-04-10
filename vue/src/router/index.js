@@ -8,6 +8,7 @@ import Register from "../views/Register.vue";
 import Profile from "../views/Profile.vue";
 import AddProfile from "../views/AddProfile.vue"
 import store from "../store/index";
+import ProfileDetails from '../views/ProfileDetails.vue'
 
 Vue.use(Router);
 
@@ -84,6 +85,14 @@ const router = new Router({
       path: "*",
       redirect: "/",
     },
+    {
+      path: '/profile/:profileId',
+      name: 'ProfileDetails',
+      component: ProfileDetails,
+      meta: {
+        requiresAuth: true,
+      },
+    }
   ],
 });
 
