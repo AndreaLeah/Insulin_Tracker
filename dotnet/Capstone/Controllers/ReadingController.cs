@@ -67,12 +67,9 @@ namespace Capstone.Controllers
         public IActionResult AddReading([FromBody] Reading reading)
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
-            Profile profile = profileDAO.GetProfile(reading.ProfileId);
+            reading.UserId = userId;
 
-            if (userId != reading.UserId)
-            {
-                return BadRequest(new { message = "User id in reading does not match logged in user id" });
-            }
+            Profile profile = profileDAO.GetProfile(reading.ProfileId);
             if (userId != profile.UserId)
             {
                 return BadRequest(new { message = "Profile id in reading does not match logged in user id" });
