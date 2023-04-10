@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-    updateProfileInfo(){
-        return axios.put('profiles');
+    addProfileInfo(profile){
+        return axios.post('profiles', profile);
     }
 }

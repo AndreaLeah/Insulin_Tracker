@@ -1,41 +1,5 @@
 <template>
-  <div>
-    <h1>Profile</h1>
-    <h3>Your profile information:</h3>
-    <form>
-      <div>
-        <label for="baselRate">Basel rate: </label>
-        <input type="text" placeholder="0.000" required>
-      </div>
-      <div>
-        <label for="baselRate">Target blood range: </label>
-        <input type="text" placeholder="70" required style="width: 40px;">
-        <p> - </p>
-        <input type="text" placeholder="130" required style="width: 40px;">
-      </div>
-      <div>
-        <label for="baselRate">Carb ratio: </label>
-        <input type="text" placeholder="1" required style="width: 40px;">
-        <p> : </p>
-        <input type="text" placeholder="10" required style="width: 40px;">
-      </div>
-      <div>
-        <label for="baselRate">Correction ratio: </label>
-        <input type="text" placeholder="1" required style="width: 40px;">
-        <p> : </p>
-        <input type="text" placeholder="35" required style="width: 40px;">
-      </div>
-      <div>
-        <label for="baselRate">Insulin type: </label>
-        <input type="text" placeholder="Humolog" required>
-      </div>
-      <div>
-        <label for="baselRate">Insulin strength: </label>
-        <input type="text" placeholder="u100" required>
-      </div>
-      <button type="submit">Save</button>
-    </form>
-  </div>
+ <div></div>
 </template>
 
 <script>
@@ -45,11 +9,13 @@ export default {
   name: "profile",
   data(){
     return {
-      profile: undefined
+      profile: {
+        strength: 'u100'
+      }
     }
   },
   created(){
-    ProfileInfoService.updateProfileInfo()
+    ProfileInfoService.updateProfileInfo(this.profile)
       .then(response => {
         this.profile = response.data;
       })
