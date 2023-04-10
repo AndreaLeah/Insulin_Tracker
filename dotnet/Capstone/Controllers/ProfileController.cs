@@ -66,9 +66,12 @@ namespace Capstone.Controllers
         public IActionResult UpdateProfile([FromBody] Profile profile)
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
-            if (userId != profile.UserId)
+            profile.UserId = userId;
+
+            Profile pro = profileDAO.GetProfile(profile.ProfileId);
+            if (pro.UserId != userId)
             {
-                return BadRequest(new { message = "User id in profile does not match logged in user id" });
+                return BadRequest(new { message = "Profile does not belong to user" });
             }
 
             bool result = profileDAO.UpdateProfile(profile);
