@@ -27,6 +27,11 @@
         v-bind:to="{ name: 'about' }">
         &nbsp;|&nbsp;About this team 
       </router-link>
+      <router-link 
+        class="nav-item"
+        v-bind:to="{name: 'Profile'}">
+        &nbsp;|&nbsp;View Profile
+        </router-link>
     </div>
 </template>
 
@@ -40,6 +45,7 @@ export default {
 
 #nav {
   width: 100%;
+  height: 100px;
 }
 
 </style>
