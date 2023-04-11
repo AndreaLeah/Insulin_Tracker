@@ -39,6 +39,11 @@ import ProfileInfoService from "../services/ProfileInfoService.js"
 
 export default {
   name: "addProfile",
+  //beforeCreate() {
+  //},
+  //beforeDestroy() {
+  //    document.body.className = 'testClass';
+  //},
   data(){
     return {
       profile: {
@@ -78,12 +83,17 @@ export default {
 
 <style>
 
-body {
+/* This needs to unscoped. It is applied to the App.vue div*/
+.AddProfileBackground{
+  background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
+  max-width: 100%;
+  max-height: 100%;
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
-  margin-top: 50px;
+  margin: 0;
+  padding: 0;
 }
+
 
 .container {
     display: flex;
