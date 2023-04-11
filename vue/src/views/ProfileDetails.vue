@@ -1,15 +1,13 @@
 <template>
-  <div>
-      <div>
-          <p>Profile Information:</p>
-          <p>Basal Rate: {{ profile.basalRate }}</p>
-          <p>Blood Sugar Range: {{profile.minBloodSugar}} - {{profile.maxBloodSugar}}</p>
-          <p>Carb Ratio: 1:{{profile.carbRatio}}</p>
-          <p>Correction Ratio: 1:{{profile.correctionRatio}}</p>
-          <p>Insulin Type: {{ profile.insulinType }}</p>
-          <p>Insulin Strength: {{ profile.insulinStrength }}</p>
-      </div>
-  </div>
+  <section>
+    <h1>Profile {{ profile.profileId }}</h1>
+    <p>Basal Rate: {{ profile.basalRate }}</p>
+    <p>Blood Sugar Range: {{profile.minBloodSugar}} - {{profile.maxBloodSugar}}</p>
+    <p>Carb Ratio: 1:{{profile.carbRatio}}</p>
+    <p>Correction Ratio: 1:{{profile.correctionRatio}}</p>
+    <p>Insulin Type: {{ profile.insulinType }}</p>
+    <p>Insulin Strength: {{ profile.insulinStrength }}</p>
+  </section>
 </template>
 
 <script>
@@ -20,7 +18,7 @@ export default {
             profile: []
         }
     },
-    beforeCreate() {
+    created() {
         ProfileInfoService.getProfile(+this.$route.params.profileId)
         .then((response) => {
             if (response.status === 200) {
@@ -38,6 +36,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+section{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: thin solid black;
+}
+
+p{
+    display: flex;
+    flex-grow: 1fr;
+}
 
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Your Profiles</h1>
     <div v-for="(profile, index) in profiles" v-bind:key="profile.profileId">
       <button v-on:click="viewProfile(profile.profileId)"> {{index + 1}} </button>
     </div>
@@ -14,7 +15,6 @@ export default {
   name: "profile",
   data(){
     return {
-      //profile: undefined,
       profiles: []
     }
   },
@@ -55,21 +55,17 @@ export default {
 
 <style scoped>
 
-form > div{
-  display: block;
+div{
+  text-align: center;
+  margin-top: 1rem;
 }
 
-div > p{
-  display: inline;
+button{
+  border: thin solid rgb(117, 0, 0);
 }
 
-input{
-  margin: 0.5rem;
-  align-content: right;
-}
-
-label{
-  align-content: left;
+router-link{
+  padding-top: 1rem;
 }
 
 </style>
