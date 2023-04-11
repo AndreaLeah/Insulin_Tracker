@@ -132,7 +132,7 @@ label{
   font-weight: bold;
 }
 
-button {
+#container > form > button {
   background-image: linear-gradient(to left, rgb(255, 142, 142), rgb(233, 64, 64));
   width: 200px;
   border-style: none;
