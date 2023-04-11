@@ -5,15 +5,18 @@
   <div id="app" :class='[{"AddProfileBackground": isAddProfile}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
     <Nav />
     <router-view />
+    <footer-component />
   </div>
 </template>
 
 <script>
 import Nav from './components/Nav.vue';
+import FooterComponent from './components/FooterComponent.vue';
 
 export default {
   components: { 
-    Nav
+    Nav,
+    FooterComponent
   },
   computed: {
     isAddProfile() {

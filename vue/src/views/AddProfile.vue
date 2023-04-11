@@ -31,6 +31,7 @@
       </div>
         <button @click.prevent="addProfile">Save</button>
     </form>
+    
   </div>
 </template>
 
@@ -86,12 +87,6 @@ export default {
 /* This needs to unscoped. It is applied to the App.vue div*/
 .AddProfileBackground{
   background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
-  max-width: 100%;
-  max-height: 100%;
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
 
 }
 
