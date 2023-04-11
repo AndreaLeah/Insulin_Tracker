@@ -25,11 +25,6 @@ namespace Capstone.Controllers
         public IActionResult GetReading(int readingId)
         {
             Reading reading = readingDAO.GetReading(readingId);
-            if (reading == null)
-            {
-                return BadRequest(new { message = "Reading does not exist" });
-            }
-
             int userId = int.Parse(this.User.FindFirst("sub").Value);
             if (userId == reading.UserId)
             {
@@ -56,10 +51,6 @@ namespace Capstone.Controllers
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
             Profile profile = profileDAO.GetProfile(profileId);
-            if (profile == null)
-            {
-                return BadRequest(new { message = "Profile does not exist" });
-            }
 
             if (userId != profile.UserId)
             {
@@ -79,11 +70,6 @@ namespace Capstone.Controllers
             reading.UserId = userId;
 
             Profile profile = profileDAO.GetProfile(reading.ProfileId);
-            if (profile == null)
-            {
-                return BadRequest(new { message = "Profile does not exist" });
-            }
-
             if (userId != profile.UserId)
             {
                 return BadRequest(new { message = "Profile id in reading does not match logged in user id" });

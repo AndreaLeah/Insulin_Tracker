@@ -23,11 +23,6 @@ namespace Capstone.Controllers
         public IActionResult GetProfile(int profileId)
         {
             Profile profile = profileDAO.GetProfile(profileId);
-            if (profile == null)
-            {
-                return Forbid();
-            }
-
             int userId = int.Parse(this.User.FindFirst("sub").Value);
             if (userId == profile.UserId)
             {
@@ -74,11 +69,6 @@ namespace Capstone.Controllers
             profile.UserId = userId;
 
             Profile pro = profileDAO.GetProfile(profile.ProfileId);
-            if (pro == null)
-            {
-                return BadRequest(new { message = "Profile does not exist" });
-            }
-
             if (pro.UserId != userId)
             {
                 return BadRequest(new { message = "Profile does not belong to user" });
@@ -101,11 +91,6 @@ namespace Capstone.Controllers
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
             Profile profile = profileDAO.GetProfile(profileId);
-            if (profile == null)
-            {
-                return BadRequest(new { message = "Profile does not exist" });
-            }
-
             if (userId != profile.UserId)
             {
                 return BadRequest(new { message = "Profile id does not belong to logged in user" });
