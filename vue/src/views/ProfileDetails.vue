@@ -29,7 +29,7 @@ export default {
             }
         })
         .catch((error) => {
-            console.error("Couldn't get profile", error);
+            error;
             this.$router.push({name: 'home'});
         });
     }
