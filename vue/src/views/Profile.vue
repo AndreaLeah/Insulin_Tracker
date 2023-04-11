@@ -67,6 +67,9 @@ section{
   border: thin solid black;
   border-radius: 10px;
   box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+  width: 20rem;
+  align-items: center;
+  margin: 4rem auto;
 }
 
 a{
