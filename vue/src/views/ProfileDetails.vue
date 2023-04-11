@@ -17,22 +17,16 @@ import ProfileInfoService from '../services/ProfileInfoService'
 export default {
     data() {
         return {
-            profile: []
+            profile: undefined
         }
     },
-    beforeCreate() {
+    created() {
         ProfileInfoService.getProfile(+this.$route.params.profileId)
         .then((response) => {
-            if (response.status === 200) {
-                this.profile = response.data;
-            }
-            else {
-                this.$router.push({name: 'home'});
-            }
+            this.profile = response.data;
         })
         .catch((error) => {
-            console.error("Couldn't get profile", error);
-            this.$router.push({name: 'home'});
+            console.error("Couldn't update profileeeee", error);
         });
     }
 }

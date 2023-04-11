@@ -14,12 +14,13 @@ export default {
   name: "profile",
   data(){
     return {
-      //profile: undefined,
+      profile: undefined,
       profiles: []
     }
   },
   methods: {
     viewProfile(profileId) {
+
       this.$router.push({name: 'ProfileDetails', params: {
         profileId: profileId,
       }});
@@ -29,6 +30,7 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           this.profiles = response.data;
+          console.log(this.profiles);
         }
       })
       .catch((error) => {
