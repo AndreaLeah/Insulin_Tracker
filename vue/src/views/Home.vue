@@ -66,8 +66,6 @@ export default {
 .HomeStyling {
   max-width: 100%;
   max-height: 100%;
-  height: 100vh;
-  width: 100vw;
   margin: 0;
   padding: 0;
 }
@@ -85,19 +83,15 @@ export default {
   background-size: 100%;
   max-width: 100%;
   max-height: 100%;
-  height: 400px;
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
 }
 
 svg {
   width: 100%;
   height: auto;
-}
-
-.img {
-  height: 100%;
 }
 
 img.card-imgs {
