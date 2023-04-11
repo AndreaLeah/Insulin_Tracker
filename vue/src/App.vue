@@ -2,43 +2,19 @@
      Note that you have classes from bootstrap available to you.
      See https://getbootstrap.com/docs/4.5/getting-started/introduction/ for reference on bootstrap -->
 <template>
-  <div id="app" :class='[{"AddProfileBackground": isAddProfile}, {"container": true}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
-    <div id="nav">
-      <router-link class="nav-item" v-bind:to="{ name: 'home' }">
-        <i class="fas fa-home"></i> <!-- This is a font awesome icon -->
-        Home 
-      </router-link>
-      <router-link
-        class="nav-item"
-        v-bind:to="{ name: 'register' }"
-        v-if="!$store.state.token">
-        &nbsp;|&nbsp;Register
-        </router-link>
-      <router-link
-        class="nav-item"
-        v-bind:to="{ name: 'login' }"
-        v-if="!$store.state.token">
-        &nbsp;|&nbsp;Login
-      </router-link>
-      <router-link
-        class="nav-item"
-        v-bind:to="{ name: 'logout' }"
-        v-if="$store.state.token">
-        &nbsp;|&nbsp;Logout
-      </router-link>
-      <router-link 
-        class="nav-item" 
-        v-bind:to="{ name: 'about' }">
-        &nbsp;|&nbsp;About this team 
-      </router-link>
-    </div>
-    
+  <div id="app" :class='[{"AddProfileBackground": isAddProfile}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
+    <Nav />
     <router-view />
   </div>
 </template>
 
 <script>
+import Nav from './components/Nav.vue';
+
 export default {
+  components: { 
+    Nav
+  },
   computed: {
     isAddProfile() {
       return this.$route.name === 'AddProfile';
@@ -65,13 +41,6 @@ a{
     text-decoration: none;
 }
 
-body{
-  background: #F5EDED;
-  color: rgb(233, 64, 64);
-  display: flex;
-  justify-content: center;
-}
-
 div {
   color: #746f6f;
 }
@@ -84,10 +53,5 @@ input {
   border-color: #F5EDED;
   border-radius: 5px;
 }
-
-#nav {
-  width: 100%;
-}
-
 
 </style>
