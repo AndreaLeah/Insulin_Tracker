@@ -2,13 +2,14 @@
   <div class="home">
 
     <div id="main-content">
-      <h1>Insulin Tracker</h1>
-      <p>This application simulates that action of an insulin pump which delivers a continuous base level of insulin
-        and then additional amounts based on food intake.</p>
-      <p>
-        Tracks blood sugar and insulin intake.
-      </p>
-        <router-link v-bind:to="{name: 'Profile'}">View Profile</router-link>
+      <div class="main-content-text">
+        <h1>Insulin Tracker</h1>
+        <p>This application simulates that action of an insulin pump which delivers a continuous base level of insulin
+          and then additional amounts based on food intake.</p>
+        <p>
+          Tracks blood sugar and insulin intake.
+        </p>
+      </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f3f4f5" fill-opacity="1" d="M0,192L60,170.7C120,149,240,107,360,122.7C480,139,600,213,720,213.3C840,213,960,139,1080,101.3C1200,64,1320,64,1380,64L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" class="svg"></path>
       </svg>
     </div>
@@ -46,10 +47,6 @@
         </div>
 
       </div>
-
-
-
-
       </div>
     </div>
   </div>
@@ -66,8 +63,6 @@ export default {
 .HomeStyling {
   max-width: 100%;
   max-height: 100%;
-  height: 100vh;
-  width: 100vw;
   margin: 0;
   padding: 0;
 }
@@ -85,19 +80,23 @@ export default {
   background-size: 100%;
   max-width: 100%;
   max-height: 100%;
-  height: 400px;
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+}
+
+.main-content-text {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 svg {
   width: 100%;
   height: auto;
-}
-
-.img {
-  height: 100%;
 }
 
 img.card-imgs {
@@ -112,9 +111,10 @@ img.card-imgs {
 
 .card-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   background-color: #F3F4F5;
   padding: 50px;
+  gap: 50px;
 }
 
 .card {
