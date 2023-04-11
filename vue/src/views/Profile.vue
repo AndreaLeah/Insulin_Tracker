@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <section>
     <h1>Your Profiles</h1>
     <div v-for="(profile, index) in profiles" v-bind:key="profile.profileId">
-      <button v-on:click="viewProfile(profile.profileId)"> {{index + 1}} </button>
+      <button class="fancyButton" v-on:click="viewProfile(profile.profileId)"> {{index + 1}} </button>
     </div>
     <router-link :to="{name: 'AddProfile'}">Add Profile</router-link>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -60,11 +60,43 @@ div{
   margin-top: 1rem;
 }
 
+section{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: thin solid black;
+  border-radius: 10px;
+  box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+  width: 20rem;
+  align-items: center;
+  margin: 4rem auto;
+}
+
+a{
+  text-align: center;
+  padding-top: 1rem;
+}
+
+@keyframes buttonAnimation {
+  from {background-color: rgb(255, 215, 215);}
+  to {background-color: #ea5151;}
+}
+
 button{
   border: thin solid rgb(117, 0, 0);
+  width: 200px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.fancyButton:hover, .fancyButton:focus{
+  animation-name: buttonAnimation;
+  animation-duration: .2s;
+  animation-fill-mode: forwards;
 }
 
 router-link{
+  text-align: center;
   padding-top: 1rem;
 }
 

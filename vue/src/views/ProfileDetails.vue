@@ -7,6 +7,7 @@
     <p>Correction Ratio: 1:{{profile.correctionRatio}}</p>
     <p>Insulin Type: {{ profile.insulinType }}</p>
     <p>Insulin Strength: {{ profile.insulinStrength }}</p>
+    <router-link v-bind:to="{name: 'Profile'}">&#60; Back</router-link>
   </section>
 </template>
 
@@ -43,6 +44,11 @@ section{
     flex-direction: column;
     padding: 1rem;
     border: thin solid black;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgb(49, 49, 49, 0.5);
+    align-items: center;
+    margin: 4rem auto;
+    width: 20rem;
 }
 
 p{

@@ -92,13 +92,7 @@ export default {
   width: 100vw;
   margin: 0;
   padding: 0;
-}
 
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 #container {
@@ -111,6 +105,9 @@ export default {
   width: 300px;
   height: 500px;
   border-radius: 10px;
+  align-content: center;
+  text-align: center;
+  margin: 4rem auto;
 }
 
 form > div, .router-link{
@@ -123,8 +120,12 @@ div > p{
 }
 
 input{
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 15px;
+  width: 200px;
   margin: 0.5rem;
   align-content: right;
+  padding-left: .5rem;
 }
 
 label{
@@ -132,21 +133,12 @@ label{
   font-weight: bold;
 }
 
-button {
+#container > form > button {
   background-image: linear-gradient(to left, rgb(255, 142, 142), rgb(233, 64, 64));
   width: 200px;
   border-style: none;
   border-radius: 15px;
-}
-
-input {
-  border: 1px solid rgb(219, 219, 219);
-  border-radius: 15px;
-  width: 200px;
-}
-
-.router-link {
-  margin-top: 30px;
+  margin: .5rem;
 }
 
 </style>
