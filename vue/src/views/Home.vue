@@ -56,6 +56,14 @@
 
     <div class="info-container">
 
+      <div class="info-content-container">
+        <img src="../assets/doctors.jpg" alt="picture of doctors talking and looking at screen" class="doctors">
+        <div class="info-text">
+          <h4>Work Together, Better</h4>
+          <p>Better control, monitor, and work in conjunction with your healthcare provider for blood glucose control.</p>
+        </div>
+      </div>
+
     </div>
 
 
@@ -168,11 +176,32 @@ img.card-imgs {
   font-weight: bold;
 }
 
+/* Info Container */
 
-.info-container {
+.info-content-container {
   height: 300px;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
 }
+
+.doctors {
+  border-radius: 0;
+  height: 250px;
+  width: auto;
+}
+
+.info-text {
+  width: 200px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 
 
 </style>
