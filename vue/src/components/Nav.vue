@@ -97,6 +97,7 @@ export default {
   font-weight: bold;
 }
 
+/* Tablet */
 
 @media only screen and (max-width: 850px) {
 
@@ -107,6 +108,17 @@ export default {
   #logo {
     font-size: 20px;
   }
+
+}
+
+/* Phones */
+
+@media only screen and (max-width: 696px) {
+
+  .nav-container {
+    width: 60%;
+  }
+  
 }
 
 

@@ -157,6 +157,8 @@ img.card-imgs {
   background-color: #F3F4F5;
   padding-bottom: 100px;
   gap: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .card {
@@ -214,6 +216,10 @@ h4 {
   font-weight: bold;
 }
 
-
+@media only screen and (max-width: 700px) {
+  .card-container {
+    flex-wrap: wrap;
+  }
+}
 
 </style>
