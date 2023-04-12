@@ -45,7 +45,7 @@ section{
     padding: 1rem;
     border: thin solid black;
     border-radius: 10px;
-    box-shadow: 10px 5px 5px rgb(49, 49, 49, 0.5);
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
     align-items: center;
     margin: 4rem auto;
     width: 20rem;
