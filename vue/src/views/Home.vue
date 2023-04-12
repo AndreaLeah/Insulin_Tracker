@@ -17,13 +17,7 @@
       <div class="card-container">
       <div class="card">
         
-        <img src="../assets/man.png" alt="" class="card-imgs">
-
-                <!-- <p>This application simulates the action of an insulin pump that delivers a continuous base level of insulin
-          and then additional amounts based on food intake.</p> -->
-        <!-- <p>
-          Tracks blood sugar and insulin intake.
-        </p> -->
+        <img src="../assets/insulin.png" alt="icon of insulin vial and syringe" class="card-imgs">
 
         <div class="card-text">
           <p class="title">Track Insulin</p>
@@ -34,7 +28,7 @@
 
       <div class="card">
         
-        <img src="../assets/man.png" alt="" class="card-imgs">
+        <img src="../assets/check.png" alt="icon of blood glucose machine checking blood sugar from a hand" class="card-imgs">
 
         <div class="card-text">
           <p class="title">Check Blood Glucose</p>
@@ -45,7 +39,7 @@
 
       <div class="card">
         
-        <img src="../assets/man.png" alt="" class="card-imgs">
+        <img src="../assets/adjust.png" alt="icon of adjusting controls" class="card-imgs">
 
         <div class="card-text">
           <p class="title">Adjust</p>
@@ -142,6 +136,7 @@ svg {
 img.card-imgs {
   height: 70px;
   width: 70px;
+  border-radius: 0;
 }
 
 #cards {
@@ -166,6 +161,7 @@ img.card-imgs {
   gap: 10px;
   padding: 15px;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, .1) 7px 5px 10px;
 }
 
 .card-text {
@@ -176,6 +172,7 @@ img.card-imgs {
 
 .title {
   font-weight: bold;
+  color: black;
 }
 
 /* Info Container */
@@ -186,12 +183,12 @@ img.card-imgs {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
   text-align: center;
 }
 
 .doctors {
-  border-radius: 0;
+  border-radius: 20px;
   height: 250px;
   width: auto;
 }
@@ -202,6 +199,11 @@ img.card-imgs {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+h4 {
+  color: rgb(191, 0, 0);
+  font-weight: bold;
 }
 
 
