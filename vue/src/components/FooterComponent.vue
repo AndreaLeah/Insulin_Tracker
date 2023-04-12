@@ -14,9 +14,9 @@ export default {
 
 .footer {
   height: 50px;
-  position: relative;
-  left: 0;
-  bottom: 0;
+  grid-area: footer;
+  /*left: 0;
+  bottom: 0;*/
   width: 100%;
   background-color: black;
   text-align: center;

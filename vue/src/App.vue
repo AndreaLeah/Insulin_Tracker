@@ -57,4 +57,16 @@ input {
   border-radius: 5px;
 }
 
+#app {
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  grid-template-areas: 
+    "nav"
+    "main"
+    "footer";
+  grid-template-columns: 1fr;
+  align-content: space-between;
+}
+
 </style>
