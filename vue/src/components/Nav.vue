@@ -98,6 +98,17 @@ export default {
 }
 
 
+@media only screen and (max-width: 850px) {
+
+  .nav-content {
+    font-size: 14px;
+  }
+
+  #logo {
+    font-size: 20px;
+  }
+}
+
 
 
 </style>
