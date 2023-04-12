@@ -64,11 +64,46 @@ CREATE TABLE boluses (
 -- These values should not be kept when going to Production
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
-INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.975, 70, 130, 10, 35, 'Humalog', 100)
-INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.975, 70, 130, 10, 35, 'Humalog', 100)
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 1, 120, '2023-04-10 11:23:55.444');
-INSERT INTO boluses (reading_id, bolus_amount) VALUES (1, 5);
 
+--User 1 profiles
+INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.975, 70, 130, 10, 35, 'Humalog', 100)
+INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.8, 70, 130, 15, 35, 'Humalog', 100)
+
+--User 2 profiles
+INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 0.6, 80, 120, 20, 50, 'Humalog', 100)
+INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 0.5, 80, 120, 25, 50, 'Humalog', 100)
+
+--User 1 readings
+--Profile 1
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 1, 120, '2023-04-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 1, 130, '2023-04-10 11:35:55.444');
+--Profile 2
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 2, 90, '2023-06-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 2, 89, '2023-07-10 11:35:55.444');
+
+--User 2 readings
+--Profile 1
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (2, 3, 100, '2023-09-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (2, 3, 109, '2023-09-10 11:35:55.444');
+--Profile 2
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (2, 4, 98, '2023-03-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (2, 4, 87, '2023-03-10 11:35:55.444');
+
+--User 1 boluses
+--Profile 1
+INSERT INTO boluses (reading_id, bolus_amount) VALUES (1, 5);
+INSERT INTO boluses (reading_id, bolus_amount) VALUES (2, 3);
+--Profile 2
+INSERT INTO boluses (reading_id, bolus_amount) VALUES (3, 9);
+INSERT INTO boluses (reading_id, bolus_amount) VALUES (4, 7);
+
+--User 2 boluses
+--Profile 1
+INSERT INTO boluses (reading_id, bolus_amount) VALUES (5, 1);
+INSERT INTO boluses (reading_id, bolus_amount) VALUES (6, 2);
+--Profile 2
+INSERT INTO boluses (reading_id, bolus_amount) VALUES (7, 8);
+INSERT INTO boluses (reading_id, bolus_amount) VALUES (8, 4);
 GO
 
 Select * from users
@@ -76,16 +111,3 @@ SELECT * from profiles
 select * from readings
 select * from boluses
 
-select bolus_id, u.user_id, bolus_amount, r.reading_id, p.profile_id, blood_sugar, time, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength
-from boluses b
-INNER JOIN readings r ON r.reading_id = b.reading_id
-INNER JOIN profiles p ON p.profile_id = r.profile_id
-INNER JOIN users u ON u.user_id = p.user_id
-WHERE
-b.bolus_id = 1
-
-SELECT b.bolus_id, r.reading_id, bolus_amount
-FROM users u
-INNER JOIN readings r ON r.user_id = u.user_id
-INNER JOIN boluses b ON b.reading_id = r.reading_id
-WHERE r.reading_id = 1
