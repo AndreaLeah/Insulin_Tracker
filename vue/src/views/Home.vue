@@ -187,6 +187,10 @@ img.card-imgs {
 
 /* Info Container */
 
+.info-container {
+  padding: 40px 0; 
+}
+
 .info-content-container {
   height: 300px;
   width: 100%;
@@ -216,8 +220,19 @@ h4 {
   font-weight: bold;
 }
 
+/* Tablet */
+
 @media only screen and (max-width: 700px) {
   .card-container {
+    flex-wrap: wrap;
+  }
+}
+
+/* Cell */
+
+@media only screen and (max-width: 425px) {
+  .info-content-container {
+    padding: 0 20px;
     flex-wrap: wrap;
   }
 }
