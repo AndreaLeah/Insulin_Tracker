@@ -8,7 +8,8 @@ import Register from "../views/Register.vue";
 import Profile from "../views/Profile.vue";
 import AddProfile from "../views/AddProfile.vue"
 import store from "../store/index";
-import ProfileDetails from '../views/ProfileDetails.vue'
+import ProfileDetails from '../views/ProfileDetails.vue';
+import Readings from '../views/Readings.vue';
 
 Vue.use(Router);
 
@@ -92,6 +93,15 @@ const router = new Router({
       meta: {
         requiresAuth: true,
       },
+
+    },
+    {
+      path: '/readings',
+      name: 'Readings',
+      component: Readings,
+      meta: {
+        requiresAuth: true,
+      }
     }
   ],
 });
