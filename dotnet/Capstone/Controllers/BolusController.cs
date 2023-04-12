@@ -59,6 +59,23 @@ namespace Capstone.Controllers
         public IActionResult GetFullBolus(int bolusId)
         {
             FullBolusInfo bolus = bolusDAO.GetFullBolusInfo(bolusId);
+            if (bolus == null)
+            {
+                return BadRequest(new { message = "Bolus does not exist" });
+            }
+
+            Reading reading = readingDAO.GetReading(bolus.ReadingId);
+            if (reading == null)
+            {
+                return BadRequest(new { message = "Reading for bolus does not exist" });
+            }
+
+            int userId = int.Parse(this.User.FindFirst("sub").Value);
+            if (userId != reading.UserId)
+            {
+                return BadRequest(new { message = "Reading user id does not match logged in user id" });
+            }
+
             return Ok(bolus);
         }
 
