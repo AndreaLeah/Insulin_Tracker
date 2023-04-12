@@ -8,6 +8,7 @@ namespace Capstone.DAO
         public Reading GetReading(int readingId);
         public bool AddReading(Reading reading);
         public List<Reading> GetUserReadings(int userId);
+        public List<Reading> GetUserPreviousReadings(int userId, int amount);
         public List<Reading> GetReadingsByProfile(int profileId);
     }
 }

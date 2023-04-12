@@ -43,11 +43,19 @@ namespace Capstone.Controllers
 
         [Authorize]
         [HttpGet()]
-        public IActionResult GetUserReadings()
+        public IActionResult GetUserReadings(int previous)
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
-            List<Reading> readings = readingDAO.GetUserReadings(userId);
-            return Ok(readings);
+            if (previous > 0)
+            {
+                List<Reading> readings = readingDAO.GetUserPreviousReadings(userId, previous);
+                return Ok(readings);
+            }
+            else
+            {
+                List<Reading> readings = readingDAO.GetUserReadings(userId);
+                return Ok(readings);
+            }
         }
 
         [Authorize]

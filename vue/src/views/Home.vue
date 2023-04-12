@@ -56,7 +56,7 @@
         <img src="../assets/doctors.jpg" alt="picture of doctors talking and looking at screen" class="doctors">
         <div class="info-text">
           <h4>Work Together, Better</h4>
-          <p>Better control, monitor, and work in conjunction with your healthcare provider for better blood glucose control.</p>
+          <p>Control, monitor, and work in conjunction with your healthcare provider for better blood glucose control.</p>
         </div>
       </div>
 
@@ -143,6 +143,7 @@ img.card-imgs {
   height: 70px;
   width: 70px;
   border-radius: 0;
+  margin-top: 5px;
 }
 
 #cards {
@@ -156,10 +157,12 @@ img.card-imgs {
   background-color: #F3F4F5;
   padding-bottom: 100px;
   gap: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .card {
-  height: 250px;
+  height: 265px;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -174,6 +177,7 @@ img.card-imgs {
   display: flex;
   flex-direction: column;
   text-align: center;
+  margin-top: 10px;
 }
 
 .title {
@@ -212,6 +216,10 @@ h4 {
   font-weight: bold;
 }
 
-
+@media only screen and (max-width: 700px) {
+  .card-container {
+    flex-wrap: wrap;
+  }
+}
 
 </style>
