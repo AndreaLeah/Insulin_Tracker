@@ -1,20 +1,10 @@
 <template>
   <div id="nav">
     <div class="nav-container">
-
-
-
       <div class="nav-content">
 
-       
-          <router-link v-bind:to="{ name: 'home' }" id="logo">
-            Insu-Trak
-          </router-link>
-       
-
-        <router-link class="nav-item" v-bind:to="{ name: 'home' }">
-          <!-- <i class="fas fa-home"></i> This is a font awesome icon -->
-          Home 
+        <router-link v-bind:to="{ name: 'home' }" id="logo">
+          Insu-Trak
         </router-link>
 
         <router-link
@@ -22,14 +12,14 @@
           v-bind:to="{ name: 'register' }"
           v-if="!$store.state.token">
           Register
-          </router-link>
+        </router-link>
 
         <router-link 
           class="nav-item"
           v-bind:to="{name: 'Profile'}"
           v-if="$store.state.token">
           View Profile
-          </router-link>
+        </router-link>
 
         <router-link
           class="nav-item"
@@ -69,13 +59,13 @@ export default {
   background-color: rgb(153, 6, 6);
   display: flex;
   justify-items: center;
+  justify-content: flex-end;
   width: 100%;
 }
 
 .nav-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
   gap: 20px;
   width: 50%;
   margin: 0 auto;
@@ -91,11 +81,10 @@ export default {
 }
 
 #logo {
+  display: flex;
   font-weight: bold;
   color: rgb(255, 123, 123);
   font-size: 28px;
-  position: absolute;
-  left: -200px;
 }
 
 #logo:hover {
