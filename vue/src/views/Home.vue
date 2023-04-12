@@ -99,6 +99,10 @@ export default {
   flex-direction: column;
   height: 500px;
   position: relative;
+  /* changed */
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-content-text {
@@ -109,9 +113,11 @@ export default {
   position: relative;
   z-index: 4;
   text-align: center;
-
   justify-self: flex-start;
-  padding-top: 100px;
+  /* padding-top: 100px; */
+
+  /* changed */
+  margin-bottom: 10%;
 }
 
 .btn {
