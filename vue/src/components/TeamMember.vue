@@ -52,10 +52,12 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 50px;
+    padding: 2rem;
   }
 
   .member {
     display: flex;
+    justify-content: center;
     gap: 50px;
   }
 
