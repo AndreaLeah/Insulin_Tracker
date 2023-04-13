@@ -22,7 +22,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, time FROM readings WHERE reading_id = @readingId";
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE reading_id = @readingId";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@readingId", readingId);
@@ -45,7 +45,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, time FROM readings WHERE user_id = @userId";
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE user_id = @userId";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@userId", userId);
@@ -72,7 +72,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT TOP @amount reading_id, user_id, profile_id, blood_sugar, time FROM readings WHERE user_id = @userId";
+                string sql = "SELECT TOP @amount reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE user_id = @userId";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@amount", amount);
@@ -100,7 +100,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, time FROM readings WHERE profile_id = @profileId";
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE profile_id = @profileId";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@profileId", profileId);
@@ -126,14 +126,15 @@ namespace Capstone.DAO
                 conn.Open();
 
                 string sql = "INSERT INTO readings " +
-                    "(user_id, profile_id, blood_sugar, time) " +
-                    "VALUES (@userId, @profileId, @bloodSugar, @Time)";
+                    "(user_id, profile_id, blood_sugar, carbs, time) " +
+                    "VALUES (@userId, @profileId, @bloodSugar, @carbs, @Time)";
 
                 SqlCommand command = new SqlCommand(sql, conn);
 
                 command.Parameters.AddWithValue("@userId", reading.UserId);
                 command.Parameters.AddWithValue("@profileId", reading.ProfileId);
                 command.Parameters.AddWithValue("@bloodSugar", reading.BloodSugar);
+                command.Parameters.AddWithValue("@carbs", reading.Carbs);
                 command.Parameters.AddWithValue("@time", reading.Time);
                 
                 int numRows = command.ExecuteNonQuery();
@@ -146,6 +147,40 @@ namespace Capstone.DAO
             }
         }
 
+        public List<BSReading> GetHistoricMeasurmentsByProfile(int profileId)
+        {
+            List<BSReading> measurments = new List<BSReading>();
+            BSReading bsreading = new BSReading();
+
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE profile_id = @profileId";
+
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@profileId", profileId);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        Reading reading = GetReadingFromReader(reader);
+                        
+                        bsreading.BloodSugar = reading.BloodSugar;
+                        bsreading.Time = reading.Time;
+
+                        measurments.Add(bsreading);
+                    }
+                }
+            }
+
+            return measurments;
+        }
+
         private Reading GetReadingFromReader(SqlDataReader reader)
         {
             Reading reading = new Reading();
@@ -153,6 +188,7 @@ namespace Capstone.DAO
             reading.UserId = Convert.ToInt32(reader["user_id"]);
             reading.ProfileId = Convert.ToInt32(reader["profile_id"]);
             reading.BloodSugar = Convert.ToInt32(reader["blood_sugar"]);
+            reading.Carbs = Convert.ToInt32(reader["carbs"]);
             reading.Time = Convert.ToDateTime(reader["time"]);
 
             return reading;

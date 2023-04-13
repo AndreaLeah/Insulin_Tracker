@@ -10,5 +10,6 @@ namespace Capstone.DAO
         public List<Reading> GetUserReadings(int userId);
         public List<Reading> GetUserPreviousReadings(int userId, int amount);
         public List<Reading> GetReadingsByProfile(int profileId);
+        public List<BSReading> GetHistoricMeasurmentsByProfile(int profileId);
     }
 }
