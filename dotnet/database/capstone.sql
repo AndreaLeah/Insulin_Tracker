@@ -44,6 +44,7 @@ CREATE TABLE readings (
 	user_id int NOT NULL,
 	profile_id int NOT NULL,
 	blood_sugar int NOT NULL,
+	carbs int NOT NULL,
 	time datetime NOT NULL
 
 	CONSTRAINT PK_reading PRIMARY KEY (reading_id),
@@ -75,19 +76,19 @@ INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, car
 
 --User 1 readings
 --Profile 1
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 1, 120, '2023-04-10 11:23:55.444');
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 1, 130, '2023-04-10 11:35:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 120, 30, '2023-04-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 130, 30, '2023-04-10 11:35:55.444');
 --Profile 2
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 2, 90, '2023-06-10 11:23:55.444');
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (1, 2, 89, '2023-07-10 11:35:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 2, 90, 20, '2023-06-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 2, 89, 10, '2023-07-10 11:35:55.444');
 
 --User 2 readings
 --Profile 1
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (2, 3, 100, '2023-09-10 11:23:55.444');
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (2, 3, 109, '2023-09-10 11:35:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (2, 3, 100, 10, '2023-09-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (2, 3, 109, 30, '2023-09-10 11:35:55.444');
 --Profile 2
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (2, 4, 98, '2023-03-10 11:23:55.444');
-INSERT INTO readings (user_id, profile_id, blood_sugar, time) VALUES (2, 4, 87, '2023-03-10 11:35:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (2, 4, 98, 20, '2023-03-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (2, 4, 87, 10, '2023-03-10 11:35:55.444');
 
 --User 1 boluses
 --Profile 1
