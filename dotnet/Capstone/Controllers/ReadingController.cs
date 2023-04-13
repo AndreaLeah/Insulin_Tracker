@@ -110,11 +110,11 @@ namespace Capstone.Controllers
         }
 
         [Authorize]
-        [HttpGet("history/{timeframe}")] //POST
-        public IActionResult GetHistoricMeasurmentsByTimeframe(int timeframe)
+        [HttpPost("history")] //POST
+        public IActionResult GetHistoricMeasurmentsByTimeframe([FromBody] TimeframeParamz timeframeParamz)
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
-            Profile profile = profileDAO.GetProfile(1);
+            Profile profile = profileDAO.GetProfile(timeframeParamz.ProfileId);
 
             if (profile == null)
             {
@@ -126,7 +126,7 @@ namespace Capstone.Controllers
                 return BadRequest(new { message = "Profile does not belong to logged in user" });
             }
 
-            List<BSReading> bsMeasurments = readingDAO.GetHistoricMeasurmentsByTimeframe(timeframe, 1);
+            List<BSReading> bsMeasurments = readingDAO.GetHistoricMeasurmentsByTimeframe(timeframeParamz.Timeframe, timeframeParamz.ProfileId);
 
             return Ok(bsMeasurments);
         }
