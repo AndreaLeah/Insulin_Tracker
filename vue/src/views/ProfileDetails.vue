@@ -7,6 +7,7 @@
     <p>Correction Ratio: 1:{{profile.correctionRatio}}</p>
     <p>Insulin Type: {{ profile.insulinType }}</p>
     <p>Insulin Strength: {{ profile.insulinStrength }}</p>
+    <router-link v-bind:to="{name: 'Readings'}">Readings History</router-link>
     <router-link v-bind:to="{name: 'Profile'}">&#60; Back</router-link>
   </section>
 </template>

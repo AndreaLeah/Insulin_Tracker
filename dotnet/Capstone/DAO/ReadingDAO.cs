@@ -147,7 +147,7 @@ namespace Capstone.DAO
             }
         }
 
-        public List<BSReading> GetHistoricMeasurmentsByProfile(int profileId)
+        public List<BSReading> GetHistoricMeasurmentsByTimeframe(int timeframe, int profileId)
         {
             List<BSReading> measurments = new List<BSReading>();
             BSReading bsreading = new BSReading();
@@ -156,10 +156,11 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE profile_id = @profileId";
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE profile_id = @profileId AND time between DateAdd(DD, -@timeframe, GETDATE()) and GETDATE()";
 
                 SqlCommand command = new SqlCommand(sql, conn);
 
+                command.Parameters.AddWithValue("@timeframe", timeframe);
                 command.Parameters.AddWithValue("@profileId", profileId);
 
                 SqlDataReader reader = command.ExecuteReader();

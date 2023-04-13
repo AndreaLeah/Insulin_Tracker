@@ -76,11 +76,17 @@ INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, car
 
 --User 1 readings
 --Profile 1
-INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 120, 30, '2023-04-10 11:23:55.444');
-INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 130, 30, '2023-04-10 11:35:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 120, 30, GETDATE());
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 130, 30, DateAdd(DD, -1, GETDATE()));
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 120, 30, DateAdd(DD, -2, GETDATE()));
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 130, 30, DateAdd(DD, -3, GETDATE()));
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 120, 30, DateAdd(DD, -6, GETDATE()));
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 130, 30, DateAdd(DD, -13, GETDATE()));
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 120, 30, DateAdd(DD, -29, GETDATE()));
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 1, 130, 30, DateAdd(DD, -40, GETDATE()));
 --Profile 2
-INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 2, 90, 20, '2023-06-10 11:23:55.444');
-INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 2, 89, 10, '2023-07-10 11:35:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 2, 90, 20, '2023-03-10 11:23:55.444');
+INSERT INTO readings (user_id, profile_id, blood_sugar, carbs, time) VALUES (1, 2, 89, 10, '2023-02-10 11:35:55.444');
 
 --User 2 readings
 --Profile 1
@@ -109,6 +115,6 @@ GO
 
 Select * from users
 SELECT * from profiles
-select * from readings
+select * from readings WHERE profile_id = 1 AND	time between DateAdd(DD, -30, GETDATE()) and GETDATE()
 select * from boluses
 

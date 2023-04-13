@@ -62,21 +62,21 @@ export default {
   },
   methods: {
     addProfile(){
-        this.profile.profileId = +this.profile.profileId;
-        this.profile.userId = +this.profile.userId;
-        this.profile.basalRate = +this.profile.basalRate;
-        this.profile.minBloodSugar = +this.profile.minBloodSugar;
-        this.profile.maxBloodSugar = +this.profile.maxBloodSugar;
-        this.profile.carbRatio = +this.profile.carbRatio;
-        this.profile.correctionRatio = +this.profile.correctionRatio;
-        this.profile.insulinStrength = +this.profile.insulinStrength;
-        ProfileInfoService.addProfileInfo(this.profile)
-          .then(response => {
-            this.profile = response.data;
-            console.log(response);
-            this.$router.push({name: 'Profile'});
-          })
-          .catch(error => console.error('Could not add profile', error));
+      this.profile.profileId = +this.profile.profileId;
+      this.profile.userId = +this.profile.userId;
+      this.profile.basalRate = +this.profile.basalRate;
+      this.profile.minBloodSugar = +this.profile.minBloodSugar;
+      this.profile.maxBloodSugar = +this.profile.maxBloodSugar;
+      this.profile.carbRatio = +this.profile.carbRatio;
+      this.profile.correctionRatio = +this.profile.correctionRatio;
+      this.profile.insulinStrength = +this.profile.insulinStrength;
+
+      ProfileInfoService.addProfileInfo(this.profile)
+        .then(response => {
+          this.profile = response.data;
+          this.$router.push({name: 'Profile'});
+        })
+        .catch(error => console.error('Could not add profile', error));
     }
   }
 }
