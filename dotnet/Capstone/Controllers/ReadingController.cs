@@ -126,15 +126,9 @@ namespace Capstone.Controllers
                 return BadRequest(new { message = "Profile does not belong to logged in user" });
             }
 
-            List<BSReading> bsReading = readingDAO.GetHistoricMeasurmentsByProfile(profileId);
-            
-        /*
-            if (bsReading.ProfileId != profileId)
-            {
-                return BadRequest(new { message = "Profile does not exist" });
-            }
-        */
-            return Ok(bsReading);
+            List<BSReading> bsMeasurments = readingDAO.GetHistoricMeasurmentsByProfile(profileId);
+
+            return Ok(bsMeasurments);
         }
     }
 }
