@@ -19,6 +19,7 @@ export default {
                 userId: 0,
                 profileId: '',
                 bloodSugar: '',
+                carbs: '',
                 time: ''
             }
         }
@@ -27,6 +28,7 @@ export default {
         addReading() {
             this.newReading.bloodSugar = +this.newReading.bloodSugar;
             this.newReading.profileId = +this.newReading.profileId;
+            this.newReading.carbs = +0;
 
             let d = new Date();
 

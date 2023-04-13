@@ -11,6 +11,7 @@ import store from "../store/index";
 import ProfileDetails from '../views/ProfileDetails.vue';
 import Readings from '../views/Readings.vue';
 import AddReading from '../views/AddReading.vue';
+import AddBolus from '../views/AddBolus.vue';
 
 Vue.use(Router);
 
@@ -109,6 +110,14 @@ const router = new Router({
       name: 'AddReading',
       component: AddReading,
       meta : {
+        requiresAuth: true,
+      }
+    },
+    {
+      path: '/bolus/add',
+      name: 'AddBolus',
+      component: AddBolus,
+      meta: {
         requiresAuth: true,
       }
     }
