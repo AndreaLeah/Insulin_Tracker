@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Capstone.Controllers
 {
@@ -106,6 +107,34 @@ namespace Capstone.Controllers
             {
                 return BadRequest(new { message = "An error occurred and reading was not created." });
             }
+        }
+
+        [Authorize]
+        [HttpGet("profile/{profileId}/history")]
+        public IActionResult GetHistoricMeasurmentsByProfile(int profileId)
+        {
+            int userId = int.Parse(this.User.FindFirst("sub").Value);
+            Profile profile = profileDAO.GetProfile(profileId);
+
+            if (profile == null)
+            {
+                return BadRequest(new { message = "Profile does not exist" });
+            }
+
+            if (userId != profile.UserId)
+            {
+                return BadRequest(new { message = "Profile does not belong to logged in user" });
+            }
+
+            List<BSReading> bsReading = readingDAO.GetHistoricMeasurmentsByProfile(profileId);
+            
+        /*
+            if (bsReading.ProfileId != profileId)
+            {
+                return BadRequest(new { message = "Profile does not exist" });
+            }
+        */
+            return Ok(bsReading);
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Capstone.Models
         public int ProfileId { get; set; }
         [Required, Range(0, int.MaxValue)]
         public int BloodSugar { get; set; }
+        [Required, Range(0, int.MaxValue)]
+        public int Carbs { get; set; }
         [Required]
         public DateTime Time { get; set; }
     }
