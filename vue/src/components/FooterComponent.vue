@@ -13,7 +13,7 @@ export default {
 <style scoped>
 
 .footer {
-  height: 50px;
+  height: 35px;
   grid-area: footer;
   /*left: 0;
   bottom: 0;*/
@@ -24,6 +24,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
 }
 
 </style>
