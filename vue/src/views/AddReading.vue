@@ -56,7 +56,7 @@ export default {
                 d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + 'T' + 
                 d.getHours() + ':' + 
                 d.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + 
-                d.getSeconds() + '.' + 
+                d.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '.' + 
                 d.getMilliseconds();
 
             this.newReading.time = dateTime;
