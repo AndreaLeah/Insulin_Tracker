@@ -18,19 +18,22 @@
         </div>
         <div>Average: {{readingsAverage()}}</div>
         <section>LINE GRAPH</section>
+        <div id="chart">
+            <apexcharts 
+                width="100%"
+                height="350"
+                type="line"
+                :options="chartOptions"
+                :series="series">
+            </apexcharts>
+        </div>
         <table>
             <thead>
-                <th>User Id</th>
-                <th>ProfileId</th>
-                <th>ReadingId</th>
                 <th>Blood Sugar</th>
                 <th>Carbs</th>
                 <th>Time</th>
             </thead>
             <tr v-for="reading in readings" v-bind:key="reading.readingId">
-                <td>{{reading.userId}}</td>
-                <td>{{reading.profileId}}</td>
-                <td>{{reading.readingId}}</td> 
                 <td>{{reading.bloodSugar}}</td> 
                 <td>{{reading.carbs}}</td>
                 <td>{{reading.time}}</td>
@@ -43,6 +46,9 @@
 import ReadingsService from '../services/ReadingsService.js';
 import ProfileInfoService from '../services/ProfileInfoService.js'
 
+import VueApexCharts from "vue-apexcharts";
+
+
 export default {
     data() {
         return {
@@ -54,7 +60,44 @@ export default {
                 timeFrame: 0,
                 profileId: 0
             },
+
+            chartOptions: {
+                chart: {
+                    id: "basic-line",
+                    //stacked: true,
+                    animations: {
+                        speed: 200
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                plotOptions: {
+                    area: {
+                        fillTo: origin
+                    }
+                },
+                markers: {
+                    size: 4,
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                xaxis: {
+                    categories: [],
+                    convertedCatToNumeric: false
+                }
+            },
+            series: [
+                {
+                    name: "Blood Sugar",
+                    data: []
+                }
+            ],
         }
+    },
+    components: {
+        apexcharts: VueApexCharts,
     },
     methods: {
         readingsAverage() {
@@ -95,11 +138,26 @@ export default {
             .then(response => {
                 if (response.status === 200) {
                     this.readings = response.data;
+                    this.updateGraph();
                 }
             })
             .catch((error) => {
                 console.error("Couldn't find readings", error);
             });
+        },
+        updateGraph() {
+            this.chartOptions.xaxis.convertedCatToNumeric = false;
+            this.chartOptions.xaxis.categories = [];
+            this.series = [{
+                name: "Blood Sugar",
+                data: []
+            }];
+
+            for (let i = 0; i < this.readings.length; i ++) {
+                let time = this.readings[i].time.split('T')[1];
+                this.chartOptions.xaxis.categories[i] = time;
+                this.series[0].data[i] = this.readings[i].bloodSugar;
+            }
         },
         onProfileChange() {
             this.timeFrameObj.profileId = this.selectedProfile;
@@ -113,6 +171,7 @@ export default {
     created() {
         this.getUserReadings();
         this.getUserProfiles();
+        this.updateGraph();
     }
 }
 </script>
