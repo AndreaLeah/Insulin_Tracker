@@ -16,7 +16,9 @@
                 <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="p.profileId">{{index + 1}}</option>
             </select>
         </div>
+            
         <div>Average: {{readingsAverage()}}</div>
+        <div>Range: {{userProfiles[selectedProfile].minBloodSugar}}-{{userProfiles[selectedProfile].maxBloodSugar}}</div>
         <div id="chart">
             <apexcharts 
                 width="100%"
