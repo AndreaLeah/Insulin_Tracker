@@ -23,7 +23,8 @@ export default {
                 bloodSugar: '',
                 carbs: '',
                 time: ''
-            }
+            },
+            userProfiles: [],
         }
     },
     methods: {
@@ -44,8 +45,19 @@ export default {
             });
         },
         addReading() {
+            ProfileInfoService.getUserProfiles()
+                .then((response) => {
+                    if (response.status === 200) {
+                    this.userProfiles = response.data;
+                    }
+                })
+                .catch((error) => {
+                    console.error("Couldn't find profiles", error);
+                });
+
+
             this.newReading.bloodSugar = +this.newReading.bloodSugar;
-            this.newReading.profileId = +this.newReading.profileId;
+            this.newReading.profileId = this.userProfiles[+this.newReading.profileId].profileId;
             this.newReading.carbs = +0;
 
             let d = new Date();

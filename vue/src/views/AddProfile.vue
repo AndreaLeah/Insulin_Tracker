@@ -57,8 +57,7 @@ export default {
         correctionRatio: '',
         insulinType: '',
         insulinStrength: ''
-      },
-      userProfiles: [],
+      }
     }
   },
   methods: {
