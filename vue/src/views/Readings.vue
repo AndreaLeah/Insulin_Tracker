@@ -202,6 +202,9 @@ export default {
 
 #div-content{
     padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
 }
 
 div{
