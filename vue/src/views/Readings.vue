@@ -205,6 +205,10 @@ export default {
 
 <style>
 
+body{
+    background-color: rgb(255, 245, 245);
+}
+
 h1{
     padding-bottom: 1rem;
 }
@@ -232,6 +236,7 @@ div{
 th, td{
     padding: 10px;
     border: thin solid black;
+    background-color: white;
 }
 
 </style>

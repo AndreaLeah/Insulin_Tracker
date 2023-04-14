@@ -50,6 +50,7 @@ section{
     align-items: center;
     margin: 4rem auto;
     width: 20rem;
+    background-color: white;
 }
 
 p{

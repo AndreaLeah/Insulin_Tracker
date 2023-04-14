@@ -70,6 +70,7 @@ section{
   width: 20rem;
   align-items: center;
   margin: 4rem auto;
+  background-color: white;
 }
 
 a{

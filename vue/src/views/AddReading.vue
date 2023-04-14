@@ -49,38 +49,37 @@ export default {
                 .then((response) => {
                     if (response.status === 200) {
                     this.userProfiles = response.data;
+
+                    this.newReading.bloodSugar = +this.newReading.bloodSugar;
+                    this.newReading.profileId = +this.userProfiles[+this.newReading.profileId-1].profileId;
+                    this.newReading.carbs = +0;
+
+                    let d = new Date();
+
+                    let dateTime = 
+                        d.getFullYear() + '-' + 
+                        (d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '-' + 
+                        d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + 'T' + 
+                        d.getHours() + ':' + 
+                        d.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + 
+                        d.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '.' + 
+                        d.getMilliseconds();
+
+                    this.newReading.time = dateTime;
+
+                    ReadingService.addReading(this.newReading)
+                        .then(response => {
+                            response;
+                            this.checkReading();
+                            this.$router.push({name: 'Profile'});
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                     }
                 })
                 .catch((error) => {
                     console.error("Couldn't find profiles", error);
-                });
-
-
-            this.newReading.bloodSugar = +this.newReading.bloodSugar;
-            this.newReading.profileId = this.userProfiles[+this.newReading.profileId].profileId;
-            this.newReading.carbs = +0;
-
-            let d = new Date();
-
-            let dateTime = 
-                d.getFullYear() + '-' + 
-                (d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '-' + 
-                d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + 'T' + 
-                d.getHours() + ':' + 
-                d.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + 
-                d.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '.' + 
-                d.getMilliseconds();
-
-            this.newReading.time = dateTime;
-
-            ReadingService.addReading(this.newReading)
-                .then(response => {
-                    response;
-                    this.checkReading();
-                    this.$router.push({name: 'Profile'});
-                })
-                .catch(error => {
-                    console.log(error);
                 });
         }
     }
