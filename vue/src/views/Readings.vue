@@ -14,14 +14,14 @@
             </section>
             <section>
                 <label for="profile">Profile</label>
-                <select name="profile" id="profile" v-model="selectedProfile" @change="onProfileChange">
+                <select name="profile" id="profile" v-model="selectedProfile" @change="onProfileChange($event)">
                     <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="p.profileId">{{index + 1}}</option>
                 </select>
             </section>
         </div>
             
         <div>Average: {{readingsAverage()}}</div>
-        <div>Range: {{userProfiles[selectedProfile].minBloodSugar}}-{{userProfiles[selectedProfile].maxBloodSugar}}</div>
+        <div>Range: {{userProfiles[selectedProfileIndex].minBloodSugar}}-{{userProfiles[selectedProfileIndex].maxBloodSugar}}</div>
         <div id="chart">
             <apexcharts 
                 width="100%"
@@ -59,6 +59,7 @@ export default {
             readings: [],
             userProfiles: [],
             selectedProfile: 0,
+            selectedProfileIndex: 0,
             selectedDays: 0,
             yAxis: [],
             areaChartXYValues: [],
@@ -175,8 +176,8 @@ export default {
                 this.series[0].data[i] = {x: time, y: bs};
             }
 
-            console.log(this.maxBS);
-            console.log(this.minBS);
+            //console.log(this.maxBS);
+            //console.log(this.minBS);
 
             // Set x & y data in series data object
             // this.series[1].data[0] = {x: this.minBS, y: this.maxBS}
@@ -184,7 +185,8 @@ export default {
             //  Need x axis value & pair it w/ list of two y axis values (range)
 
         },
-        onProfileChange() {
+        onProfileChange(event) {
+            this.selectedProfileIndex = event.target.selectedIndex;
             this.timeFrameObj.profileId = this.selectedProfile;
             this.readingsCall();
         },

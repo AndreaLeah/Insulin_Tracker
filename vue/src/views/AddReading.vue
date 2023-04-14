@@ -11,6 +11,8 @@
 
 <script>
 import ReadingService from '../services/ReadingsService.js';
+import ProfileInfoService from '../services/ProfileInfoService.js'
+
 export default {
     data() {
         return {
@@ -25,6 +27,22 @@ export default {
         }
     },
     methods: {
+        checkReading() {
+             ProfileInfoService.getProfile(this.newReading.profileId)
+            .then((response) => {
+                if (response.status === 200) {
+                     if (this.newReading.bloodSugar < response.data.minBloodSugar) {
+                        alert("LOW blood sugar");
+                    }
+                    if (this.newReading.bloodSugar > response.data.maxBloodSugar) {
+                        alert("HIGH blood sugar");
+                    }
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
         addReading() {
             this.newReading.bloodSugar = +this.newReading.bloodSugar;
             this.newReading.profileId = +this.newReading.profileId;
@@ -45,7 +63,8 @@ export default {
 
             ReadingService.addReading(this.newReading)
                 .then(response => {
-                    console.log(response);
+                    response;
+                    this.checkReading();
                     this.$router.push({name: 'Profile'});
                 })
                 .catch(error => {
