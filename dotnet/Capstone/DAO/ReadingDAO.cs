@@ -156,7 +156,8 @@ namespace Capstone.DAO
                 conn.Open();
 
                 string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings " +
-                    "WHERE profile_id = @profileId AND time between DateAdd(DD, -@timeframe, GETDATE()) and GETDATE()";
+                    "WHERE profile_id = @profileId AND time between DateAdd(DD, -@timeframe, GETDATE()) and GETDATE()" +
+                    "ORDER BY time";
 
                 SqlCommand command = new SqlCommand(sql, conn);
 
