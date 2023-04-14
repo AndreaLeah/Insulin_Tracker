@@ -17,7 +17,6 @@
             </select>
         </div>
         <div>Average: {{readingsAverage()}}</div>
-        <section>LINE GRAPH</section>
         <div id="chart">
             <apexcharts 
                 width="100%"
@@ -84,8 +83,7 @@ export default {
                     curve: 'smooth'
                 },
                 xaxis: {
-                    categories: [],
-                    convertedCatToNumeric: false
+                    type: 'datetime'
                 }
             },
             series: [
@@ -154,9 +152,9 @@ export default {
             }];
 
             for (let i = 0; i < this.readings.length; i ++) {
-                let time = this.readings[i].time.split('T')[1];
-                this.chartOptions.xaxis.categories[i] = time;
-                this.series[0].data[i] = this.readings[i].bloodSugar;
+                let time = Date.parse(this.readings[i].time)
+                let bs = this.readings[i].bloodSugar;
+                this.series[0].data[i] = {x: time, y: bs}
             }
         },
         onProfileChange() {
@@ -180,14 +178,6 @@ export default {
 
 div{
     justify-items: center;
-}
-
-section{
-    text-align: center;
-    padding: 5rem;
-    margin: 2rem 0;
-    border: thin solid black;
-    border-radius: 10px;
 }
 
 th, td{
