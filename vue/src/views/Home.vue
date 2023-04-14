@@ -188,7 +188,9 @@ img.card-imgs {
 /* Info Container */
 
 .info-container {
-  padding: 40px 0; 
+  margin-top: 40px; 
+  /* 10px Deficit to make up for 50px footer and 40px margin on top */
+  margin-bottom: -10px;
 }
 
 .info-content-container {

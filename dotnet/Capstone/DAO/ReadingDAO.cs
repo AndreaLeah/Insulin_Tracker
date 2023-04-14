@@ -45,7 +45,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE user_id = @userId";
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE user_id = @userId ORDER BY time";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@userId", userId);
@@ -72,7 +72,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT TOP @amount reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE user_id = @userId";
+                string sql = "SELECT TOP @amount reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE user_id = @userId ORDER BY time";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@amount", amount);
@@ -100,7 +100,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE profile_id = @profileId";
+                string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE profile_id = @profileId ORDER BY time";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@profileId", profileId);
