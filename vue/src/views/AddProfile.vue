@@ -63,17 +63,7 @@ export default {
   },
   methods: {
     addProfile(){
-      ProfileInfoService.getUserProfiles()
-      .then((response) => {
-        if (response.status === 200) {
-          this.userProfiles = response.data;
-        }
-      })
-      .catch((error) => {
-        console.error("Couldn't find profiles", error);
-      });
-
-      this.profile.profileId = this.userProfiles[+this.profile.profileId].profileId;
+      this.profile.profileId = +this.profile.profileId;
       this.profile.userId = +this.profile.userId;
       this.profile.basalRate = +this.profile.basalRate;
       this.profile.minBloodSugar = +this.profile.minBloodSugar;
