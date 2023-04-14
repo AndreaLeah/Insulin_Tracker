@@ -150,7 +150,6 @@ namespace Capstone.DAO
         public List<BSReading> GetHistoricMeasurmentsByTimeframe(int timeframe, int profileId)
         {
             List<BSReading> measurments = new List<BSReading>();
-            BSReading bsreading = new BSReading();
 
             using(SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -171,7 +170,8 @@ namespace Capstone.DAO
                     while(reader.Read())
                     {
                         Reading reading = GetReadingFromReader(reader);
-                        
+                        BSReading bsreading = new BSReading();
+
                         bsreading.BloodSugar = reading.BloodSugar;
                         bsreading.Time = reading.Time;
 
