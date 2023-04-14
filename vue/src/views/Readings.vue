@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="div-content">
         <h1>Your Readings</h1>
         <div>
             <label for="days">Days</label>
@@ -105,7 +105,9 @@ export default {
             for (let i = 0; i < this.readings.length; i++) {
                 sum += this.readings[i].bloodSugar;
             }
-            return sum / this.readings.length;
+
+            let result = sum / this.readings.length;
+            return result.toFixed(2);
         },
         getUserReadings() {
             ReadingsService.getUserReadings()
@@ -177,6 +179,10 @@ export default {
 </script>
 
 <style>
+
+#div-content{
+    padding: 3rem;
+}
 
 div{
     justify-items: center;
