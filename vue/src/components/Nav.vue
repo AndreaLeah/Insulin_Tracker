@@ -80,6 +80,7 @@ export default {
   position: relative;
 }
 
+
 #logo {
   display: flex;
   font-weight: bold;
@@ -95,6 +96,11 @@ export default {
 .nav-item {
   color: white;
   font-weight: bold;
+}
+
+.nav-item:hover {
+  text-decoration: none;
+  color: rgb(255, 215, 215);
 }
 
 /* Tablet */

@@ -57,6 +57,8 @@ export default {
             userProfiles: [],
             selectedProfile: 0,
             selectedDays: 0,
+            yAxis: [],
+            areaChartXYValues: [],
             timeFrameObj: {
                 timeFrame: 0,
                 profileId: 0
@@ -86,12 +88,17 @@ export default {
                 },
                 xaxis: {
                     type: 'datetime'
-                }
+                },
             },
             series: [
                 {
                     name: "Blood Sugar",
                     data: []
+                },
+                {
+                    name: "Profile Range",
+                    type: 'rangeArea',
+                    data: [],
                 }
             ],
         }
@@ -153,11 +160,24 @@ export default {
                 data: []
             }];
 
+            // Get & Set Min&Max BS variables for area chart
+            // this.minBS = this.userProfiles[this.selectedProfile - 1].minBloodSugar;
+            // this.maxBS = this.userProfiles[this.selectedProfile - 1].maxBloodSugar;
+
             for (let i = 0; i < this.readings.length; i ++) {
                 let time = Date.parse(this.readings[i].time)
                 let bs = this.readings[i].bloodSugar;
-                this.series[0].data[i] = {x: time, y: bs}
+                this.series[0].data[i] = {x: time, y: bs};
             }
+
+            console.log(this.maxBS);
+            console.log(this.minBS);
+
+            // Set x & y data in series data object
+            // this.series[1].data[0] = {x: this.minBS, y: this.maxBS}
+
+            //  Need x axis value & pair it w/ list of two y axis values (range)
+
         },
         onProfileChange() {
             this.timeFrameObj.profileId = this.selectedProfile;
