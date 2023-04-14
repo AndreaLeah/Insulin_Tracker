@@ -2,19 +2,22 @@
     <div id="div-content">
         <h1>Your Readings</h1>
         <div>
-            <label for="days">Days</label>
-            <select name="days" id="days" v-model="selectedDays" @change="onDaysChange">
-                <option value="1">1 day</option>
-                <option value="3">3 day</option>
-                <option value="30">30 day</option>
-                <option value="90">90 day</option>
-                <option value="180">180 day</option>
-            </select>
-            
-            <label for="profile">Profile</label>
-            <select name="profile" id="profile" v-model="selectedProfile" @change="onProfileChange">
-                <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="p.profileId">{{index + 1}}</option>
-            </select>
+            <section>
+                <label for="days">Days</label>
+                <select name="days" id="days" v-model="selectedDays" @change="onDaysChange">
+                    <option value="1">1 day</option>
+                    <option value="3">3 day</option>
+                    <option value="30">30 day</option>
+                    <option value="90">90 day</option>
+                    <option value="180">180 day</option>
+                </select>
+            </section>
+            <section>
+                <label for="profile">Profile</label>
+                <select name="profile" id="profile" v-model="selectedProfile" @change="onProfileChange">
+                    <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="p.profileId">{{index + 1}}</option>
+                </select>
+            </section>
         </div>
             
         <div>Average: {{readingsAverage()}}</div>
@@ -31,12 +34,12 @@
         <table>
             <thead>
                 <th>Blood Sugar</th>
-                <th>Carbs</th>
+                <!--<th>Carbs</th>-->
                 <th>Time</th>
             </thead>
             <tr v-for="reading in readings" v-bind:key="reading.readingId">
                 <td>{{reading.bloodSugar}}</td> 
-                <td>{{reading.carbs}}</td>
+                <!--<td>{{reading.carbs}}</td>-->
                 <td>{{reading.time}}</td>
             </tr>
         </table>
@@ -200,11 +203,24 @@ export default {
 
 <style>
 
+h1{
+    padding-bottom: 1rem;
+}
+
 #div-content{
     padding: 3rem;
     display: flex;
     flex-direction: column;
     width: 70vw;
+}
+
+section{
+    display: inline;
+    padding-right: 1rem;
+}
+
+section > label{
+    padding-right: .4rem;
 }
 
 div{

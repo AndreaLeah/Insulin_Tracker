@@ -32,7 +32,14 @@ export default {
 
             let d = new Date();
 
-            let dateTime = d.getFullYear() + '-' + (d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '-' + d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + 'T' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + '.' + d.getMilliseconds();
+            let dateTime = 
+                d.getFullYear() + '-' + 
+                (d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '-' + 
+                d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + 'T' + 
+                d.getHours() + ':' + 
+                d.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + 
+                d.getSeconds() + '.' + 
+                d.getMilliseconds();
 
             this.newReading.time = dateTime;
 
