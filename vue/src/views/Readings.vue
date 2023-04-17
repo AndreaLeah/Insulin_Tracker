@@ -208,11 +208,11 @@ export default {
         onProfileChange(event) {
             this.selectedProfileIndex = event.target.selectedIndex;
             this.timeFrameObj.profileId = this.selectedProfile;
-            this.readingsCall();
+            //this.readingsCall();
         },
         onDaysChange() {
             this.timeFrameObj.timeFrame = +this.selectedDays;
-            this.readingsCall();
+            //this.readingsCall();
         }
     },
     created() {

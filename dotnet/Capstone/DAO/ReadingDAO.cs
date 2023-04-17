@@ -64,7 +64,7 @@ namespace Capstone.DAO
             return readings;
         }
 
-        public List<Reading> GetUserPreviousReadings(int userId, int amount)
+        /*public List<Reading> GetUserPreviousReadings(int userId, int amount)
         {
             List<Reading> readings = new List<Reading>();
 
@@ -90,7 +90,7 @@ namespace Capstone.DAO
             }
 
             return readings;
-        }
+        }*/
 
         public List<Reading> GetReadingsByProfile(int profileId)
         {
@@ -156,13 +156,14 @@ namespace Capstone.DAO
                 conn.Open();
 
                 string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings " +
-                    "WHERE profile_id = @profileId AND time between DateAdd(DD, -@timeframe, GETDATE()) and GETDATE()" +
+                //profile_id = @profileId AND 
+                    "WHERE time between DateAdd(DD, -@timeframe, GETDATE()) and GETDATE()" +
                     "ORDER BY time";
 
                 SqlCommand command = new SqlCommand(sql, conn);
 
                 command.Parameters.AddWithValue("@timeframe", timeframe);
-                command.Parameters.AddWithValue("@profileId", profileId);
+                //command.Parameters.AddWithValue("@profileId", profileId);
 
                 SqlDataReader reader = command.ExecuteReader();
 
