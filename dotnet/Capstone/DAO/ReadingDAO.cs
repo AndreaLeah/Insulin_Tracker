@@ -64,34 +64,6 @@ namespace Capstone.DAO
             return readings;
         }
 
-        public List<Reading> GetUserPreviousReadings(int userId, int amount)
-        {
-            List<Reading> readings = new List<Reading>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-
-                string sql = "SELECT TOP @amount reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings WHERE user_id = @userId ORDER BY time";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@amount", amount);
-                cmd.Parameters.AddWithValue("@userId", userId);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        Reading reading = GetReadingFromReader(reader);
-                        readings.Add(reading);
-                    }
-                }
-            }
-
-            return readings;
-        }
-
         public List<Reading> GetReadingsByProfile(int profileId)
         {
             List<Reading> readings = new List<Reading>();
@@ -147,7 +119,7 @@ namespace Capstone.DAO
             }
         }
 
-        public List<BSReading> GetHistoricMeasurmentsByTimeframe(int timeframe, int profileId)
+        public List<BSReading> GetHistoricMeasurmentsByTimeframe(int timeframe, int userId)
         {
             List<BSReading> measurments = new List<BSReading>();
 
@@ -156,13 +128,13 @@ namespace Capstone.DAO
                 conn.Open();
 
                 string sql = "SELECT reading_id, user_id, profile_id, blood_sugar, carbs, time FROM readings " +
-                    "WHERE profile_id = @profileId AND time between DateAdd(DD, -@timeframe, GETDATE()) and GETDATE()" +
+                    "WHERE user_id = @userId AND time between DateAdd(DD, -@timeframe, GETDATE()) and GETDATE()" +
                     "ORDER BY time";
 
                 SqlCommand command = new SqlCommand(sql, conn);
 
                 command.Parameters.AddWithValue("@timeframe", timeframe);
-                command.Parameters.AddWithValue("@profileId", profileId);
+                command.Parameters.AddWithValue("@userId", userId);
 
                 SqlDataReader reader = command.ExecuteReader();
 
