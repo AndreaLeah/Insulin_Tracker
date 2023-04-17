@@ -14,6 +14,8 @@ namespace Capstone.Models
         public int MinBloodSugar { get; set; }
         [Required, Range(0, int.MaxValue)]
         public int MaxBloodSugar { get; set; }
+        public int MinWarningSugar { get; set; }
+        public int MaxWarningSugar { get; set; }
         [Required, Range(0, int.MaxValue)]
         public int CarbRatio { get; set; }
         [Required, Range(0, int.MaxValue)]
