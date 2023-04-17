@@ -82,6 +82,9 @@ export default {
                     console.error("Couldn't find profiles", error);
                 });
         }
+    },
+    created() {
+        console.log("hello");
     }
 }
 </script>
