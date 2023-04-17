@@ -4,7 +4,7 @@
       <div class="nav-content">
 
         <router-link v-bind:to="{ name: 'home' }" id="logo">
-          Insu-Trak
+          InsuTrak
         </router-link>
 
         <router-link
