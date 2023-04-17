@@ -31,6 +31,7 @@
                 :series="series">
             </apexcharts>
         </div>
+
         <table>
             <thead>
                 <th>Blood Sugar</th>
@@ -43,6 +44,7 @@
                 <td>{{reading.time}}</td>
             </tr>
         </table>
+
     </div>
 </template>
 
@@ -58,14 +60,16 @@ export default {
         return {
             readings: [],
             userProfiles: [],
-            selectedProfile: 0,
+            selectedProfile: 1,
             selectedProfileIndex: 0,
-            selectedDays: 0,
+            selectedDays: 30,
             yAxis: [],
             areaChartXYValues: [],
+
+            // Load 30day timeframe & profile 1 on startup as default
             timeFrameObj: {
-                timeFrame: 0,
-                profileId: 0
+                timeFrame: 30,
+                profileId: 1
             },
 
             series: [
@@ -155,9 +159,9 @@ export default {
             });
         },
         readingsCall() {
-            /*if(this.timeFrameObj.profileId == 0 || this.timeFrameObj.timeFrame == 0) {
-                return;
-            } */
+            // if(this.timeFrameObj.profileId == 0 || this.timeFrameObj.timeFrame == 0) {
+            //     return;
+            // } 
 
             ReadingsService.getBSByTimeframe(this.timeFrameObj)
             .then(response => {
@@ -184,7 +188,7 @@ export default {
                     data: [],
                 }];
 
-            // Get & Set Min&Max BS variables for area chart
+            // Get & Set Min&Max BS variables for rangeArea chart
             this.minBS = this.userProfiles[this.selectedProfileIndex].minBloodSugar;
             this.maxBS = this.userProfiles[this.selectedProfileIndex].maxBloodSugar;
 
@@ -214,7 +218,10 @@ export default {
     created() {
         this.getUserReadings();
         this.getUserProfiles();
-        this.updateGraph();
+        // timeFrameObj manuall set to 30day & profile 1 as default on page load
+        // Load graph
+        this.readingsCall();
+        //this.updateGraph();
     }
 }
 </script>

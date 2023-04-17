@@ -30,6 +30,8 @@ CREATE TABLE profiles (
 	basal_rate decimal(4,3) NOT NULL,
 	min_blood_sugar int NOT NULL,
 	max_blood_sugar int NOT NULL,
+	min_warning_sugar int NOT NULL,
+	max_warning_sugar int NOT NULL,
 	carb_ratio int NOT NULL,
 	correction_ratio int NOT NULL,
 	insulin_type nvarchar(100),
@@ -67,12 +69,12 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg4
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 --User 1 profiles
-INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.975, 70, 130, 10, 35, 'Humalog', 100)
-INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.8, 70, 130, 15, 35, 'Humalog', 100)
+INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.975, 70, 130, 50, 200, 10, 35, 'Humalog', 100)
+INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 0.8, 70, 130, 50, 200, 15, 35, 'Humalog', 100)
 
 --User 2 profiles
-INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 0.6, 80, 120, 20, 50, 'Humalog', 100)
-INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 0.5, 80, 120, 25, 50, 'Humalog', 100)
+INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 0.6, 80, 120, 50, 200, 20, 50, 'Humalog', 100)
+INSERT INTO profiles (user_id, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 0.5, 80, 120, 50, 200, 25, 50, 'Humalog', 100)
 
 --User 1 readings
 --Profile 1
