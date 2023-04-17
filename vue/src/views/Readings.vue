@@ -26,7 +26,7 @@
             <apexcharts 
                 width="100%"
                 height="350"
-                type="line"
+                type="rangeArea"
                 :options="chartOptions"
                 :series="series">
             </apexcharts>
@@ -68,16 +68,38 @@ export default {
                 profileId: 0
             },
 
+            series: [
+                {
+                    type: 'line',
+                    name: "Blood Sugar",
+                    data: []
+                },
+                {
+                    type: 'rangeArea',
+                    name: "Profile Range",
+                    data: [],
+                }
+            ],
             chartOptions: {
                 chart: {
-                    id: "basic-line",
+                    height: 350,
+                    //id: "basic-line",
                     //stacked: true,
+                    type: 'rangeArea',
                     animations: {
                         speed: 200
                     }
                 },
+                colors: ['#4ae1ff', '#7dff7d'],
+
                 dataLabels: {
                     enabled: false
+                },
+
+                fill: {
+                    opacity: [1, 0.25]},
+                forecastDataPoints: {
+                    count: 2
                 },
                 plotOptions: {
                     area: {
@@ -85,26 +107,16 @@ export default {
                     }
                 },
                 markers: {
-                    size: 4,
+                    size: [4, 0],
                 },
                 stroke: {
-                    curve: 'smooth'
+                    curve: 'smooth',
+                    width: [2, 0]
                 },
                 xaxis: {
                     type: 'datetime'
                 },
             },
-            series: [
-                {
-                    name: "Blood Sugar",
-                    data: []
-                },
-                {
-                    name: "Profile Range",
-                    type: 'rangeArea',
-                    data: [],
-                }
-            ],
         }
     },
     components: {
@@ -162,27 +174,31 @@ export default {
             this.chartOptions.xaxis.convertedCatToNumeric = false;
             this.chartOptions.xaxis.categories = [];
             this.series = [{
-                name: "Blood Sugar",
-                data: []
-            }];
+                    type: 'line',
+                    name: "Blood Sugar",
+                    data: []
+                },
+                {
+                    type: 'rangeArea',
+                    name: "Profile Range",
+                    data: [],
+                }];
 
             // Get & Set Min&Max BS variables for area chart
-            // this.minBS = this.userProfiles[this.selectedProfile - 1].minBloodSugar;
-            // this.maxBS = this.userProfiles[this.selectedProfile - 1].maxBloodSugar;
+            this.minBS = this.userProfiles[this.selectedProfileIndex].minBloodSugar;
+            this.maxBS = this.userProfiles[this.selectedProfileIndex].maxBloodSugar;
+
+            console.log(this.maxBS);
+            console.log(this.minBS);
 
             for (let i = 0; i < this.readings.length; i ++) {
                 let time = Date.parse(this.readings[i].time)
                 let bs = this.readings[i].bloodSugar;
+                // Line chart
                 this.series[0].data[i] = {x: time, y: bs};
+                // Range area chart
+                this.series[1].data[i] = {x: time, y: [this.minBS, this.maxBS]};
             }
-
-            //console.log(this.maxBS);
-            //console.log(this.minBS);
-
-            // Set x & y data in series data object
-            // this.series[1].data[0] = {x: this.minBS, y: this.maxBS}
-
-            //  Need x axis value & pair it w/ list of two y axis values (range)
 
         },
         onProfileChange(event) {
