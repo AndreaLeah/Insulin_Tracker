@@ -4,7 +4,7 @@
       <div class="nav-content">
 
         <router-link v-bind:to="{ name: 'home' }" id="logo">
-          Insu-Trak
+          InsuTrak
         </router-link>
 
         <router-link
@@ -19,6 +19,13 @@
           v-bind:to="{name: 'Profile'}"
           v-if="$store.state.token">
           View Profile
+        </router-link>
+
+        <router-link
+          class="nav-item"
+          v-bind:to="{ name: 'activity' }"
+          v-if="$store.state.token">
+          My Activity
         </router-link>
 
         <router-link
