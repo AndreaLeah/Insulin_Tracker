@@ -5,6 +5,7 @@
       <button class="fancyButton" v-on:click="viewProfile(profile.profileId)"> {{index + 1}} </button>
     </div>
     <router-link :to="{name: 'AddProfile'}">Add Profile</router-link>
+    <router-link :to="{name: 'AddReading'}">Add Reading</router-link>
   </section>
 </template>
 
