@@ -44,19 +44,12 @@ namespace Capstone.Controllers
 
         [Authorize]
         [HttpGet()]
-        public IActionResult GetUserReadings()//int previous)
+        public IActionResult GetUserReadings()
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
-            /*if (previous > 0)
-            {
-                List<Reading> readings = readingDAO.GetUserPreviousReadings(userId, previous);
-                return Ok(readings);
-            }
-            else
-            {*/
-                List<Reading> readings = readingDAO.GetUserReadings(userId);
-                return Ok(readings);
-           // }
+
+            List<Reading> readings = readingDAO.GetUserReadings(userId);
+            return Ok(readings);
         }
 
         [Authorize]
@@ -110,23 +103,12 @@ namespace Capstone.Controllers
         }
 
         [Authorize]
-        [HttpPost("history")] //POST
-        public IActionResult GetHistoricMeasurmentsByTimeframe([FromBody] TimeframeParamz timeframeParamz)
+        [HttpGet("history/{timeframe}")]
+        public IActionResult GetHistoricMeasurmentsByTimeframe(int timeframe)
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
-            Profile profile = profileDAO.GetProfile(timeframeParamz.ProfileId);
 
-            if (profile == null)
-            {
-                return BadRequest(new { message = "Profile does not exist" });
-            }
-
-            if (userId != profile.UserId)
-            {
-                return BadRequest(new { message = "Profile does not belong to logged in user" });
-            }
-
-            List<BSReading> bsMeasurments = readingDAO.GetHistoricMeasurmentsByTimeframe(timeframeParamz.Timeframe, timeframeParamz.ProfileId);
+            List<BSReading> bsMeasurments = readingDAO.GetHistoricMeasurmentsByTimeframe(timeframe, userId);
 
             return Ok(bsMeasurments);
         }
