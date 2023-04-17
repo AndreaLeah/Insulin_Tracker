@@ -24,6 +24,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {}, // If a user is an admin, their user.role will be 'admin'
+    userProfiles: [],
+    selectedProfileIndex: 0,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -41,6 +43,12 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_PROFILE_INDEX(state, index) {
+      state.selectedProfileIndex = index;
+    },
+    SET_USER_PROFILES(state, profiles) {
+      state.userProfiles = profiles;
     }
   }
 })

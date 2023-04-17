@@ -4,9 +4,7 @@
         <form>
             <label for="bloodSugar"></label><input type="text" id='bloodSugar' placeholder="Blood Sugar" v-model="newReading.bloodSugar"/>
             <label for="profile">Profile</label>
-            <select name="profile" id="profile" v-model="selectedProfileIndex">
-                <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="p.profileId">{{index + 1}}</option>
-            </select>
+            <profile-select/>
             <button @click.prevent="addReading">Add</button>
         </form>
     </div>
@@ -14,7 +12,7 @@
 
 <script>
 import ReadingService from '../services/ReadingsService.js';
-import ProfileInfoService from '../services/ProfileInfoService.js'
+import ProfileSelect from '../components/ProfileSelect.vue';
 
 export default {
     data() {
@@ -26,14 +24,15 @@ export default {
                 bloodSugar: '',
                 carbs: '',
                 time: ''
-            },
-            userProfiles: [],
-            selectedProfileIndex: 0
+            }
         }
+    },
+    components: {
+        ProfileSelect,
     },
     methods: {
         checkReading() {
-            let profile = this.userProfiles[this.selectedProfileIndex - 1];
+            let profile = this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1];
             if (this.newReading.bloodSugar < profile.minWarningSugar) {
                 alert ("DANGEROUSLY LOW BLOOD SUGAR")
             }
@@ -49,8 +48,11 @@ export default {
             }
         },
         addReading() {
+            console.log(this.$store.state.selectedProfileIndex);
+            console.log(+this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1].profileId);
+
             this.newReading.bloodSugar = +this.newReading.bloodSugar;
-            this.newReading.profileId = +this.userProfiles[this.selectedProfileIndex - 1].profileId;
+            this.newReading.profileId = +this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1].profileId;
             this.newReading.carbs = +0;
 
             let d = new Date();
@@ -66,30 +68,22 @@ export default {
 
             this.newReading.time = dateTime;
 
+
             ReadingService.addReading(this.newReading)
                 .then(response => {
-                    response;
-                    this.checkReading();
-                    this.$router.push({name: 'Profile'});
+                    if (response.status === 200) {
+                        response;
+                        this.checkReading();
+                        this.$router.push({name: 'Profile'});
+                    }
+                    else {
+                        console.log("Error");
+                    }
                 })
                 .catch(error => {
                     console.log(error);
                 });
         }
-    },
-    created() {
-        ProfileInfoService.getUserProfiles()
-            .then((response) => {
-                if (response.status === 200) {
-                    this.userProfiles = response.data;
-                }
-                else {
-                    console.log("Could not get user profiles");
-                }
-            })
-            .catch((error) => {
-                console.error("Couldn't find profiles", error);
-            });
     }
 }
 </script>
