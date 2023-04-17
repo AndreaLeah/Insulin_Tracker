@@ -23,6 +23,13 @@
 
         <router-link
           class="nav-item"
+          v-bind:to="{ name: 'activity' }"
+          v-if="$store.state.token">
+          My Activity
+        </router-link>
+
+        <router-link
+          class="nav-item"
           v-bind:to="{ name: 'login' }"
           v-if="!$store.state.token">
           Login
