@@ -12,16 +12,13 @@
                     <option value="180">180 day</option>
                 </select>
             </section>
-            <section>
-                <label for="profile">Profile</label>
-                <select name="profile" id="profile" v-model="selectedProfile" @change="onProfileChange($event)">
-                    <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="p.profileId">{{index + 1}}</option>
-                </select>
-            </section>
+
+            <profile-select @hook:mounted="profileSelectMounted" @hook:updated="onProfileChange"/>
+        
         </div>
             
-        <div>Average: {{readingsAverage()}}</div>
-        <div>Range: {{userProfiles[selectedProfileIndex].minBloodSugar}}-{{userProfiles[selectedProfileIndex].maxBloodSugar}}</div>
+        <div>Average: {{readingsAverage}}</div>
+        <div>Range: {{getMinRange}}-{{getMaxRange}}</div>
         <div id="chart">
             <apexcharts 
                 width="100%"
@@ -35,12 +32,10 @@
         <table>
             <thead>
                 <th>Blood Sugar</th>
-                <!--<th>Carbs</th>-->
                 <th>Time</th>
             </thead>
             <tr v-for="reading in readings" v-bind:key="reading.readingId">
                 <td>{{reading.bloodSugar}}</td> 
-                <!--<td>{{reading.carbs}}</td>-->
                 <td>{{reading.time}}</td>
             </tr>
         </table>
@@ -50,24 +45,17 @@
 
 <script>
 import ReadingsService from '../services/ReadingsService.js';
-import ProfileInfoService from '../services/ProfileInfoService.js'
-
+import ProfileSelect from '../components/ProfileSelect.vue';
 import VueApexCharts from "vue-apexcharts";
-
 
 export default {
     data() {
         return {
-            readings: [],
-            userProfiles: [],
-            selectedProfile: 1,
-            selectedProfileIndex: 0,
+            timeframe: 30,
             selectedDays: 30,
+            readings: [],
             yAxis: [],
             areaChartXYValues: [],
-
-            // Load 30day timeframe & profile 1 on startup as default
-           timeframe: 30,
 
             series: [
                 {
@@ -84,8 +72,6 @@ export default {
             chartOptions: {
                 chart: {
                     height: 350,
-                    //id: "basic-line",
-                    //stacked: true,
                     type: 'rangeArea',
                     animations: {
                         speed: 200
@@ -122,8 +108,9 @@ export default {
     },
     components: {
         apexcharts: VueApexCharts,
+        ProfileSelect,
     },
-    methods: {
+    computed: {
         readingsAverage() {
             let sum = 0;
             for (let i = 0; i < this.readings.length; i++) {
@@ -133,28 +120,22 @@ export default {
             let result = sum / this.readings.length;
             return result.toFixed(2);
         },
-        getUserReadings() {
-            ReadingsService.getUserReadings()
-            .then((response) => {
-                if (response.status === 200) {
-                    this.readings = response.data;
-                }
-            })
-            .catch((error) => {
-                console.error("Couldn't find readings", error);
-            });
+        getMinRange() {
+            if (this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1] != null) {
+                return this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1].minBloodSugar;
+            } else {
+                return 0;
+            }
         },
-        getUserProfiles() {
-            ProfileInfoService.getUserProfiles()
-            .then((response) => {
-                if (response.status === 200) {
-                    this.userProfiles = response.data;
-                }
-            })
-            .catch((error) => {
-                console.error("Couldn't find profiles", error);
-            });
-        },
+        getMaxRange() {
+            if (this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1] != null) {
+                return this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1].maxBloodSugar;
+            } else {
+                return 0;
+            }
+        }
+    },
+    methods: {
         readingsCall() {
             ReadingsService.getBSByTimeframe(this.timeframe)
             .then(response => {
@@ -182,11 +163,13 @@ export default {
                 }];
 
             // Get & Set Min&Max BS variables for rangeArea chart
-            this.minBS = this.userProfiles[this.selectedProfileIndex].minBloodSugar;
-            this.maxBS = this.userProfiles[this.selectedProfileIndex].maxBloodSugar;
-
-            console.log(this.maxBS);
-            console.log(this.minBS);
+            if (this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1] != null) {
+                this.minBS = this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1].minBloodSugar;
+                this.maxBS = this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1].maxBloodSugar;
+            } else {
+                this.minBS = 0;
+                this.maxBS = 0;
+            }
 
             for (let i = 0; i < this.readings.length; i ++) {
                 let time = Date.parse(this.readings[i].time)
@@ -196,23 +179,18 @@ export default {
                 // Range area chart
                 this.series[1].data[i] = {x: time, y: [this.minBS, this.maxBS]};
             }
-
-        },
-        onProfileChange(event) {
-            this.selectedProfileIndex = event.target.selectedIndex;
-            this.updateGraph();
         },
         onDaysChange() {
             this.timeframe = +this.selectedDays;
             this.readingsCall();
+        },
+        onProfileChange() {
+            this.updateGraph();
+        },
+        profileSelectMounted() {
+            this.readingsCall();
         }
     },
-    created() {
-        this.getUserProfiles();
-        // timeFrameObj manuall set to 30day & profile 1 as default on page load
-        // Load graph
-        this.readingsCall();
-    }
 }
 </script>
 

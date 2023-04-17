@@ -3,7 +3,6 @@
         <h2>Add new reading</h2>
         <form>
             <label for="bloodSugar"></label><input type="text" id='bloodSugar' placeholder="Blood Sugar" v-model="newReading.bloodSugar"/>
-            <label for="profile">Profile</label>
             <profile-select/>
             <button @click.prevent="addReading">Add</button>
         </form>
@@ -48,9 +47,6 @@ export default {
             }
         },
         addReading() {
-            console.log(this.$store.state.selectedProfileIndex);
-            console.log(+this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1].profileId);
-
             this.newReading.bloodSugar = +this.newReading.bloodSugar;
             this.newReading.profileId = +this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1].profileId;
             this.newReading.carbs = +0;
@@ -67,7 +63,6 @@ export default {
                 d.getMilliseconds();
 
             this.newReading.time = dateTime;
-
 
             ReadingService.addReading(this.newReading)
                 .then(response => {

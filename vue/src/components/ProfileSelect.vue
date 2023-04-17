@@ -1,7 +1,10 @@
 <template>
-    <select name="profile" id="profile" v-model="selectProfileIndex">
-        <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="p.profileId">{{index + 1}}</option>
-    </select>
+    <section>
+        <label for="profile">Profile</label>
+        <select name="profile" id="profile" v-model="selectProfileIndex" @change="setSelectedProfileIndex">
+            <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="index + 1">{{index + 1}}</option>
+        </select>
+    </section>
 </template>
 
 <script>
@@ -22,7 +25,7 @@ export default {
             this.$store.commit("SET_USER_PROFILES", this.userProfiles);
         }
     },
-    created() {
+    beforeCreate() {
         console.log("Loading user profiles");
         ProfileInfoService.getUserProfiles()
             .then((response) => {
