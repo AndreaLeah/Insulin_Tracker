@@ -63,6 +63,17 @@ CREATE TABLE boluses (
 	CONSTRAINT FK_boluses_reading_id FOREIGN KEY (reading_id) REFERENCES readings(reading_id),
 )
 
+CREATE TABLE activity (
+	log_id int IDENTITY(1,1) NOT NULL,
+	user_id int NOT NULL,
+	activity_name nvarchar(200) NOT NULL,
+	time datetime NOT NULL,
+
+	CONSTRAINT PK_activity PRIMARY KEY (log_id),
+	CONSTRAINT FK_profile_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
+
+
 -- Populate default data for testing: user and admin with password of 'password'
 -- These values should not be kept when going to Production
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
@@ -113,10 +124,28 @@ INSERT INTO boluses (reading_id, bolus_amount) VALUES (6, 2);
 --Profile 2
 INSERT INTO boluses (reading_id, bolus_amount) VALUES (7, 8);
 INSERT INTO boluses (reading_id, bolus_amount) VALUES (8, 4);
+
+
+-- User 1 Activity
+INSERT INTO activity (user_id, activity_name, time) VALUES (1, 'account created', '2023-04-17 09:56:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (1, 'profile added', '2023-04-17 09:57:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (1, 'profile deleted', '2023-04-17 09:58:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (1, 'blood sugar reading added', '2023-04-17 09:59:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (1, 'blood sugar alert: too high', '2023-04-17 10:00:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (1, 'blood sugar alert: too low', '2023-04-17 10:01:55.444')
+
+-- User 2 Activity
+INSERT INTO activity (user_id, activity_name, time) VALUES (2, 'account created', '2023-04-17 09:52:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (2, 'profile added', '2023-04-17 09:40:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (2, 'profile deleted', '2023-04-17 09:20:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (2, 'blood sugar reading added', '2023-04-17 09:59:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (2, 'blood sugar alert: too high', '2023-04-17 10:05:55.444')
+INSERT INTO activity (user_id, activity_name, time) VALUES (2, 'blood sugar alert: too low', '2023-04-17 10:10:55.444')
+
 GO
 
 Select * from users
 SELECT * from profiles
 select * from readings WHERE profile_id = 1 AND	time between DateAdd(DD, -30, GETDATE()) and GETDATE()
 select * from boluses
-
+select * from activity
