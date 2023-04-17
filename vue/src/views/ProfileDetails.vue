@@ -3,6 +3,7 @@
     <h1>Profile {{ profile.profileId }}</h1>
     <p>Basal Rate: {{ profile.basalRate }}</p>
     <p>Blood Sugar Range: {{profile.minBloodSugar}} - {{profile.maxBloodSugar}}</p>
+    <p>Warning Sugar Range: {{profile.minWarningSugar}} - {{profile.maxWarningSugar}}</p>
     <p>Carb Ratio: 1:{{profile.carbRatio}}</p>
     <p>Correction Ratio: 1:{{profile.correctionRatio}}</p>
     <p>Insulin Type: {{ profile.insulinType }}</p>
