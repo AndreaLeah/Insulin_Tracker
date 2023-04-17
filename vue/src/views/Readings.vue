@@ -155,9 +155,9 @@ export default {
             });
         },
         readingsCall() {
-            if(this.timeFrameObj.profileId == 0 || this.timeFrameObj.timeFrame == 0) {
+            /*if(this.timeFrameObj.profileId == 0 || this.timeFrameObj.timeFrame == 0) {
                 return;
-            } 
+            } */
 
             ReadingsService.getBSByTimeframe(this.timeFrameObj)
             .then(response => {
@@ -204,11 +204,11 @@ export default {
         onProfileChange(event) {
             this.selectedProfileIndex = event.target.selectedIndex;
             this.timeFrameObj.profileId = this.selectedProfile;
-            this.readingsCall();
+            //this.readingsCall();
         },
         onDaysChange() {
             this.timeFrameObj.timeFrame = +this.selectedDays;
-            this.readingsCall();
+            //this.readingsCall();
         }
     },
     created() {
