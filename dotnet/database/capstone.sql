@@ -146,6 +146,6 @@ GO
 
 Select * from users
 SELECT * from profiles
-select * from readings WHERE profile_id = 1 AND	time between DateAdd(DD, -30, GETDATE()) and GETDATE()
+select * from readings WHERE time between DateAdd(DD, -180, GETDATE()) and GETDATE()
 select * from boluses
 select * from activity

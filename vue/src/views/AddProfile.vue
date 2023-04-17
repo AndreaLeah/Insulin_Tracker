@@ -6,12 +6,21 @@
         <label for="baselRate"></label>
         <input type="text" id="basalRate" placeholder="Basal rate" v-model="profile.basalRate" required>
       </div>
-      <div class="blood-sugar-range">
-        <label for="targetBloodRange"></label>
-        <input type="text" id="targetBloodRange" placeholder="Min blood sugar range" v-model="profile.minBloodSugar">
+      <div>
+        <label for="minBloodSugar"></label>
+        <input type="text" id="minBloodSugar" placeholder="Min blood sugar range" v-model="profile.minBloodSugar">
       </div>
       <div>
-        <input type="text" id="targetBloodRange" placeholder="Max blood sugar range" v-model="profile.maxBloodSugar">
+        <label for="maxBloodSugar"></label>
+        <input type="text" id="maxBloodSugar" placeholder="Max blood sugar range" v-model="profile.maxBloodSugar">
+      </div>
+      <div>
+        <label for="minWarningSugar"></label>
+        <input type="text" id="minWarningSugar" placeholder="Min warning sugar" v-model="profile.minWarningSugar">
+      </div>
+      <div>
+        <label for="maxWarningSugar"></label>
+        <input type="text" id="maxWarningSugar" placeholder="Max warning sugar" v-model="profile.maxWarningSugar">
       </div>
       <div>
         <label for="carbRatio"></label>
@@ -40,11 +49,6 @@ import ProfileInfoService from "../services/ProfileInfoService.js"
 
 export default {
   name: "addProfile",
-  //beforeCreate() {
-  //},
-  //beforeDestroy() {
-  //    document.body.className = 'testClass';
-  //},
   data(){
     return {
       profile: {
@@ -53,6 +57,8 @@ export default {
         basalRate: '',
         minBloodSugar: '',
         maxBloodSugar: '',
+        minWarningSugar: '',
+        maxWarningSugar: '',
         carbRatio: '',
         correctionRatio: '',
         insulinType: '',
@@ -67,6 +73,8 @@ export default {
       this.profile.basalRate = +this.profile.basalRate;
       this.profile.minBloodSugar = +this.profile.minBloodSugar;
       this.profile.maxBloodSugar = +this.profile.maxBloodSugar;
+      this.profile.minWarningSugar = +this.profile.minWarningSugar;
+      this.profile.maxWarningSugar = +this.profile.maxWarningSugar;
       this.profile.carbRatio = +this.profile.carbRatio;
       this.profile.correctionRatio = +this.profile.correctionRatio;
       this.profile.insulinStrength = +this.profile.insulinStrength;
@@ -87,7 +95,6 @@ export default {
 /* This needs to unscoped. It is applied to the App.vue div*/
 .AddProfileBackground{
   background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
-
 }
 
 #container {

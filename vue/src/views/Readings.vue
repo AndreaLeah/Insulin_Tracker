@@ -67,10 +67,7 @@ export default {
             areaChartXYValues: [],
 
             // Load 30day timeframe & profile 1 on startup as default
-            timeFrameObj: {
-                timeFrame: 30,
-                profileId: 1
-            },
+           timeframe: 30,
 
             series: [
                 {
@@ -159,11 +156,7 @@ export default {
             });
         },
         readingsCall() {
-            // if(this.timeFrameObj.profileId == 0 || this.timeFrameObj.timeFrame == 0) {
-            //     return;
-            // } 
-
-            ReadingsService.getBSByTimeframe(this.timeFrameObj)
+            ReadingsService.getBSByTimeframe(this.timeframe)
             .then(response => {
                 if (response.status === 200) {
                     this.readings = response.data;
@@ -207,21 +200,18 @@ export default {
         },
         onProfileChange(event) {
             this.selectedProfileIndex = event.target.selectedIndex;
-            this.timeFrameObj.profileId = this.selectedProfile;
-            //this.readingsCall();
+            this.updateGraph();
         },
         onDaysChange() {
-            this.timeFrameObj.timeFrame = +this.selectedDays;
-            //this.readingsCall();
+            this.timeframe = +this.selectedDays;
+            this.readingsCall();
         }
     },
     created() {
-        this.getUserReadings();
         this.getUserProfiles();
         // timeFrameObj manuall set to 30day & profile 1 as default on page load
         // Load graph
         this.readingsCall();
-        //this.updateGraph();
     }
 }
 </script>
