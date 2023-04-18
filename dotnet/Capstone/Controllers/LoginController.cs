@@ -3,6 +3,7 @@ using Capstone.DAO;
 using Capstone.Models;
 using Capstone.Security;
 using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Capstone.Controllers
 {
@@ -104,6 +105,12 @@ namespace Capstone.Controllers
                 return Conflict(new { message = "Username already taken. Please choose a different username." });
             }
 
+            //Validate email
+            if (!IsValidEmailAddress(userParam.Email))
+            {
+                return Conflict(new { message = "Email is not valid." });
+            }
+
             User user = userDAO.AddUser(userParam.Username, userParam.Password, userParam.Role, userParam.Email);
             if (user != null)
             {
@@ -115,6 +122,14 @@ namespace Capstone.Controllers
             }
 
             return result;
+        }
+
+        private bool IsValidEmailAddress(string email)
+        {
+            if (!string.IsNullOrEmpty(email) && new EmailAddressAttribute().IsValid(email))
+                return true;
+            else
+                return false;
         }
     }
 }

@@ -13,6 +13,7 @@
 <script>
 import ReadingService from '../services/ReadingsService.js';
 import ProfileSelect from '../components/ProfileSelect.vue';
+import ActivityService from '../services/ActivityService.js';
 
 export default {
     data() {
@@ -29,7 +30,7 @@ export default {
                 logId: 0,
                 userId: 0,
                 activityName: '',
-                time: 0
+                time: '2000-01-01T00:00:00.000'
             },
             carbAmount: '',
             sugarToLow: false,
@@ -43,18 +44,26 @@ export default {
             this.sugarToLow = false;
             let profile = this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1];
             if (this.newReading.bloodSugar < profile.minWarningSugar) {
+                this.activity.activityName = 'blood sugar alert: very low';
+                ActivityService.addActivityToLog(this.activity);
                 alert ("DANGEROUSLY LOW BLOOD SUGAR");
                 this.sugarToLow = true;
             }
             else if (this.newReading.bloodSugar < profile.minBloodSugar) {
+                this.activity.activityName = 'blood sugar alert: low';
+                ActivityService.addActivityToLog(this.activity);
                 alert("Low blood sugar");
                 this.sugarToLow = true;
             }
 
             if (this.newReading.bloodSugar > profile.maxWarningSugar) {
-                alert ("DANGEROUSLY HIGH BLOOD SUGAR")
+                this.activity.activityName = 'blood sugar alert: very high';
+                ActivityService.addActivityToLog(this.activity);
+                alert ("DANGEROUSLY HIGH BLOOD SUGAR");
             }
             else if (this.newReading.bloodSugar > profile.maxBloodSugar) {
+                 this.activity.activityName = 'blood sugar alert: high';
+                ActivityService.addActivityToLog(this.activity);
                 alert("HIGH blood sugar");
             }
         },
