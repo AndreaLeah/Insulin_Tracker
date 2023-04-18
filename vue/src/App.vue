@@ -3,9 +3,9 @@
      See https://getbootstrap.com/docs/4.5/getting-started/introduction/ for reference on bootstrap -->
 <template>
   <div id="app" :class='[{"AddProfileBackground": isAddProfile}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
-    <Nav />
+    <Nav :class='[{"nav-margin": !isHomePage}]' />
     <router-view />
-    <footer-component />
+    <footer-component id="footer" />
   </div>
 </template>
 
@@ -19,8 +19,13 @@ export default {
     FooterComponent
   },
   computed: {
-    isAddProfile() {
-      return this.$route.name === 'AddProfile';
+    isGrad() {
+      if (this.$route.name === 'AddProfile' ||
+          this.$route.name === 'AddBolus' ||
+          this.$route.name === 'AddReading') {
+        return true;
+      }
+      return false;
     },
     isHomePage() {
       return this.$route.name === 'home';
@@ -39,6 +44,10 @@ export default {
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 // Your custom styles go below this point
+
+.AddGradBackground{
+  background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
+}
 
 a{
     text-decoration: none;
@@ -59,14 +68,13 @@ input {
 
 #app {
   min-height: 100vh;
-  position: relative;
-  display: grid;
-  grid-template-areas: 
-    "nav"
-    "main"
-    "footer";
-  grid-template-columns: 1fr;
-  align-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#footer {
+  margin-top: auto;
 }
 
 </style>

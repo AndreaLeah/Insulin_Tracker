@@ -110,6 +110,10 @@ export default {
   color: rgb(255, 215, 215);
 }
 
+.nav-margin {
+  margin-bottom: 75px;
+}
+
 /* Tablet */
 
 @media only screen and (max-width: 850px) {
