@@ -205,7 +205,7 @@ h1{
 }
 
 #div-content{
-    padding: 3rem;
+    padding: 0 3rem;
     display: flex;
     flex-direction: column;
     width: 70vw;

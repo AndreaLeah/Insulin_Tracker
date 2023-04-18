@@ -9,16 +9,20 @@
                 <div>Date Created: </div>
             </div>
 
-        <div v-for="(activity, index) in activityLog" v-bind:key="index">
-            <div class="containerr">
-                <div class="activity">                        
-                    <div class="activity-name">                            
-                        <p>{{ activity.activityName }}</p>
-                    </div>
-                    <div class="activity-date">
-                        <p>{{ formatTime(activity.time) }}</p>
 
-                    </div>
+
+            <div class="the-mother">        
+            <div v-for="(activity, index) in activityLog" v-bind:key="index" class="containerr">
+                <!-- <div class="containerr"> -->
+                    <div class="activity">                        
+                        <div class="activity-name">                            
+                            <p>{{ activity.activityName }}</p>
+                        </div>
+                        <div class="activity-date">
+                            <p>{{ formatTime(activity.time) }}</p>
+
+                        </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -97,15 +101,21 @@ section {
     flex-direction: column;
 }
 
+.the-mother {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity {
+    display: flex;
+    column-gap: 20px;
+}
 .containerr {
     display: flex;
     flex-direction: column;
     padding: 0;
 }
 
-.activity {
-    display: flex;
-}
 
 .activity-name {    
     width: 200px;
@@ -115,6 +125,10 @@ section {
     display: flex;
     justify-content: flex-start;
     font-weight: bold;
+    column-gap: 20px;
 }
 
+p {
+    margin: 0;
+}
 </style>

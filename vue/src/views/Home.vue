@@ -86,6 +86,7 @@ export default {
   flex-direction: column;
   height: 100%;
   width: 100%;
+  background-color: rgb(250, 250, 250);
 }
 
 #main-content {
@@ -188,9 +189,7 @@ img.card-imgs {
 /* Info Container */
 
 .info-container {
-  margin-top: 40px; 
-  /* 10px Deficit to make up for 50px footer and 40px margin on top */
-  margin-bottom: -10px;
+  margin: 50px 0;
 }
 
 .info-content-container {

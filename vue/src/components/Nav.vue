@@ -111,7 +111,7 @@ export default {
 }
 
 .nav-margin {
-  margin-bottom: 75px;
+  margin-bottom: 50px;
 }
 
 /* Tablet */
