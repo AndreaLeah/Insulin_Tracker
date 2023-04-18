@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    Copyright &copy; Insu-Trak 2023 
+    Copyright &copy; InsuTrak 2023 
   </footer>
 </template>
 
