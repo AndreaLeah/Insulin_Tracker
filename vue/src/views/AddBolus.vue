@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div id="bolusCard">
         <h2>Calculate Bolus</h2>
-        <form>
-            <profile-select/>
+        <form id="bolusForm">
+            <profile-select id="profileSelect" />
             <label for="carbAmount"></label><input type="text" id='carbAmount' placeholder="Carb Amount" v-model="carbAmount"/>
             <label for="bloodSugar"></label><input type="text" id='bloodSugar' placeholder="Blood Sugar" v-model="newReading.bloodSugar"/>
-            <button @click.prevent="calculateBolus">Calculate</button>
+            <button id="calcBtn" @click.prevent="calculateBolus">Calculate</button>
         </form>
     </div>
 </template>
@@ -116,4 +116,40 @@ export default {
 
 <style scoped>
 
+#bolusCard {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    align-content: center;
+    text-align: center;
+    margin: 4rem auto;
+}
+
+input{
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 15px;
+  width: 200px;
+  margin: 0.5rem;
+  align-content: right;
+  padding-left: .5rem;
+}
+
+label{
+  align-content: left;
+  font-weight: bold;
+}
+
+#bolusCard > form > button {
+  background-image: linear-gradient(to left, rgb(255, 142, 142), rgb(233, 64, 64));
+  width: 200px;
+  border-style: none;
+  border-radius: 15px;
+  margin: .5rem;
+}
 </style>

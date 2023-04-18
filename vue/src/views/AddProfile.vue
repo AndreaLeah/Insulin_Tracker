@@ -1,47 +1,46 @@
 <template>
-    <div id="container">
-    <h2>Add New Profile</h2>
-    <form>
-      <div>
-        <label for="baselRate"></label>
-        <input type="text" id="basalRate" placeholder="Basal rate" v-model="profile.basalRate" required>
-      </div>
-      <div>
-        <label for="minBloodSugar"></label>
-        <input type="text" id="minBloodSugar" placeholder="Min blood sugar range" v-model="profile.minBloodSugar">
-      </div>
-      <div>
-        <label for="maxBloodSugar"></label>
-        <input type="text" id="maxBloodSugar" placeholder="Max blood sugar range" v-model="profile.maxBloodSugar">
-      </div>
-      <div>
-        <label for="minWarningSugar"></label>
-        <input type="text" id="minWarningSugar" placeholder="Min warning sugar" v-model="profile.minWarningSugar">
-      </div>
-      <div>
-        <label for="maxWarningSugar"></label>
-        <input type="text" id="maxWarningSugar" placeholder="Max warning sugar" v-model="profile.maxWarningSugar">
-      </div>
-      <div>
-        <label for="carbRatio"></label>
-        <input type="text" id="carbRatio" placeholder="Carb ratio" v-model="profile.carbRatio">
-      </div>
-      <div>
-        <label for="correctionRatio"></label>
-        <input type="text" id="correctionRatio" placeholder="Correction ratio" v-model="profile.correctionRatio">
-      </div>
-      <div>
-        <label for="insulinType"></label>
-        <input type="text" id="insulinType" placeholder="Insulin type" v-model="profile.insulinType" required>
-      </div>
-      <div>
-        <label for="insulinStrength"></label>
-        <input type="text" id="insulinStrength" placeholder="Insulin strength" v-model="profile.insulinStrength" required>
-      </div>
-        <button @click.prevent="addProfile">Save</button>
-    </form>
-    
-  </div>
+    <div id="profileContainer">
+      <h2>Add New Profile</h2>
+      <form>
+        <div>
+          <label for="baselRate"></label>
+          <input type="text" id="basalRate" placeholder="Basal rate" v-model="profile.basalRate" required>
+        </div>
+        <div>
+          <label for="minBloodSugar"></label>
+          <input type="text" id="minBloodSugar" placeholder="Min blood sugar range" v-model="profile.minBloodSugar">
+        </div>
+        <div>
+          <label for="maxBloodSugar"></label>
+          <input type="text" id="maxBloodSugar" placeholder="Max blood sugar range" v-model="profile.maxBloodSugar">
+        </div>
+        <div>
+          <label for="minWarningSugar"></label>
+          <input type="text" id="minWarningSugar" placeholder="Min warning sugar" v-model="profile.minWarningSugar">
+        </div>
+        <div>
+          <label for="maxWarningSugar"></label>
+          <input type="text" id="maxWarningSugar" placeholder="Max warning sugar" v-model="profile.maxWarningSugar">
+        </div>
+        <div>
+          <label for="carbRatio"></label>
+          <input type="text" id="carbRatio" placeholder="Carb ratio" v-model="profile.carbRatio">
+        </div>
+        <div>
+          <label for="correctionRatio"></label>
+          <input type="text" id="correctionRatio" placeholder="Correction ratio" v-model="profile.correctionRatio">
+        </div>
+        <div>
+          <label for="insulinType"></label>
+          <input type="text" id="insulinType" placeholder="Insulin type" v-model="profile.insulinType" required>
+        </div>
+        <div>
+          <label for="insulinStrength"></label>
+          <input type="text" id="insulinStrength" placeholder="Insulin strength" v-model="profile.insulinStrength" required>
+        </div>
+          <button @click.prevent="addProfile">Save</button>
+      </form>
+    </div>
 </template>
 
 <script>
@@ -90,26 +89,20 @@ export default {
 }
 </script>
 
-<style>
-
-/* This needs to unscoped. It is applied to the App.vue div*/
-.AddProfileBackground{
-  background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
-}
-
-#container {
-  display: flex;
-  justify-self: center;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: white;
-  width: 300px;
-  height: 500px;
-  border-radius: 10px;
-  align-content: center;
-  text-align: center;
-  margin: 4rem auto;
+<style scoped>
+#profileContainer {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    width: 300px;
+    height: 500px;
+    border-radius: 10px;
+    align-content: center;
+    text-align: center;
+    margin: 4rem auto;
 }
 
 form > div, .router-link{
@@ -135,7 +128,7 @@ label{
   font-weight: bold;
 }
 
-#container > form > button {
+#profileContainer > form > button {
   background-image: linear-gradient(to left, rgb(255, 142, 142), rgb(233, 64, 64));
   width: 200px;
   border-style: none;
