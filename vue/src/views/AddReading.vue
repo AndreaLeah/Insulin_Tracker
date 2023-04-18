@@ -12,6 +12,7 @@
 <script>
 import ReadingService from '../services/ReadingsService.js';
 import ProfileSelect from '../components/ProfileSelect.vue';
+import ActivityService from '../services/ActivityService.js';
 
 export default {
     data() {
@@ -23,6 +24,12 @@ export default {
                 bloodSugar: '',
                 carbs: '',
                 time: ''
+            },
+            activity: {
+                logId: 0,
+                userId: 0,
+                activityName: '',
+                time: '2000-01-01T00:00:00.000'
             }
         }
     },
@@ -33,16 +40,24 @@ export default {
         checkReading() {
             let profile = this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1];
             if (this.newReading.bloodSugar < profile.minWarningSugar) {
+                this.activity.activityName = 'blood sugar alert: very low'
+                ActivityService.addActivityToLog(this.activity)
                 alert ("DANGEROUSLY LOW BLOOD SUGAR")
             }
             else if (this.newReading.bloodSugar < profile.minBloodSugar) {
+                this.activity.activityName = 'blood sugar alert: low'
+                ActivityService.addActivityToLog(this.activity)
                 alert("Low blood sugar");
             }
 
             if (this.newReading.bloodSugar > profile.maxWarningSugar) {
+                this.activity.activityName = 'blood sugar alert: very high'
+                ActivityService.addActivityToLog(this.activity)
                 alert ("DANGEROUSLY HIGH BLOOD SUGAR")
             }
             else if (this.newReading.bloodSugar > profile.maxBloodSugar) {
+                this.activity.activityName = 'blood sugar alert: high'
+                ActivityService.addActivityToLog(this.activity)
                 alert("HIGH blood sugar");
             }
         },
@@ -69,6 +84,8 @@ export default {
                     if (response.status === 200) {
                         response;
                         this.checkReading();
+                        this.activity.activityName = 'blood sugar reading added'
+                        ActivityService.addActivityToLog(this.activity);
                         this.$router.push({name: 'Profile'});
                     }
                     else {
