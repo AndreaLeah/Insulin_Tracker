@@ -36,7 +36,7 @@
             </thead>
             <tr v-for="reading in readings" v-bind:key="reading.readingId">
                 <td>{{reading.bloodSugar}}</td> 
-                <td>{{reading.time}}</td>
+                <td>{{timeReformat(reading)}}</td>
             </tr>
         </table>
 
@@ -136,6 +136,18 @@ export default {
         }
     },
     methods: {
+        timeReformat(reading){
+            let dateArray = reading.time.split("T");
+            
+            let dateSplit = dateArray[0].split("-");
+            let date = dateSplit[1]+"/"+dateSplit[2]+"/"+dateSplit[0];
+
+            let timeSplit = dateArray[1].split(":");
+            let time = timeSplit[0]+":"+timeSplit[1];
+
+            date += " - " + time;
+            return date;
+        },
         readingsCall() {
             ReadingsService.getBSByTimeframe(this.timeframe)
             .then(response => {
@@ -209,6 +221,7 @@ h1{
     display: flex;
     flex-direction: column;
     width: 70vw;
+    margin-bottom: 3rem;
 }
 
 section{
