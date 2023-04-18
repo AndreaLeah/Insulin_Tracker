@@ -25,6 +25,12 @@ export default {
                 carbs: '',
                 time: ''
             },
+            activity: {
+                logId: 0,
+                userId: 0,
+                activityName: '',
+                time: 0
+            },
             carbAmount: '',
             sugarToLow: false,
         }
