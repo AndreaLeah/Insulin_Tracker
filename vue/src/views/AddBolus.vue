@@ -115,29 +115,41 @@ export default {
 </script>
 
 <style scoped>
+
 #bolusCard {
-    border: black solid 2px;
-    border-radius: 20px;
-    padding: 20px;
-}
-
-#bolusForm {
     display: flex;
+    justify-self: center;
     flex-direction: column;
-}
-
-#calcBtn {
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    width: 300px;
+    height: 250px;
     border-radius: 10px;
-    margin: auto;
+    align-content: center;
+    text-align: center;
+    margin: 4rem auto;
 }
 
-#profileSelect {
-    padding: 0;
-    align-self: center;
+input{
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 15px;
+  width: 200px;
+  margin: 0.5rem;
+  align-content: right;
+  padding-left: .5rem;
 }
 
-label {
-    margin: 0;
-    padding: 0;
+label{
+  align-content: left;
+  font-weight: bold;
+}
+
+#bolusCard > form > button {
+  background-image: linear-gradient(to left, rgb(255, 142, 142), rgb(233, 64, 64));
+  width: 200px;
+  border-style: none;
+  border-radius: 15px;
+  margin: .5rem;
 }
 </style>

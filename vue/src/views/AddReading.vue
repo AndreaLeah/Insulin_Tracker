@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div id="readingContainer">
         <h2>Add new reading</h2>
         <form>
-            <label for="bloodSugar"></label><input type="text" id='bloodSugar' placeholder="Blood Sugar" v-model="newReading.bloodSugar"/>
             <profile-select/>
+            <label for="bloodSugar"></label><input type="text" id='bloodSugar' placeholder="Blood Sugar" v-model="newReading.bloodSugar"/>
             <button @click.prevent="addReading">Add</button>
         </form>
     </div>
@@ -83,6 +83,42 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+#readingContainer {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    align-content: center;
+    text-align: center;
+    margin: 4rem auto;
+}
+
+input{
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 15px;
+  width: 200px;
+  margin: 0.5rem;
+  align-content: right;
+  padding-left: .5rem;
+}
+
+label{
+  align-content: left;
+  font-weight: bold;
+}
+
+#readingContainer > form > button {
+  background-image: linear-gradient(to left, rgb(255, 142, 142), rgb(233, 64, 64));
+  width: 200px;
+  border-style: none;
+  border-radius: 15px;
+  margin: .5rem;
+}
 </style>
