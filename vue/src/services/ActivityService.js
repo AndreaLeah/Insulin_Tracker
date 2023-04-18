@@ -4,7 +4,7 @@ export default {
     getActivityLog() {
         return axios.get('/activity');
     },
-    addActivityToLog() {
-        return axios.post('/activity');
+    addActivityToLog(activity) {
+        return axios.post('/activity', activity);
     }
 }

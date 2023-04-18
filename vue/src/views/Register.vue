@@ -53,7 +53,8 @@
 </template>
 
 <script>
-import authService from '../services/AuthService';
+import authService from '../services/AuthService.js';
+import ActivityService from '../services/ActivityService.js';
 
 export default {
   name: 'register',
@@ -65,6 +66,12 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+      },
+      activity: {
+        logId: 0,
+        userId: 0,
+        activityName: '',
+        time: '2000-01-01T00:00:00.000'
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -80,6 +87,8 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
+              this.activity.activityName = 'account created';
+              ActivityService.addActivityToLog(this.activity);
               this.$router.push({
                 name: 'login',
                 query: { registration: 'success' },

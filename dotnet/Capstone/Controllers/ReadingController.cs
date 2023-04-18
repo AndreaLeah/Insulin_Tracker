@@ -3,6 +3,7 @@ using Capstone.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
@@ -78,6 +79,7 @@ namespace Capstone.Controllers
         public IActionResult AddReading([FromBody] Reading reading)
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
+
             reading.UserId = userId;
 
             Profile profile = profileDAO.GetProfile(reading.ProfileId);

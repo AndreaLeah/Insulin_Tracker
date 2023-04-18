@@ -60,7 +60,7 @@ namespace Capstone.DAO
 
                 command.Parameters.AddWithValue("@userId", activity.UserId);
                 command.Parameters.AddWithValue("@activityName", activity.ActivityName);
-                command.Parameters.AddWithValue("@time", activity.Time);
+                command.Parameters.AddWithValue("@time", DateTime.UtcNow);
 
                 int numRows = command.ExecuteNonQuery();
 

@@ -45,6 +45,7 @@
 
 <script>
 import ProfileInfoService from "../services/ProfileInfoService.js"
+import ActivityService from "../services/ActivityService.js"
 
 export default {
   name: "addProfile",
@@ -62,6 +63,12 @@ export default {
         correctionRatio: '',
         insulinType: '',
         insulinStrength: ''
+      },
+      activity: {
+        logId: 0,
+        userId: 0,
+        activityName: '',
+        time: '2000-01-01T00:00:00.000'
       }
     }
   },
@@ -81,6 +88,8 @@ export default {
       ProfileInfoService.addProfileInfo(this.profile)
         .then(response => {
           this.profile = response.data;
+          this.activity.activityName = 'profile added'
+          ActivityService.addActivityToLog(this.activity);
           this.$router.push({name: 'Profile'});
         })
         .catch(error => console.error('Could not add profile', error));
