@@ -8,6 +8,14 @@
       <div class="form-group">
         <input
           type="text"
+          id="email"
+          class="form-control"
+          placeholder="Email"
+        required/>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
           id="username"
           class="form-control"
           placeholder="Username"
