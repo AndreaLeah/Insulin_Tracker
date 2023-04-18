@@ -3,7 +3,6 @@
      See https://getbootstrap.com/docs/4.5/getting-started/introduction/ for reference on bootstrap -->
 <template>
   <div id="app" :class='[{"AddGradBackground": isGrad}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
-    <Nav />
     <Nav :class='[{"nav-margin": !isHomePage}]' />
     <router-view />
     <footer-component id="footer" />

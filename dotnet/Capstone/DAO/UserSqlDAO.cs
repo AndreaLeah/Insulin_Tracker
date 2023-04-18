@@ -41,7 +41,7 @@ namespace Capstone.DAO
         }
 
 
-        public User AddUser(string username, string password, string role)
+        public User AddUser(string username, string password, string role, string email)
         {
             IPasswordHasher passwordHasher = new PasswordHasher();
             PasswordHash hash = passwordHasher.ComputeHash(password);

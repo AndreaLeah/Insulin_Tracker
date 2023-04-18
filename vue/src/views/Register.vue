@@ -11,7 +11,9 @@
           id="email"
           class="form-control"
           placeholder="Email"
-        required/>
+          v-model="user.email"
+        required
+        autofocus />
       </div>
       <div class="form-group">
         <input
@@ -20,8 +22,7 @@
           class="form-control"
           placeholder="Username"
           v-model="user.username"
-          required
-          autofocus />
+          required/>
       </div>
       <div class="form-group">
         <input
@@ -59,6 +60,7 @@ export default {
   data() {
     return {
       user: {
+        email: '',
         username: '',
         password: '',
         confirmPassword: '',
