@@ -90,7 +90,7 @@ const router = new Router({
       redirect: "/",
     },
     {
-      path: '/profile/:profileId',
+      path: '/profile/:profileId/:index',
       name: 'ProfileDetails',
       component: ProfileDetails,
       meta: {
@@ -99,7 +99,7 @@ const router = new Router({
 
     },
     {
-      path: '/readings',
+      path: '/readings/:index',
       name: 'Readings',
       component: Readings,
       meta: {

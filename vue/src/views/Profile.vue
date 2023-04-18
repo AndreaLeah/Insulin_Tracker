@@ -2,7 +2,7 @@
   <section>
     <h1>Your Profiles</h1>
     <div v-for="(profile, index) in profiles" v-bind:key="profile.profileId">
-      <button class="fancyButton" v-on:click="viewProfile(profile.profileId)"> {{index + 1}} </button>
+      <button class="fancyButton" v-on:click="viewProfile(profile.profileId, index)"> {{index + 1}} </button>
     </div>
     <router-link :to="{name: 'AddProfile'}">Add Profile</router-link>
     <router-link :to="{name: 'AddReading'}">Add Reading</router-link>
@@ -21,9 +21,9 @@ export default {
     }
   },
   methods: {
-    viewProfile(profileId) {
+    viewProfile(profileId, index) {
       this.$router.push({name: 'ProfileDetails', params: {
-        profileId: profileId,
+        profileId: profileId, index: index,
       }});
     },
     getUserProfiles() {

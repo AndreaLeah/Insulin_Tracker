@@ -200,6 +200,7 @@ export default {
             this.updateGraph();
         },
         profileSelectMounted() {
+            this.$store.commit('SET_PROFILE_INDEX', +this.$route.params.index);
             this.readingsCall();
         }
     },
