@@ -3,6 +3,7 @@ using Capstone.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace Capstone.Controllers
@@ -25,6 +26,5 @@ namespace Capstone.Controllers
             List<Activity> activities = activityDAO.GetAllActivity(userId);
             return Ok(activities);
         }
-
     }
 }

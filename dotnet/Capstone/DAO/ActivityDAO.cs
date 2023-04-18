@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Capstone.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Globalization;
 
@@ -46,6 +45,30 @@ namespace Capstone.DAO
 
             return activities;
 
+        }
+
+        public bool LogActivity(Activity activity)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "INSERT INTO activity(user_id, activity_name, time) VALUES(@userId, @activity_name, @time)";
+
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@userId", activity.UserId);
+                command.Parameters.AddWithValue("@activity_name", activity.ActivityName);
+                command.Parameters.AddWithValue("@time", DateTime.UtcNow);
+
+                int numRows = command.ExecuteNonQuery();
+
+                if (numRows == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
         private Activity GetProfileFromReader(SqlDataReader reader)
