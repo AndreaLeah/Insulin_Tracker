@@ -6,6 +6,7 @@
     </div>
     <router-link :to="{name: 'AddProfile'}">Add Profile</router-link>
     <router-link :to="{name: 'AddReading'}">Add Reading</router-link>
+    <router-link :to="{name: 'AddBolus'}">Bolus</router-link>
   </section>
 </template>
 
