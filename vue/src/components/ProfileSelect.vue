@@ -17,6 +17,9 @@ export default {
             selectProfileIndex: 0
         }
     },
+    props: {
+        propSelectedIndex: Number
+    },
     methods: {
         setSelectedProfileIndex() {
             this.$store.commit("SET_PROFILE_INDEX", this.selectProfileIndex);
@@ -31,7 +34,7 @@ export default {
             .then((response) => {
                 if (response.status === 200) {
                     this.userProfiles = response.data;
-                    this.selectProfileIndex = 1;
+                    this.selectProfileIndex = this.propSelectedIndex+1;
                     this.setSelectedProfileIndex();
                     this.setLoadedUserProfiles();
                 }

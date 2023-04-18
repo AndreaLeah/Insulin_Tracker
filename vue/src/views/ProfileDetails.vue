@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Profile {{ profile.profileId }}</h1>
+    <h1>Profile {{ this.$route.params.index+1 }}</h1>
     <p>Basal Rate: {{ profile.basalRate }}</p>
     <p>Blood Sugar Range: {{profile.minBloodSugar}} - {{profile.maxBloodSugar}}</p>
     <p>Warning Sugar Range: {{profile.minWarningSugar}} - {{profile.maxWarningSugar}}</p>
