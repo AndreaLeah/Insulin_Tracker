@@ -85,7 +85,7 @@ export default {
           this.$router.push({name: 'Profile'});
         })
         .catch(error => console.error('Could not add profile', error));
-    }
+    },
   }
 }
 </script>

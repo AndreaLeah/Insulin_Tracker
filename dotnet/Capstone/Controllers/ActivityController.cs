@@ -26,5 +26,25 @@ namespace Capstone.Controllers
             List<Activity> activities = activityDAO.GetAllActivity(userId);
             return Ok(activities);
         }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult RecordActivityToLog([FromBody] Activity activity)
+        {
+            int userId = int.Parse(this.User.FindFirst("sub").Value);
+            activity.UserId = userId;
+
+            bool result = activityDAO.AddActivityToLog(activity);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occurred and profile activity was not added to activity log." });
+            }
+
+        }
+
     }
 }

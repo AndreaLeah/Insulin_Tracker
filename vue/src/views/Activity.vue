@@ -1,13 +1,25 @@
 <template>
   <section>
-      <h1>Activity Log</h1>
-    <div v-for="(activity, index) in activityLog" v-bind:key="index">
+      
+        <h1>Activity Log</h1>
+
         <div class="rendered-info">
-            <div class="activity">
-                <p>Activity Name: {{ activity.activityName }}</p>
+            <div class="label-container">
+                <div class="activity-name">Activity Name: </div>
+                <div>Date Created: </div>
             </div>
-            <div class="date">
-                <p> Date Created: {{ activity.time }}</p>
+
+        <div v-for="(activity, index) in activityLog" v-bind:key="index">
+            <div class="containerr">
+                <div class="activity">                        
+                    <div class="activity-name">                            
+                        <p>{{ activity.activityName }}</p>
+                    </div>
+                    <div class="activity-date">
+                        <p>{{ formatTime(activity.time) }}</p>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -21,10 +33,39 @@ export default {
     name: "activity",
     data() {
         return {
-            activityLog: []
+            activityLog: [],
+            timeObj: {
+                year: 0,
+                month: 0,
+                day: 0,
+                hours: 0,
+                minutes: 0
+            }
         }
     },
     methods: {
+        formatTime(stringTime) {
+            let string = stringTime;
+            console.log(string);
+            let separatedArray = string.split("T");
+
+            // Get array of [YYYY, MM, DD]
+            let dateArray = separatedArray[0].split("-");
+
+            // Get year, month & day & set them to time object
+            this.timeObj.year = dateArray[0];
+            this.timeObj.month = dateArray[1];
+            this.timeObj.day = dateArray[2];
+
+            // Get array of [hour, minute]
+            let timeArray = separatedArray[1].split(":");
+
+            // Get hours & minutes & set them to time object
+            this.timeObj.hours = timeArray[0];
+            this.timeObj.minutes = timeArray[1];
+
+            return `${this.timeObj.hours}:${this.timeObj.minutes} on ${this.timeObj.month}/${this.timeObj.day}/${this.timeObj.year}`;
+        },
         getActivityLog() {
             ActivityService.getActivityLog()
             .then((response) => {
@@ -43,7 +84,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 section {
     display: flex;
@@ -53,6 +94,27 @@ section {
 
 .rendered-info {
     display: flex;
+    flex-direction: column;
+}
+
+.containerr {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.activity {
+    display: flex;
+}
+
+.activity-name {    
+    width: 200px;
+}
+
+.label-container {
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bold;
 }
 
 </style>

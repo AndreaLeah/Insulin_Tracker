@@ -47,6 +47,30 @@ namespace Capstone.DAO
 
         }
 
+        public bool AddActivityToLog(Activity activity)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "INSERT INTO activity (user_id, activity_name, time) " +
+                    "VALUES (@userId, @activityName, @time)";
+
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@userId", activity.UserId);
+                command.Parameters.AddWithValue("@activityName", activity.ActivityName);
+                command.Parameters.AddWithValue("@time", activity.Time);
+
+                int numRows = command.ExecuteNonQuery();
+
+                if (numRows == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
         private Activity GetProfileFromReader(SqlDataReader reader)
         {
             Activity activity = new Activity();
@@ -59,4 +83,6 @@ namespace Capstone.DAO
             return activity;
         }
     }
-}
+
+    }
+
