@@ -2,13 +2,8 @@
      Note that you have classes from bootstrap available to you.
      See https://getbootstrap.com/docs/4.5/getting-started/introduction/ for reference on bootstrap -->
 <template>
-<<<<<<< HEAD
   <div id="app" :class='[{"AddProfileBackground": isAddProfile}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
     <Nav :class='[{"nav-margin": !isHomePage}]' />
-=======
-  <div id="app" :class='[{"AddGradBackground": isGrad}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
-    <Nav />
->>>>>>> 960cd86940e87ff8856b1d857d763ba8e4996ea3
     <router-view />
     <footer-component id="footer" />
   </div>
