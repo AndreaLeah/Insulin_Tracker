@@ -4,8 +4,9 @@
 <template>
   <div id="app" :class='[{"AddGradBackground": isGrad}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
     <Nav />
+    <Nav :class='[{"nav-margin": !isHomePage}]' />
     <router-view />
-    <footer-component />
+    <footer-component id="footer" />
   </div>
 </template>
 
@@ -68,14 +69,13 @@ input {
 
 #app {
   min-height: 100vh;
-  position: relative;
-  display: grid;
-  grid-template-areas: 
-    "nav"
-    "main"
-    "footer";
-  grid-template-columns: 1fr;
-  align-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#footer {
+  margin-top: auto;
 }
 
 </style>
