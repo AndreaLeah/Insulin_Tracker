@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div id="bolusCard">
         <h2>Calculate Bolus</h2>
-        <form>
-            <profile-select/>
+        <form id="bolusForm">
+            <profile-select id="profileSelect" />
             <label for="carbAmount"></label><input type="text" id='carbAmount' placeholder="Carb Amount" v-model="carbAmount"/>
             <label for="bloodSugar"></label><input type="text" id='bloodSugar' placeholder="Blood Sugar" v-model="newReading.bloodSugar"/>
-            <button @click.prevent="calculateBolus">Calculate</button>
+            <button id="calcBtn" @click.prevent="calculateBolus">Calculate</button>
         </form>
     </div>
 </template>
@@ -115,5 +115,29 @@ export default {
 </script>
 
 <style scoped>
+#bolusCard {
+    border: black solid 2px;
+    border-radius: 20px;
+    padding: 20px;
+}
 
+#bolusForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#calcBtn {
+    border-radius: 10px;
+    margin: auto;
+}
+
+#profileSelect {
+    padding: 0;
+    align-self: center;
+}
+
+label {
+    margin: 0;
+    padding: 0;
+}
 </style>

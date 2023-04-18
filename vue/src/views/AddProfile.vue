@@ -92,11 +92,6 @@ export default {
 
 <style>
 
-/* This needs to unscoped. It is applied to the App.vue div*/
-.AddProfileBackground{
-  background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
-}
-
 #container {
   display: flex;
   justify-self: center;
