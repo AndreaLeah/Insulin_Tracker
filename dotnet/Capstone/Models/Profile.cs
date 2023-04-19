@@ -6,6 +6,7 @@ namespace Capstone.Models
     public class Profile
     {
         public int ProfileId { get; set; }
+        public string ProfileName { get; set; }
         [Required, Range(0, int.MaxValue)]
         public int UserId { get; set; }
         [Required, Range(0, 10000)]
