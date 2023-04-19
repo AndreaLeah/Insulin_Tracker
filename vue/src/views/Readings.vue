@@ -134,8 +134,8 @@ export default {
     methods: {
         convertActivityLog() {
             for (let i = 0; i < this.readings.length; i++) {
-                console.log(this.readings[i].bloodSugar);
-                console.log(this.timeReformat(this.readings[i]));
+                //console.log(this.readings[i].bloodSugar);
+                //console.log(this.timeReformat(this.readings[i]));
 
             // Push each item as object with formatted time
             this.readingsForTable.push(

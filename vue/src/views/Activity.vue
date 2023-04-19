@@ -65,8 +65,8 @@ export default {
         },
         convertActivityLog() {
             for (let i = 0; i < this.activityLog.length; i++) {
-                console.log(this.activityLog[i].activityName);
-                console.log(this.formatTime(this.activityLog[i].time));
+                //console.log(this.activityLog[i].activityName);
+                //console.log(this.formatTime(this.activityLog[i].time));
 
                 // Push each item as object with formatted time
                 this.convertedActivityLog.push(
