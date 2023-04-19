@@ -1,4 +1,5 @@
 <template>
+<div id="main-content">
   <div class="addFormContainer">
     <h2>Add New Profile</h2>
     <form>
@@ -25,6 +26,7 @@
       <button @click.prevent="addProfile">Save</button>
     </form>
   </div>
+</div>
 </template>
 
 <script>

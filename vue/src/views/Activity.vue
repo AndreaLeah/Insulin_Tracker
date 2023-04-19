@@ -1,10 +1,12 @@
 <template>
+<div id="main-content">
     <section>
         <h1>Activity Log</h1>
         <div>
             <b-table responsive striped hover :items="convertedActivityLog"></b-table>
         </div>
     </section>
+</div>
 </template>
 
 <script>
@@ -47,7 +49,7 @@ export default {
             timeObj.hours = timeArray[0];
             timeObj.minutes = timeArray[1];
 
-            return `${timeObj.hours}:${timeObj.minutes} on ${timeObj.month}/${timeObj.day}/${timeObj.year}`;
+            return `${timeObj.hours}:${timeObj.minutes} - ${timeObj.month}/${timeObj.day}/${timeObj.year}`;
         },
         getActivityLog() {
             ActivityService.getActivityLog()
@@ -87,6 +89,7 @@ export default {
 #main-content{
     height: 100vh;
     width: 100%;
+    padding-bottom: 1rem;
 }
 
 section {
@@ -95,9 +98,9 @@ section {
     align-items: center;
     padding: 1rem;
     background-color: white;
+    border-radius: 10px;
     border: thin solid black;
     box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
 }
 
 .rendered-info {

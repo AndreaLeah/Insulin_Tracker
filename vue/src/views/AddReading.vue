@@ -1,4 +1,5 @@
 <template>
+<div id="main-content">
     <div class="addFormContainer">
         <h2>Add new reading</h2>
         <form>
@@ -8,6 +9,7 @@
             <button @click.prevent="addReading">Add</button>
         </form>
     </div>
+</div>
 </template>
 
 <script>

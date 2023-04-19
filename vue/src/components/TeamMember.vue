@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-">
 
       <div id="andrew" class="member">
         <div class="img">
@@ -48,18 +48,18 @@ export default {
       height: 150px;
   }
 
-  .container {
+  .container- {
     display: flex;
     flex-direction: column;
     gap: 50px;
-    padding: 2rem;
+    padding: 3rem;
     align-content: center;
     margin-top: 2rem;
     background-color: white;
     border: thin solid black;
     box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    width: 35rem;
+    max-width: 35rem;
   }
 
   .member {

@@ -1,4 +1,5 @@
 <template>
+<div id="main-content">
     <div id="div-content">
         <h1>Your Readings</h1>
         <div>
@@ -29,18 +30,12 @@
             </apexcharts>
         </div>
 
-        <table>
-            <thead>
-                <th>Blood Sugar</th>
-                <th>Time</th>
-            </thead>
-            <tr v-for="reading in readings" v-bind:key="reading.readingId">
-                <td>{{reading.bloodSugar}}</td> 
-                <td>{{timeReformat(reading)}}</td>
-            </tr>
-        </table>
+        <div>
+            <b-table responsive striped hover :items="readingsForTable" id="table"></b-table>
+        </div>
 
     </div>
+</div>
 </template>
 
 <script>
@@ -54,6 +49,7 @@ export default {
             timeframe: 30,
             selectedDays: 30,
             readings: [],
+            readingsForTable: [],
             yAxis: [],
             areaChartXYValues: [],
 
@@ -136,6 +132,20 @@ export default {
         }
     },
     methods: {
+        convertActivityLog() {
+            for (let i = 0; i < this.readings.length; i++) {
+                console.log(this.readings[i].bloodSugar);
+                console.log(this.timeReformat(this.readings[i]));
+
+            // Push each item as object with formatted time
+            this.readingsForTable.push(
+                {
+                    blood_sugar: this.readings[i].bloodSugar, 
+                    time: this.timeReformat(this.readings[i])
+                }
+            );            
+            }            
+        },  
         timeReformat(reading){
             let dateArray = reading.time.split("T");
             
@@ -153,6 +163,9 @@ export default {
             .then(response => {
                 if (response.status === 200) {
                     this.readings = response.data;
+                    // Reset readingsForTable
+                    this.readingsForTable = [];
+                    this.convertActivityLog();
                     this.updateGraph();
                 }
             })
@@ -209,6 +222,12 @@ export default {
 
 <style>
 
+#main-content{
+    height: 100%;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
 body{
     background-color: rgb(255, 245, 245);
 }
@@ -218,11 +237,15 @@ h1{
 }
 
 #div-content{
-    padding: 0 3rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     width: 70vw;
     margin-bottom: 3rem;
+    background-color: white;
+    border: thin solid black;
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 article{
@@ -239,10 +262,8 @@ div{
     justify-items: center;
 }
 
-th, td{
-    padding: 10px;
-    border: thin solid black;
-    background-color: white;
+#th {
+ border: none;
 }
 
 </style>
