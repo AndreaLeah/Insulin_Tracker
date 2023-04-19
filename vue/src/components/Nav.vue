@@ -4,7 +4,7 @@
       <div class="nav-content">
 
         <router-link v-bind:to="{ name: 'home' }" id="logo" class="items">
-          InsuTrak
+          <img class="logo" src="../assets/InsuTrakLogo.png" alt="InsuTrak Logo">
         </router-link>
 
         <router-link
@@ -60,6 +60,17 @@ export default {
 </script>
 
 <style>
+
+.logo{
+  height: 100%;
+  width: 112px;
+  border-radius: 0;
+}
+
+.logo:hover{
+  border: thin solid rgb(255, 146, 146);
+  border-radius: 4px;
+}
 
 .items {
   text-decoration: none;
