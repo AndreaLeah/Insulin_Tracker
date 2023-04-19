@@ -17,8 +17,6 @@ export default {
         closeBanner() {
             this.$store.commit('SET_LOW', false);
             this.$store.commit('SET_HIGH', false);
-            //this.$store.state.isUserLowBloodSugar = false;
-            //this.$store.state.isUserHighBloodSugar = false;
         }
     }
 }
