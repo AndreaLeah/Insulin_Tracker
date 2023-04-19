@@ -1,10 +1,10 @@
 <template>
-    <section>
+    <article>
         <label for="profile">Profile</label>
         <select name="profile" id="profile" v-model="selectProfileIndex" @change="setSelectedProfileIndex">
             <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="index + 1">{{index + 1}}</option>
         </select>
-    </section>
+    </article>
 </template>
 
 <script>
@@ -54,5 +54,9 @@ export default {
 </script>
 
 <style scoped>
+
+label{
+    padding-right: .4rem;
+}
 
 </style>

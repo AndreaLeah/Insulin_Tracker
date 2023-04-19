@@ -1,13 +1,15 @@
 <template>
-  <section>
-    <h1>Your Profiles</h1>
-    <div v-for="(profile, index) in profiles" v-bind:key="profile.profileId">
-      <button class="fancyButton" v-on:click="viewProfile(profile.profileId, index)"> {{index + 1}} </button>
-    </div>
-    <router-link :to="{name: 'AddProfile'}">Add Profile</router-link>
-    <router-link :to="{name: 'AddReading'}">Add Reading</router-link>
-    <router-link :to="{name: 'AddBolus'}">Bolus</router-link>
-  </section>
+  <div id="main-content">
+    <section>
+      <h1>Your Profiles</h1>
+      <div id="profiles" v-for="(profile, index) in profiles" v-bind:key="profile.profileId">
+        <button class="fancyButton" v-on:click="viewProfile(profile.profileId, index)"> {{}} </button>
+      </div>
+      <router-link :to="{name: 'AddProfile'}">Add Profile</router-link>
+      <router-link :to="{name: 'AddReading'}">Add Reading</router-link>
+      <router-link :to="{name: 'AddBolus'}">Bolus</router-link>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -57,7 +59,12 @@ export default {
 
 <style scoped>
 
-div{
+#main-content{
+  width: 100%;
+  height: 100vh;
+}
+
+#profiles{
   text-align: center;
   margin-top: 1rem;
 }

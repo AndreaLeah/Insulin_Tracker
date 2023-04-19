@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="main-content">
       <team-member/>
   </div>
 </template>
@@ -15,7 +15,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#main-content{
+    height: 100vh;
+    width: 100%;
+}
 
 a {
     text-decoration: none;

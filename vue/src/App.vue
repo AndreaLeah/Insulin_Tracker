@@ -4,6 +4,7 @@
 <template>
   <div id="app" :class='[{"AddGradBackground": isGrad}, {"HomeStyling": isHomePage}]'> <!-- If you start to get random styling you don't like, remove container from this div -->
     <Nav :class='[{"nav-margin": !isHomePage}]' />
+    <blood-sugar-banner />
     <router-view />
     <footer-component id="footer" />
   </div>
@@ -12,11 +13,13 @@
 <script>
 import Nav from './components/Nav.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import BloodSugarBanner from './components/BloodSugarBanner.vue';
 
 export default {
   components: { 
     Nav,
-    FooterComponent
+    FooterComponent,
+    BloodSugarBanner
   },
   computed: {
     isGrad() {
@@ -47,6 +50,18 @@ export default {
 
 .AddGradBackground{
   background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
+}
+
+.form-signin{
+  margin-top: 3rem;
+}
+
+section{
+  margin-top: 3rem;
+}
+
+#div-content{
+  margin-top: 3rem;
 }
 
 a{

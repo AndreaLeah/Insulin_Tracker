@@ -107,6 +107,7 @@ export default {
 .nav-item {
   color: white;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .nav-item:hover {
@@ -114,21 +115,11 @@ export default {
   color: rgb(255, 215, 215);
 }
 
-.nav-margin {
-  margin-bottom: 50px;
-}
-
 /* Tablet */
 
 @media only screen and (max-width: 850px) {
 
-  .nav-content {
-    font-size: 14px;
-  }
-
-  #logo {
-    font-size: 20px;
-  }
+  
 
 }
 
@@ -139,7 +130,7 @@ export default {
   .nav-container {
     width: 60%;
   }
-  
+
 }
 
 

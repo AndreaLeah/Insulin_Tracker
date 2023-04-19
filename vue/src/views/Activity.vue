@@ -84,10 +84,20 @@ export default {
 
 <style scoped>
 
+#main-content{
+    height: 100vh;
+    width: 100%;
+}
+
 section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border: thin solid black;
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .rendered-info {

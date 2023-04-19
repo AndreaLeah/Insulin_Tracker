@@ -1,4 +1,5 @@
 <template>
+<div id="main-content">
   <section>
     <h1>Profile {{ this.$route.params.index+1 }}</h1>
     <p>Basal Rate: {{ profile.basalRate }}</p>
@@ -11,6 +12,7 @@
     <router-link v-bind:to="{name: 'Readings', params: {index: this.$route.params.index}}">Readings History</router-link>
     <router-link v-bind:to="{name: 'Profile'}">&#60; Back</router-link>
   </section>
+</div>
 </template>
 
 <script>
@@ -41,6 +43,16 @@ export default {
 
 <style scoped>
 
+#main-content{
+    height: 100vh;
+    width: 100%;
+}
+
+div{
+    width: 100vw;
+    height: 100%;
+}
+
 section{
     display: flex;
     flex-direction: column;
@@ -49,7 +61,6 @@ section{
     border-radius: 10px;
     box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
     align-items: center;
-    margin: 4rem auto;
     width: 20rem;
     background-color: white;
 }

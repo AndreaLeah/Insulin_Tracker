@@ -26,6 +26,8 @@ export default new Vuex.Store({
     user: currentUser || {}, // If a user is an admin, their user.role will be 'admin'
     userProfiles: [],
     selectedProfileIndex: 0,
+    isUserLowBloodSugar: false,
+    isUserHighBloodSugar: false,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
