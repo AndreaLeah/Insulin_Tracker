@@ -1,4 +1,5 @@
 <template>
+<div id="main-content">
     <div class="addFormContainer">
         <h2>Calculate Bolus</h2>
         <form>
@@ -10,6 +11,7 @@
             <button id="calcBtn" @click.prevent="calculateBolus">Calculate</button>
         </form>
     </div>
+</div>
 </template>
 
 <script>
@@ -138,4 +140,5 @@ export default {
 </script>
 
 <style scoped src="../styles/addForm.css">
+
 </style>

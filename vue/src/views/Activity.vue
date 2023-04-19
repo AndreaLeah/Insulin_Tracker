@@ -99,6 +99,8 @@ section {
     padding: 1rem;
     background-color: white;
     border-radius: 10px;
+    border: thin solid black;
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 .rendered-info {

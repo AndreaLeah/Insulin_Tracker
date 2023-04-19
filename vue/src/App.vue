@@ -48,10 +48,6 @@ export default {
 
 // Your custom styles go below this point
 
-.AddGradBackground{
-  background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
-}
-
 .form-signin{
   margin-top: 3rem;
 }
