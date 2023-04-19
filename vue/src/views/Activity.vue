@@ -1,4 +1,5 @@
 <template>
+<div id="main-content">
     <section>
         <div class="bin">
             <h1>Activity Log</h1>
@@ -13,6 +14,7 @@
             </div>
         </div>
     </section>
+</div>
 </template>
 
 <script>
@@ -73,8 +75,8 @@ export default {
         },
         convertActivityLog() {
             for (let i = 0; i < this.activityLog.length; i++) {
-                console.log(this.activityLog[i].activityName);
-                console.log(this.formatTime(this.activityLog[i].time));
+                //console.log(this.activityLog[i].activityName);
+                //console.log(this.formatTime(this.activityLog[i].time));
 
                 // Push each item as object with formatted time
                 this.convertedActivityLog.push(
@@ -106,6 +108,7 @@ section {
 #main-content{
     height: 100vh;
     width: 100%;
+    padding-bottom: 1rem;
 }
 
 section {
@@ -115,6 +118,8 @@ section {
     padding: 1rem;
     background-color: white;
     border-radius: 10px;
+    border: thin solid black;
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 .rendered-info {

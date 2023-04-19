@@ -1,13 +1,15 @@
 <template>
+<div id="main-content">
     <div class="addFormContainer">
         <h2>Add new reading</h2>
-        <form>
+        <form autocomplete="off">
             <profile-select/>
             <label for="bloodSugar">Blood Sugar</label>
             <input type="text" id='bloodSugar' v-model="newReading.bloodSugar"/>
             <button @click.prevent="addReading">Add</button>
         </form>
     </div>
+</div>
 </template>
 
 <script>
@@ -40,33 +42,40 @@ export default {
     methods: {
         checkReading() {
             let profile = this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1];
-            this.$store.state.isUserLowBloodSugar = false;
-            this.$store.state.isUserHighBloodSugar = false;
+            //this.$store.state.isUserLowBloodSugar = false;
+            //this.$store.state.isUserHighBloodSugar = false;
+            this.$store.commit('SET_LOW', false);
+            this.$store.commit('SET_HIGH', false);
+
             
             if (this.newReading.bloodSugar < profile.minWarningSugar) {
                 this.activity.activityName = 'blood sugar alert: very low';
                 ActivityService.addActivityToLog(this.activity);
                 alert ("DANGEROUSLY LOW BLOOD SUGAR");
-                this.$store.state.isUserLowBloodSugar = true;
+                this.$store.commit('SET_LOW', true);
+                //this.$store.state.isUserLowBloodSugar = true;
             }
             else if (this.newReading.bloodSugar < profile.minBloodSugar) {
                 this.activity.activityName = 'blood sugar alert: low';
                 ActivityService.addActivityToLog(this.activity);
                 alert("Low blood sugar");
-                this.$store.state.isUserLowBloodSugar = true;
+                this.$store.commit('SET_LOW', true);
+                //this.$store.state.isUserLowBloodSugar = true;
             }
 
             if (this.newReading.bloodSugar > profile.maxWarningSugar) {
                 this.activity.activityName = 'blood sugar alert: very high';
                 ActivityService.addActivityToLog(this.activity);
                 alert ("DANGEROUSLY HIGH BLOOD SUGAR");
-                this.$store.state.isUserHighBloodSugar = true;
+                this.$store.commit('SET_HIGH', true);
+                //this.$store.state.isUserHighBloodSugar = true;
             }
             else if (this.newReading.bloodSugar > profile.maxBloodSugar) {
                 this.activity.activityName = 'blood sugar alert: high';
                 ActivityService.addActivityToLog(this.activity);
                 alert("HIGH blood sugar");
-                this.$store.state.isUserHighBloodSugar = true;
+                this.$store.commit('SET_HIGH', true);
+                //this.$store.state.isUserHighBloodSugar = true;
             }
         },
         addReading() {

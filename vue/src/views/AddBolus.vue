@@ -1,15 +1,17 @@
 <template>
+<div id="main-content">
     <div class="addFormContainer">
         <h2>Calculate Bolus</h2>
-        <form>
+        <form autocomplete="off">
             <profile-select id="profileSelect" />
             <label for="carbAmount">Carb Amount</label>
-            <input type="text" id='carbAmount' v-model="carbAmount"/>
+            <input type="text" id='carbAmount' placeholder="" v-model="carbAmount"/>
             <label for="bloodSugar">Blood Sugar</label>
             <input type="text" id='bloodSugar' v-model="newReading.bloodSugar"/>
             <button id="calcBtn" @click.prevent="calculateBolus">Calculate</button>
         </form>
     </div>
+</div>
 </template>
 
 <script>
@@ -138,4 +140,5 @@ export default {
 </script>
 
 <style scoped src="../styles/addForm.css">
+
 </style>

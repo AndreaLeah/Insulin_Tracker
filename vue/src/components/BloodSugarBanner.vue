@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="banner" v-if="this.$store.state.isUserLowBloodSugar">
-            <div>Low Blood Sugar</div>
+            <div>LOW BLOOD SUGAR</div>
             <button @click.prevent="closeBanner">X</button>
         </div>
         <div class="banner" v-if="this.$store.state.isUserHighBloodSugar">
-            <div>High Blood Sugar</div>
+            <div>HIGH BLOOD SUGAR</div>
             <button @click.prevent="closeBanner">X</button>
         </div>
     </div>
@@ -15,8 +15,10 @@
 export default {
     methods: {
         closeBanner() {
-            this.$store.state.isUserLowBloodSugar = false;
-            this.$store.state.isUserHighBloodSugar = false;
+            this.$store.commit('SET_LOW', false);
+            this.$store.commit('SET_HIGH', false);
+            //this.$store.state.isUserLowBloodSugar = false;
+            //this.$store.state.isUserHighBloodSugar = false;
         }
     }
 }
@@ -33,8 +35,8 @@ export default {
     position: fixed;
     top: 10%;
     right: 1%;
-    width: 150px;
-    height: 60px;
+    width: 200px;
+    height: 90px;
 
     border-radius: 10px;
     background-color: rgb(221, 58, 58);
@@ -44,7 +46,8 @@ export default {
     position: absolute;
     top: auto;
     right: auto;
-    color: black;
+    color: white;
+    font-weight: bold;
 }
 
 .banner > button {
