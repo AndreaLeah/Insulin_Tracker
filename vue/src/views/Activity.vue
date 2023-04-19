@@ -1,8 +1,16 @@
 <template>
     <section>
-        <h1>Activity Log</h1>
-        <div>
-            <b-table responsive striped hover :items="convertedActivityLog"></b-table>
+        <div class="bin">
+            <h1>Activity Log</h1>
+            <div>
+                <b-table responsive hover                 
+                :items="convertedActivityLog"
+                :fields="fields"
+                :head-variant="headVariant"
+                :borderless="borderless"
+                :striped="striped" outlined
+                class="table"></b-table>
+            </div>
         </div>
     </section>
 </template>
@@ -16,12 +24,14 @@ export default {
         return {
             activityLog: [],
             convertedActivityLog: [],
+            fields: ['activity_name', 'time'],
+            headVariant: 'light',
+            borderless: true
         }
     },
     methods: {
         formatTime(stringTime) {
             let string = stringTime;
-            //console.log(string);
             let separatedArray = string.split("T");
 
             // Get array of [YYYY, MM, DD]
@@ -84,6 +94,15 @@ export default {
 
 <style scoped>
 
+section {
+    height: 100vh;
+    width: 100vw;
+}
+
+.bin {
+    width: 70%;
+}
+
 #main-content{
     height: 100vh;
     width: 100%;
@@ -133,4 +152,9 @@ section {
 p {
     margin: 0;
 }
+
+.table-responsive {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
 </style>
