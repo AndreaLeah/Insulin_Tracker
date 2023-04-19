@@ -1,30 +1,25 @@
 <template>
 <div id="main-content">
   <section>
-      
         <h1>Activity Log</h1>
-
         <div class="rendered-info">
             <div class="label-container">
                 <div class="activity-name">Activity Name: </div>
                 <div>Date Created: </div>
             </div>
-
-
-
             <div class="the-mother">        
-            <div v-for="(activity, index) in activityLog" v-bind:key="index" class="containerr">
+            <div v-for="activity in activityLog" v-bind:key="activity.logId" class="containerr">
                 <!-- <div class="containerr"> -->
-                    <div class="activity">                        
-                        <div class="activity-name">                            
-                            <p>{{ activity.activityName }}</p>
-                        </div>
-                        <div class="activity-date">
-                            <p>{{ formatTime(activity.time) }}</p>
-
-                        </div>
-                    <!-- </div> -->
+                <div class="activity">                        
+                    <div class="activity-name">                            
+                        <p>{{ activity.activityName }}</p>
+                    </div>
+                    <div class="activity-date">
+                        <p>{{ formatTime(activity.time) }}</p>
+                    </div>
+                <!-- </div> -->
                 </div>
+            </div>
             </div>
         </div>
     </div>
@@ -40,49 +35,50 @@ export default {
     data() {
         return {
             activityLog: [],
-            timeObj: {
-                year: 0,
-                month: 0,
-                day: 0,
-                hours: 0,
-                minutes: 0
-            }
         }
     },
     methods: {
         formatTime(stringTime) {
             let string = stringTime;
-            console.log(string);
+            //console.log(string);
             let separatedArray = string.split("T");
 
             // Get array of [YYYY, MM, DD]
             let dateArray = separatedArray[0].split("-");
 
             // Get year, month & day & set them to time object
-            this.timeObj.year = dateArray[0];
-            this.timeObj.month = dateArray[1];
-            this.timeObj.day = dateArray[2];
+            let timeObj = {
+                year: 0,
+                month: 0,
+                day: 0,
+                hours: 0,
+                minutes: 0
+            };
+
+            timeObj.year = dateArray[0];
+            timeObj.month = dateArray[1];
+            timeObj.day = dateArray[2];
 
             // Get array of [hour, minute]
             let timeArray = separatedArray[1].split(":");
 
             // Get hours & minutes & set them to time object
-            this.timeObj.hours = timeArray[0];
-            this.timeObj.minutes = timeArray[1];
+            timeObj.hours = timeArray[0];
+            timeObj.minutes = timeArray[1];
 
-            return `${this.timeObj.hours}:${this.timeObj.minutes} on ${this.timeObj.month}/${this.timeObj.day}/${this.timeObj.year}`;
+            return `${timeObj.hours}:${timeObj.minutes} on ${timeObj.month}/${timeObj.day}/${timeObj.year}`;
         },
         getActivityLog() {
             ActivityService.getActivityLog()
             .then((response) => {
-            if (response.status === 200) {
-            this.activityLog = response.data;
-            }
-        })
-        .catch((error) => {
-            console.error("Couldn't find activities to log", error);
-        });
-            }
+                if (response.status === 200) {
+                    this.activityLog = response.data;
+                }
+            })
+            .catch((error) => {
+                console.error("Couldn't find activities to log", error);
+            });
+        }
     },
     created() {
         this.getActivityLog();

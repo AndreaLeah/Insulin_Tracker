@@ -34,7 +34,11 @@ export default {
             .then((response) => {
                 if (response.status === 200) {
                     this.userProfiles = response.data;
-                    this.selectProfileIndex = this.propSelectedIndex+1;
+                    if (this.propSelectedIndex == null) {
+                        this.selectProfileIndex = 1;
+                    } else {
+                        this.selectProfileIndex = this.propSelectedIndex+1;
+                    }
                     this.setSelectedProfileIndex();
                     this.setLoadedUserProfiles();
                 }
