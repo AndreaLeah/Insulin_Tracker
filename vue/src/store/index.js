@@ -51,6 +51,12 @@ export default new Vuex.Store({
     },
     SET_USER_PROFILES(state, profiles) {
       state.userProfiles = profiles;
+    },
+    SET_HIGH(state, bool) {
+      state.isUserHighBloodSugar = bool;
+    },
+    SET_LOW(state, bool) {
+      state.isUserLowBloodSugar = bool;
     }
   }
 })
