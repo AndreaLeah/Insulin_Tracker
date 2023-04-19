@@ -31,7 +31,13 @@
         </div>
 
         <div>
-            <b-table responsive striped hover :items="readingsForTable" id="table"></b-table>
+            <b-table responsive hover 
+                :items="readingsForTable" 
+                :fields="fields"       
+                :head-variant="headVariant"
+                :borderless="borderless"
+                :striped="striped" outlined
+            id="table" class="table"></b-table>
         </div>
 
     </div>
@@ -46,10 +52,13 @@ import VueApexCharts from "vue-apexcharts";
 export default {
     data() {
         return {
+            headVariant: 'light',
+            borderless: true,
             timeframe: 30,
             selectedDays: 30,
             readings: [],
             readingsForTable: [],
+            fields: ['blood_sugar', 'time'],
             yAxis: [],
             areaChartXYValues: [],
 
@@ -134,10 +143,8 @@ export default {
     methods: {
         convertActivityLog() {
             for (let i = 0; i < this.readings.length; i++) {
-                //console.log(this.readings[i].bloodSugar);
-                //console.log(this.timeReformat(this.readings[i]));
 
-            // Push each item as object with formatted time
+            // Push each item in readings list as object with formatted time
             this.readingsForTable.push(
                 {
                     blood_sugar: this.readings[i].bloodSugar, 
@@ -262,8 +269,9 @@ div{
     justify-items: center;
 }
 
-#th {
+.table * > th  {
  border: none;
 }
+
 
 </style>
