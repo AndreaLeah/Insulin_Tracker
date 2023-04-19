@@ -2,6 +2,8 @@
   <div class="addFormContainer">
     <h2>Add New Profile</h2>
     <form>
+      <label for="profileName">Profile Name</label>
+      <input type="text" id="profileName" v-model="profile.profileName" required>
       <label for="baselRate">Basal Rate</label>
       <input type="text" id="basalRate" v-model="profile.basalRate" required>
       <label for="minBloodSugar">Min Blood Sugar Range</label>
@@ -36,6 +38,7 @@ export default {
       profile: {
         profileId: '',
         userId: '',
+        profileName: '',
         basalRate: '',
         minBloodSugar: '',
         maxBloodSugar: '',

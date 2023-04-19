@@ -23,7 +23,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT p.profile_id, p.user_id, p.basal_rate, p.min_blood_sugar, " +
+                string sql = "SELECT p.profile_id, p.user_id, p.profile_name, p.basal_rate, p.min_blood_sugar, " +
                     "p.max_blood_sugar, p.min_warning_sugar, p.max_warning_sugar, p.carb_ratio, p.correction_ratio, p.insulin_type, p.insulin_strength " +
                     "FROM profiles p WHERE p.profile_id = @profileId";
 
@@ -48,7 +48,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "SELECT p.profile_id, p.user_id, p.basal_rate, p.min_blood_sugar, p.max_blood_sugar, p.min_warning_sugar, p.max_warning_sugar, " +
+                string sql = "SELECT p.profile_id, p.profile_name, p.user_id, p.basal_rate, p.min_blood_sugar, p.max_blood_sugar, p.min_warning_sugar, p.max_warning_sugar, " +
                     "p.carb_ratio, p.correction_ratio, p.insulin_type, p.insulin_strength " +
                     "FROM profiles p WHERE p.user_id = @userId";
 
@@ -76,12 +76,13 @@ namespace Capstone.DAO
                 conn.Open();
 
                 string sql = "INSERT INTO profiles " +
-                    "(user_id, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) " +
-                    "VALUES (@userId, @basalRate, @min, @max, @minWarn, @maxWarn, @carb, @corr, @type, @strength)";
+                    "(user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) " +
+                    "VALUES (@userId, @profileName, @basalRate, @min, @max, @minWarn, @maxWarn, @carb, @corr, @type, @strength)";
 
                 SqlCommand command = new SqlCommand(sql, conn);
 
                 command.Parameters.AddWithValue("@userId", profile.UserId);
+                command.Parameters.AddWithValue("@profileName", profile.ProfileName);
                 command.Parameters.AddWithValue("@basalRate", profile.BasalRate);
                 command.Parameters.AddWithValue("@min", profile.MinBloodSugar);
                 command.Parameters.AddWithValue("@max", profile.MaxBloodSugar);
@@ -107,7 +108,7 @@ namespace Capstone.DAO
             {
                 conn.Open();
 
-                string sql = "UPDATE profiles SET basal_rate = @basalRate, min_blood_sugar = @min, max_blood_sugar = @max, min_warning_sugar = @minWarn," +
+                string sql = "UPDATE profiles SET profile_name = @profileName, basal_rate = @basalRate, min_blood_sugar = @min, max_blood_sugar = @max, min_warning_sugar = @minWarn," +
                     " max_warning_sugar = @maxWarn," +
                     " carb_ratio = @carb, correction_ratio = @corr, insulin_type = @type, insulin_strength = @strength" +
                     " WHERE profile_id = @profileId";
@@ -115,6 +116,7 @@ namespace Capstone.DAO
                 SqlCommand command = new SqlCommand(sql, conn);
 
                 command.Parameters.AddWithValue("@profileId", profile.ProfileId);
+                command.Parameters.AddWithValue("@profileName", profile.ProfileName);
                 command.Parameters.AddWithValue("@basalRate", profile.BasalRate);
                 command.Parameters.AddWithValue("@min", profile.MinBloodSugar);
                 command.Parameters.AddWithValue("@max", profile.MaxBloodSugar);
@@ -159,6 +161,7 @@ namespace Capstone.DAO
         {
             Profile profile = new Profile();
             profile.ProfileId = Convert.ToInt32(reader["profile_id"]);
+            profile.ProfileName = Convert.ToString(reader["profile_name"]);
             profile.UserId = Convert.ToInt32(reader["user_id"]);
             profile.BasalRate = Convert.ToDecimal(reader["basal_rate"]);
             profile.MinBloodSugar = Convert.ToInt32(reader["min_blood_sugar"]);

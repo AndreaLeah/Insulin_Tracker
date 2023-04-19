@@ -2,7 +2,7 @@
     <article>
         <label for="profile">Profile</label>
         <select name="profile" id="profile" v-model="selectProfileIndex" @change="setSelectedProfileIndex">
-            <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="index + 1">{{index + 1}}</option>
+            <option v-for="(p, index) in userProfiles" v-bind:key="p.profileId" :value="index + 1">{{p.profileName}}</option>
         </select>
     </article>
 </template>
@@ -37,7 +37,7 @@ export default {
                     if (this.propSelectedIndex == null) {
                         this.selectProfileIndex = 1;
                     } else {
-                        this.selectProfileIndex = this.propSelectedIndex+1;
+                        this.selectProfileIndex = +this.propSelectedIndex+1;
                     }
                     this.setSelectedProfileIndex();
                     this.setLoadedUserProfiles();

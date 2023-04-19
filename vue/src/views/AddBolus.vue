@@ -44,29 +44,35 @@ export default {
         },
         checkReading() {
             this.sugarToLow = false;
+            this.$store.state.isUserLowBloodSugar = false;
+            this.$store.state.isUserHighBloodSugar = false;
             let profile = this.$store.state.userProfiles[this.$store.state.selectedProfileIndex - 1];
             if (this.newReading.bloodSugar < profile.minWarningSugar) {
                 this.activity.activityName = 'blood sugar alert: very low';
                 ActivityService.addActivityToLog(this.activity);
                 alert ("DANGEROUSLY LOW BLOOD SUGAR");
                 this.sugarToLow = true;
+                this.$store.state.isUserLowBloodSugar = true;
             }
             else if (this.newReading.bloodSugar < profile.minBloodSugar) {
                 this.activity.activityName = 'blood sugar alert: low';
                 ActivityService.addActivityToLog(this.activity);
                 alert("Low blood sugar");
                 this.sugarToLow = true;
+                this.$store.state.isUserLowBloodSugar = true;
             }
 
             if (this.newReading.bloodSugar > profile.maxWarningSugar) {
                 this.activity.activityName = 'blood sugar alert: very high';
                 ActivityService.addActivityToLog(this.activity);
                 alert ("DANGEROUSLY HIGH BLOOD SUGAR");
+                this.$store.state.isUserHighBloodSugar = true;
             }
             else if (this.newReading.bloodSugar > profile.maxBloodSugar) {
                  this.activity.activityName = 'blood sugar alert: high';
                 ActivityService.addActivityToLog(this.activity);
                 alert("HIGH blood sugar");
+                this.$store.state.isUserHighBloodSugar = true;
             }
         },
         addReading() {

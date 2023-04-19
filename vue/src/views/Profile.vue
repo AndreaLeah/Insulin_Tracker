@@ -3,7 +3,7 @@
     <section>
       <h1>Your Profiles</h1>
       <div id="profiles" v-for="(profile, index) in profiles" v-bind:key="profile.profileId">
-        <button class="fancyButton" v-on:click="viewProfile(profile.profileId, index)"> {{}} </button>
+        <button class="fancyButton" v-on:click="viewProfile(profile.profileId, index)"> {{profile.profileName}} </button>
       </div>
       <router-link :to="{name: 'AddProfile'}">Add Profile</router-link>
       <router-link :to="{name: 'AddReading'}">Add Reading</router-link>
