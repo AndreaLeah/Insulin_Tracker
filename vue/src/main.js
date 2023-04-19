@@ -4,6 +4,12 @@ import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
 
+//BootstrapVue
+import { BootstrapVue } from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;

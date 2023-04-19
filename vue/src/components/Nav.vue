@@ -3,46 +3,46 @@
     <div class="nav-container">
       <div class="nav-content">
 
-        <router-link v-bind:to="{ name: 'home' }" id="logo">
+        <router-link v-bind:to="{ name: 'home' }" id="logo" class="items">
           InsuTrak
         </router-link>
 
         <router-link
-          class="nav-item"
+          class="nav-item items"
           v-bind:to="{ name: 'register' }"
           v-if="!$store.state.token">
           Register
         </router-link>
 
         <router-link 
-          class="nav-item"
+          class="nav-item items"
           v-bind:to="{name: 'Profile'}"
           v-if="$store.state.token">
           View Profile
         </router-link>
 
         <router-link
-          class="nav-item"
+          class="nav-item items"
           v-bind:to="{ name: 'activity' }"
           v-if="$store.state.token">
           My Activity
         </router-link>
 
         <router-link
-          class="nav-item"
+          class="nav-item items"
           v-bind:to="{ name: 'login' }"
           v-if="!$store.state.token">
           Login
         </router-link>
 
         <router-link 
-          class="nav-item" 
+          class="nav-item items" 
           v-bind:to="{ name: 'about' }">
           About This Team 
         </router-link>
 
         <router-link
-          class="nav-item"
+          class="nav-item items"
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token">
           Logout
@@ -60,6 +60,10 @@ export default {
 </script>
 
 <style>
+
+.items {
+  text-decoration: none;
+}
 
 #nav {
   height: 40px;

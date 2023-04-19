@@ -1,25 +1,8 @@
 <template>
     <section>
         <h1>Activity Log</h1>
-        <div class="rendered-info">
-            <div class="label-container">
-                <div class="activity-name">Activity Name: </div>
-                <div>Date Created: </div>
-            </div>
-            <div class="the-mother">        
-            <div v-for="activity in activityLog" v-bind:key="activity.logId" class="containerr">
-                <!-- <div class="containerr"> -->
-                <div class="activity">                        
-                    <div class="activity-name">                            
-                        <p>{{ activity.activityName }}</p>
-                    </div>
-                    <div class="activity-date">
-                        <p>{{ formatTime(activity.time) }}</p>
-                    </div>
-                <!-- </div> -->
-                </div>
-            </div>
-            </div>
+        <div>
+            <b-table responsive striped hover :items="convertedActivityLog"></b-table>
         </div>
     </section>
 </template>
@@ -32,6 +15,7 @@ export default {
     data() {
         return {
             activityLog: [],
+            convertedActivityLog: [],
         }
     },
     methods: {
@@ -70,11 +54,26 @@ export default {
             .then((response) => {
                 if (response.status === 200) {
                     this.activityLog = response.data;
+                    this.convertActivityLog();
                 }
             })
             .catch((error) => {
                 console.error("Couldn't find activities to log", error);
             });
+        },
+        convertActivityLog() {
+            for (let i = 0; i < this.activityLog.length; i++) {
+                console.log(this.activityLog[i].activityName);
+                console.log(this.formatTime(this.activityLog[i].time));
+
+                // Push each item as object with formatted time
+                this.convertedActivityLog.push(
+                    {
+                        activity_name: this.activityLog[i].activityName, 
+                        time: this.formatTime(this.activityLog[i].time)
+                    }
+                );
+            }            
         }
     },
     created() {
