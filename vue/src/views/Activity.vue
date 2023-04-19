@@ -1,30 +1,29 @@
 <template>
-<div id="main-content">
-  <section>
-        <h1>Activity Log</h1>
-        <div class="rendered-info">
-            <div class="label-container">
-                <div class="activity-name">Activity Name: </div>
-                <div>Date Created: </div>
-            </div>
-            <div class="the-mother">        
-            <div v-for="activity in activityLog" v-bind:key="activity.logId" class="containerr">
-                <!-- <div class="containerr"> -->
-                <div class="activity">                        
-                    <div class="activity-name">                            
-                        <p>{{ activity.activityName }}</p>
+    <div id="main-content">
+        <section>
+            <h1>Activity Log</h1>
+            <div class="rendered-info">
+                <div class="label-container">
+                    <div class="activity-name">Activity Name: </div>
+                    <div>Date Created: </div>
+                </div>
+                <div class="the-mother">        
+                <div v-for="activity in activityLog" v-bind:key="activity.logId" class="containerr">
+                    <!-- <div class="containerr"> -->
+                    <div class="activity">                        
+                        <div class="activity-name">                            
+                            <p>{{ activity.activityName }}</p>
+                        </div>
+                        <div class="activity-date">
+                            <p>{{ formatTime(activity.time) }}</p>
+                        </div>
+                    <!-- </div> -->
                     </div>
-                    <div class="activity-date">
-                        <p>{{ formatTime(activity.time) }}</p>
-                    </div>
-                <!-- </div> -->
+                </div>
                 </div>
             </div>
-            </div>
-        </div>
+        </section>
     </div>
-  </section>
-</div>
 </template>
 
 <script>
