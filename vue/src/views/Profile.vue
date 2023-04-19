@@ -85,6 +85,7 @@ section{
 a{
   text-align: center;
   padding-top: 1rem;
+  text-decoration: none;
 }
 
 @keyframes buttonAnimation {
