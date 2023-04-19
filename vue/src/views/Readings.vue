@@ -13,7 +13,7 @@
                 </select>
             </article>
 
-            <profile-select :propSelectedIndex="this.$route.params.index" @hook:mounted="profileSelectMounted" @hook:updated="onProfileChange"/>
+            <profile-select :propSelectedIndex="+this.$route.params.index" @hook:mounted="profileSelectMounted" @hook:updated="onProfileChange"/>
         
         </div>
             
