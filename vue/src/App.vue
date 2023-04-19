@@ -49,6 +49,18 @@ export default {
   background-image: linear-gradient(rgb(255, 195, 195), rgb(233, 64, 64));
 }
 
+.form-signin{
+  margin-top: 3rem;
+}
+
+section{
+  margin-top: 3rem;
+}
+
+#div-content{
+  margin-top: 3rem;
+}
+
 a{
     text-decoration: none;
 }

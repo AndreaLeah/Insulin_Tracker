@@ -2,7 +2,7 @@
     <div id="div-content">
         <h1>Your Readings</h1>
         <div>
-            <section>
+            <article>
                 <label for="days">Days</label>
                 <select name="days" id="days" v-model="selectedDays" @change="onDaysChange">
                     <option value="1">1 day</option>
@@ -11,7 +11,7 @@
                     <option value="90">90 day</option>
                     <option value="180">180 day</option>
                 </select>
-            </section>
+            </article>
 
             <profile-select :propSelectedIndex="this.$route.params.index" @hook:mounted="profileSelectMounted" @hook:updated="onProfileChange"/>
         
@@ -225,12 +225,13 @@ h1{
     margin-bottom: 3rem;
 }
 
-section{
+article{
+    display: flex;
     display: inline;
     padding-right: 1rem;
 }
 
-section > label{
+article > label{
     padding-right: .4rem;
 }
 

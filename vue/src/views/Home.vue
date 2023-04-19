@@ -10,7 +10,7 @@
         <button class="btn" @click="$router.push('Profile')" v-if="$store.state.token">View My Information</button>
 
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f3f4f5" fill-opacity="1" d="M0,192L60,170.7C120,149,240,107,360,122.7C480,139,600,213,720,213.3C840,213,960,139,1080,101.3C1200,64,1320,64,1380,64L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" class="svg"></path>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#f3f4f5" fill-opacity="1" d="M0,192L60,170.7C120,149,240,107,360,122.7C480,139,600,213,720,213.3C840,213,960,139,1080,101.3C1200,64,1320,64,1380,64L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" class="svg"></path>
       </svg>
     </div>
     <div id="cards">
@@ -92,17 +92,12 @@ export default {
 #main-content {
   background-image: linear-gradient(rgb(255, 195, 195, 0.5), rgb(233, 64, 64, 0.9)), url('../assets/home-page-running.jpg');
   background-repeat: no-repeat;
-  background-size: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
+  background-size: cover;
+  background-position: top;
   display: flex;
   flex-direction: column;
-  height: 500px;
   position: relative;
-  /* changed */
-  height: 100vh;
-  justify-content: center;
+  height: 100%;
   align-items: center;
 }
 
@@ -115,7 +110,7 @@ export default {
   z-index: 4;
   text-align: center;
   justify-self: flex-start;
-  /* padding-top: 100px; */
+  padding: 3rem;
 
   /* changed */
   margin-bottom: 10%;
@@ -156,10 +151,8 @@ img.card-imgs {
   display: flex;
   justify-content: center;
   background-color: #F3F4F5;
-  padding-bottom: 100px;
+  padding: 50px 20px;
   gap: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .card {

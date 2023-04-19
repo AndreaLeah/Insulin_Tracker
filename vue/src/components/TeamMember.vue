@@ -53,6 +53,13 @@ export default {
     flex-direction: column;
     gap: 50px;
     padding: 2rem;
+    align-content: center;
+    margin-top: 2rem;
+    background-color: white;
+    border: thin solid black;
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 35rem;
   }
 
   .member {
@@ -73,6 +80,7 @@ export default {
   .name {
     font-weight: bold;
     font-size: 26px;
+    text-align: center;
   }
 
 </style>
