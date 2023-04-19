@@ -58,9 +58,9 @@ section{
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    border: thin solid black;
+  border: thin solid rgb(201, 201, 201);
     border-radius: 10px;
-    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .15);
     align-items: center;
     width: 20rem;
     background-color: white;
