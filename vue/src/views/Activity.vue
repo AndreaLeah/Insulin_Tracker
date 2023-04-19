@@ -47,7 +47,7 @@ export default {
             timeObj.hours = timeArray[0];
             timeObj.minutes = timeArray[1];
 
-            return `${timeObj.hours}:${timeObj.minutes} on ${timeObj.month}/${timeObj.day}/${timeObj.year}`;
+            return `${timeObj.hours}:${timeObj.minutes} - ${timeObj.month}/${timeObj.day}/${timeObj.year}`;
         },
         getActivityLog() {
             ActivityService.getActivityLog()
@@ -95,8 +95,6 @@ section {
     align-items: center;
     padding: 1rem;
     background-color: white;
-    border: thin solid black;
-    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
