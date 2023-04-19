@@ -46,6 +46,7 @@ export default {
 #main-content{
     height: 100vh;
     width: 100%;
+    padding-bottom: 1rem;
 }
 
 div{

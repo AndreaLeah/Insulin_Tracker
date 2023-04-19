@@ -86,6 +86,7 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #e44a48;
 }
 
 #footer {

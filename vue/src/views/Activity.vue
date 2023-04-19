@@ -1,10 +1,12 @@
 <template>
+<div id="main-content">
     <section>
         <h1>Activity Log</h1>
         <div>
             <b-table responsive striped hover :items="convertedActivityLog"></b-table>
         </div>
     </section>
+</div>
 </template>
 
 <script>
@@ -87,6 +89,7 @@ export default {
 #main-content{
     height: 100vh;
     width: 100%;
+    padding-bottom: 1rem;
 }
 
 section {

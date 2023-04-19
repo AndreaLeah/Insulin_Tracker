@@ -60,8 +60,9 @@ export default {
 <style scoped>
 
 #main-content{
-  width: 100%;
-  height: 100vh;
+    height: 100vh;
+    width: 100%;
+    padding-bottom: 1rem;
 }
 
 #profiles{

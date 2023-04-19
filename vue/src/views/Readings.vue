@@ -1,4 +1,5 @@
 <template>
+<div id="main-content">
     <div id="div-content">
         <h1>Your Readings</h1>
         <div>
@@ -41,6 +42,7 @@
         </table>
 
     </div>
+</div>
 </template>
 
 <script>
@@ -209,6 +211,12 @@ export default {
 
 <style>
 
+#main-content{
+    height: 100%;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
 body{
     background-color: rgb(255, 245, 245);
 }
@@ -218,11 +226,15 @@ h1{
 }
 
 #div-content{
-    padding: 0 3rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     width: 70vw;
     margin-bottom: 3rem;
+    background-color: white;
+    border: thin solid black;
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 article{
