@@ -9,7 +9,7 @@
                 :fields="fields"
                 :head-variant="headVariant"
                 :borderless="borderless"
-                :striped="striped" outlined
+                outlined sticky-header
                 class="table"></b-table>
             </div>
         </div>
@@ -28,7 +28,7 @@ export default {
             convertedActivityLog: [],
             fields: ['activity_name', 'time'],
             headVariant: 'light',
-            borderless: true
+            borderless: true,
         }
     },
     methods: {

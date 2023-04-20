@@ -36,7 +36,7 @@
                 :fields="fields"       
                 :head-variant="headVariant"
                 :borderless="borderless"
-                :striped="striped" outlined
+                outlined sticky-header
             id="table" class="table"></b-table>
         </div>
 
