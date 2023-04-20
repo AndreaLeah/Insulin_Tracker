@@ -89,7 +89,7 @@ export default {
                 d.getFullYear() + '-' + 
                 (d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '-' + 
                 d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + 'T' + 
-                d.getHours() + ':' + 
+                d.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + 
                 d.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + 
                 d.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '.' + 
                 d.getMilliseconds();
