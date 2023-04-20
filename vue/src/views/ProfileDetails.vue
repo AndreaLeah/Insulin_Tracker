@@ -1,7 +1,7 @@
 <template>
 <div id="main-content">
   <section>
-    <h1>Profile {{ profile.profileName }}</h1>
+    <h1>{{ profile.profileName }}</h1>
     <p>Basal Rate: {{ profile.basalRate }}</p>
     <p>Blood Sugar Range: {{profile.minBloodSugar}} - {{profile.maxBloodSugar}}</p>
     <p>Warning Sugar Range: {{profile.minWarningSugar}} - {{profile.maxWarningSugar}}</p>
