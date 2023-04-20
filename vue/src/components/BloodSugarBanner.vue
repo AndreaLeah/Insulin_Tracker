@@ -1,12 +1,16 @@
 <template>
-    <div>
+    <div id="bannerParentDiv">
         <div class="banner" v-if="this.$store.state.isUserLowBloodSugar">
+            <img class="img1" src='../assets/exclamation.png'/>
             <div>LOW BLOOD SUGAR</div>
-            <button @click.prevent="closeBanner">X</button>
+            <img class="img2" src='../assets/exclamation.png'/>
+            <button @click.prevent="closeBanner">x</button>
         </div>
         <div class="banner" v-if="this.$store.state.isUserHighBloodSugar">
+            <img class="img1" src='../assets/exclamation.png'/>
             <div>HIGH BLOOD SUGAR</div>
-            <button @click.prevent="closeBanner">X</button>
+            <img class="img2" src='../assets/exclamation.png'/>
+            <button @click.prevent="closeBanner">x</button>
         </div>
     </div>
 </template>
@@ -24,35 +28,51 @@ export default {
 
 <style scoped>
 
+#bannerParentDiv {
+    width: 100%
+}
+
 .banner {
     display: flex;
     justify-content: center;
     align-items: center;
 
     z-index: 10;
-    position: fixed;
-    top: 10%;
-    right: 1%;
-    width: 200px;
     height: 90px;
+    width: 100%;
 
-    border-radius: 10px;
-    background-color: rgb(221, 58, 58);
+    border: rgb(114, 13, 13) solid 2px;
+    background-color: rgb(231, 114, 114);
+}
+
+.banner > .img1 {
+    position: relative;
+    right: 230px;
+    width: 40px;
+    height: 40px;
+}
+
+.banner > .img2 {
+    position: relative;
+    left: 230px;
+    width: 40px;
+    height: 40px;
 }
 
 .banner > div {
     position: absolute;
     top: auto;
     right: auto;
-    color: white;
+    color: rgb(185, 22, 22);
     font-weight: bold;
+    font-size: 40px;
 }
 
 .banner > button {
     position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 16px;
+    top: 30px;
+    right: 10px;
+    font-size: 40px;
     border: solid black 0px;
     background-color: rgba(0, 0, 0, 0);
 }
