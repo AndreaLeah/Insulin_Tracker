@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <div id="main-content">
+    <div id="home-main-content">
       <div class="main-content-text">
         <!-- <h1>Insulin Tracker</h1> -->
         <h1>Insulin Control, </h1> 
@@ -89,6 +89,23 @@ export default {
   background-color: rgb(250, 250, 250);
 }
 
+#home-main-content {
+  background-image: linear-gradient(rgb(255, 195, 195, 0.5), rgb(233, 64, 64, 0.9)), url('../assets/home-page-running.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* changed */
+  justify-content: center;
+  align-items: center;
+}
+
+/* All other pages */
 #main-content {
   background-image: linear-gradient(rgb(255, 195, 195, 0.5), rgb(233, 64, 64, 0.9)), url('../assets/home-page-running.jpg');
   background-repeat: no-repeat;
@@ -96,12 +113,11 @@ export default {
   max-width: 100%;
   min-height: 100vh;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 500px;
   position: relative;
   /* changed */
-  justify-content: center;
   align-items: center;
 }
 
