@@ -2,11 +2,11 @@
     <div>
         <div class="banner" v-if="this.$store.state.isUserLowBloodSugar">
             <div>LOW BLOOD SUGAR</div>
-            <button @click.prevent="closeBanner">X</button>
+            <button @click.prevent="closeBanner">x</button>
         </div>
         <div class="banner" v-if="this.$store.state.isUserHighBloodSugar">
             <div>HIGH BLOOD SUGAR</div>
-            <button @click.prevent="closeBanner">X</button>
+            <button @click.prevent="closeBanner">x</button>
         </div>
     </div>
 </template>
@@ -30,13 +30,9 @@ export default {
     align-items: center;
 
     z-index: 10;
-    position: fixed;
-    top: 10%;
-    right: 1%;
-    width: 200px;
     height: 90px;
+    width: 100vw;
 
-    border-radius: 10px;
     background-color: rgb(221, 58, 58);
 }
 
@@ -50,9 +46,9 @@ export default {
 
 .banner > button {
     position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 16px;
+    top: 30px;
+    right: 10px;
+    font-size: 30px;
     border: solid black 0px;
     background-color: rgba(0, 0, 0, 0);
 }
