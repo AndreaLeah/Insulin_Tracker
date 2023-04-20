@@ -2,7 +2,7 @@
 <div id="main-content">
     <div class="addFormContainer">
         <h2>Calculate Bolus</h2>
-        <form autocomplete="off">
+        <form autocomplete="off" id="form-body">
             <profile-select id="profileSelect" />
             <label for="carbAmount">Carb Amount</label>
             <input type="text" id='carbAmount' placeholder="" v-model="carbAmount"/>
