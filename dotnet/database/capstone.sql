@@ -78,8 +78,8 @@ CREATE TABLE activity (
 
 -- Populate default data for testing: user and admin with password of 'password'
 -- These values should not be kept when going to Production
-INSERT INTO users (username, email, password_hash, salt, user_role) VALUES ('user', 'test@test.com', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
-INSERT INTO users (username, email, password_hash, salt, user_role) VALUES ('admin', 'test@test.com', 'YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
+INSERT INTO users (username, email, password_hash, salt, user_role) VALUES ('user', 'test@test.com', 'sAYbpBw8Ur8gaPuN1ixorq4loZM=','f9AqmhzUSdk=','user');
+INSERT INTO users (username, email, password_hash, salt, user_role) VALUES ('admin', 'test@test.com', 'sAYbpBw8Ur8gaPuN1ixorq4loZM=','f9AqmhzUSdk=','admin');
 
 --User 1 profiles
 INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 'yee', 0.975, 70, 130, 50, 200, 10, 35, 'Humalog', 100)
