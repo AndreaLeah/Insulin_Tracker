@@ -2,7 +2,7 @@
 <div id="main-content">
     <div class="addFormContainer">
         <h2>Add new reading</h2>
-        <form autocomplete="off">
+        <form autocomplete="off" id="form-body">
             <profile-select/>
             <label for="bloodSugar">Blood Sugar</label>
             <input type="text" id='bloodSugar' v-model="newReading.bloodSugar"/>
