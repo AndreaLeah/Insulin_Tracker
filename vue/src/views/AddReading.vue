@@ -2,7 +2,7 @@
 <div id="main-content">
     <div class="addFormContainer">
         <h2>Add new reading</h2>
-        <form autocomplete="off">
+        <form autocomplete="off" id="form-body">
             <profile-select/>
             <label for="bloodSugar">Blood Sugar</label>
             <input type="text" id='bloodSugar' v-model="newReading.bloodSugar"/>
@@ -89,7 +89,7 @@ export default {
                 d.getFullYear() + '-' + 
                 (d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '-' + 
                 d.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + 'T' + 
-                d.getHours() + ':' + 
+                d.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + 
                 d.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + 
                 d.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '.' + 
                 d.getMilliseconds();

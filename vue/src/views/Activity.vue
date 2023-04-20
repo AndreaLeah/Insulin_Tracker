@@ -97,12 +97,12 @@ export default {
 <style scoped>
 
 section {
-    height: 100vh;
-    width: 100vw;
+    height: auto;
+    width: 40rem;
 }
 
 .bin {
-    width: 70%;
+    width: 90%;
 }
 
 #main-content{
