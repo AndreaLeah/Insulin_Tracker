@@ -78,16 +78,16 @@ CREATE TABLE activity (
 
 -- Populate default data for testing: user and admin with password of 'password'
 -- These values should not be kept when going to Production
-INSERT INTO users (username, email, password_hash, salt, user_role) VALUES ('user', 'test@test.com', 'sAYbpBw8Ur8gaPuN1ixorq4loZM=','f9AqmhzUSdk=','user');
-INSERT INTO users (username, email, password_hash, salt, user_role) VALUES ('admin', 'test@test.com', 'sAYbpBw8Ur8gaPuN1ixorq4loZM=','f9AqmhzUSdk=','admin');
+INSERT INTO users (username, email, password_hash, salt, user_role) VALUES ('user', 'test@test.com', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
+INSERT INTO users (username, email, password_hash, salt, user_role) VALUES ('admin', 'test@test.com', 'YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 --User 1 profiles
-INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 'yee', 0.975, 70, 130, 50, 200, 10, 35, 'Humalog', 100)
-INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 'yee 2', 0.8, 70, 130, 50, 200, 15, 35, 'Humalog', 100)
+INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 'Ideal Range', 0.975, 70, 130, 50, 200, 10, 35, 'Humalog', 100)
+INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (1, 'Flexible Range', 0.8, 60, 150, 50, 200, 15, 35, 'Humalog', 100)
 
 --User 2 profiles
-INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 'this is a name', 0.6, 80, 120, 50, 200, 20, 50, 'Humalog', 100)
-INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 'Bruh', 0.5, 80, 120, 50, 200, 25, 50, 'Humalog', 100)
+INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 'Ideal Range', 0.6, 80, 120, 50, 200, 20, 50, 'Humalog', 100)
+INSERT INTO profiles (user_id, profile_name, basal_rate, min_blood_sugar, max_blood_sugar, min_warning_sugar, max_warning_sugar, carb_ratio, correction_ratio, insulin_type, insulin_strength) VALUES (2, 'Flexible Range', 0.5, 80, 120, 50, 200, 25, 50, 'Humalog', 100)
 
 --User 1 readings
 --Profile 1
